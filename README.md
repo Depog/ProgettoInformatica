@@ -1,2 +1,2 @@
 # ProgettoInformatica
-Progetto di informatica
+Progetto di informatica. Vedere i dettagli su google classroom
