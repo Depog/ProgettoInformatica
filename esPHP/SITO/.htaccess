@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^ABOUT  test.php [NC,L]
