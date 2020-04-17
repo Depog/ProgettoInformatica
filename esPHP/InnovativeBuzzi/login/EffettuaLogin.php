@@ -12,7 +12,7 @@
   }
   $md5Pass=md5($password);
   //effettuo la connessione al db per vedere se i dati sono presenti
-    $sql = "SELECT persona.codiceFiscale from persona where persona.username=\"$username\" and persona.password=\"$md5Pass\"";
+    $sql = "SELECT persona.codiceFiscale,persona.tipo from persona where persona.username=\"$username\" and persona.password=\"$md5Pass\"";
                  $records=$conn->query($sql);
                  if ( $records == TRUE) {
                      //echo "<br>Query eseguita!";
@@ -26,6 +26,8 @@
                     //utente presente
                          while($tupla=$records->fetch_assoc()){
                             $codFis=$tupla["codiceFiscale"];
+                            $tipo=$tupla["tipo"];
+
                          }
                          echo "presente";
                          //se l'utente ha cliccato su "ricordami" salvo i suoi dati in due setcookie
@@ -42,9 +44,13 @@
                          }
                          //dato che i dati sono corretti mi salvo l'username in una variabile di sessione
                          $_SESSION["usernameBZ"]=$username;
-                         //reindirizzo l'utente alla home
-                         header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/homeBZ.php");  //reinderizzo alla home
+                          //reindirizzo l'utente alla home
+                         if($tipo=="Operatore"){    //se è un operatore lo reindirizzo alla home operatori
+                           header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/HomeOperatore.php");  //reinderizzo alla home
+                         }else{  //altrimenti lo reindirizzo alla home dell'utente(professore o studente)
+                           header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeUtente/HomeUtente.php");  //reinderizzo alla home
 
+                         }
                 }
                 $conn->Close();
  ?>
