@@ -1,12 +1,7 @@
-<?php
-		session_start();
-		$ip=$_SERVER['SERVER_NAME'];  //server per vedere sei sei localhost o hai un ip
-		$porta=$_SERVER['SERVER_PORT'];   //porta del serve, perchè c'è chi ha 80, chi 8080 etc...
-
- ?>
-<html >
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Innovative Buzzi</title>
+	<title>Login V3</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -16,7 +11,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
 <!--===============================================================================================-->
@@ -32,72 +27,64 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 </head>
-<body style="background-color: #666666;">
+<body>
 
 	<div class="limiter">
-		<div class="container-login100">
+		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
+
+
 				<form class="login100-form validate-form" action="EffettuaLogin.php" method="post">
-					<span class="login100-form-title p-b-43">
-						Login to continue
+					<span class="login100-form-logo">
+						<i class="zmdi zmdi-landscape"></i>
 					</span>
 
-						<?php
-							$msg="";
-						//controllo che i cookie siano settati, se fosse cosi allora riempo i campi con i valori salvato
-						if(isset($_COOKIE["username"]) && isset($_COOKIE["password"])){
-							$username=$_COOKIE["username"];
-								$password=$_COOKIE["password"];
-								$msg.="	<div class=\"wrap-input100 validate-input\" data-validate = \"Username necessario\">
-										<input class=\"input100\" type=\"text\" name=\"username\" value=\"$username\">
-										<span class=\"focus-input100\"></span>
-										<span class=\"label-input100\">Username</span>
-									</div>
+					<span class="login100-form-title p-b-34 p-t-27">
+						Log in
+					</span>
+					<?php
+					$msg="";
+					if(isset($_COOKIE["username"]) && isset($_COOKIE["password"])){
+						$username=$_COOKIE["username"];
+						$password=$_COOKIE["password"];
+							$msg.="
+							<div class=\"wrap-input100 validate-input\" data-validate = \"Enter username\">
+								<input class=\"input100\" type=\"text\" name=\"username\" placeholder=\"Username\" value=\"$username\">
+								<span class=\"focus-input100\" data-placeholder=\"&#xf207;\"></span>
+							</div>
 
+							<div class=\"wrap-input100 validate-input\" data-validate=\"Enter password\">
+								<input class=\"input100\" type=\"password\" name=\"pass\" placeholder=\"Password\" value=\"$password\">
+								<span class=\"focus-input100\" data-placeholder=\"&#xf191;\"></span>
+							</div>
 
-									<div class=\"wrap-input100 validate-input\" data-validate=\"Password necessaria\">
-										<input class=\"input100\" type=\"password\" name=\"pass\" value=\"$password\">
-										<span class=\"focus-input100\"></span>
-										<span class=\"label-input100\">Password</span>
-									</div>";
-									//seleziono "ricordami"
-								$msg.="	<div class=\"flex-sb-m w-full p-t-3 p-b-32\">
-										<div class=\"contact100-form-checkbox\">
-											<input class=\"input-checkbox100\" id=\"ckb1\" type=\"checkbox\" name=\"ricordami\" checked>
-											<label class=\"label-checkbox100\" for=\"ckb1\">
-												Resta connesso
-											</label>
-										</div>";
+							<div class=\"contact100-form-checkbox\">
+								<input class=\"input-checkbox100\" id=\"ckb1\" type=\"checkbox\" name=\"ricordami\">
+								<label class=\"label-checkbox100\" for=\"ckb1\">
+									Ricordami
+								</label>
+							</div>";
+					}else{
+								$msg.="
+								<div class=\"wrap-input100 validate-input\" data-validate = \"Enter username\">
+									<input class=\"input100\" type=\"text\" name=\"username\" placeholder=\"Username\">
+									<span class=\"focus-input100\" data-placeholder=\"&#xf207;\"></span>
+								</div>
 
-				}else{
-					$msg.="	<div class=\"wrap-input100 validate-input\" data-validate = \"Username necessario\">
-							<input class=\"input100\" type=\"text\" name=\"username\">
-							<span class=\"focus-input100\"></span>
-							<span class=\"label-input100\">Username</span>
-						</div>
-						<div class=\"wrap-input100 validate-input\" data-validate=\"Password necessaria\">
-							<input class=\"input100\" type=\"password\" name=\"pass\" >
-							<span class=\"focus-input100\"></span>
-							<span class=\"label-input100\">Password</span>
-						</div>
-						<div class=\"flex-sb-m w-full p-t-3 p-b-32\">
+								<div class=\"wrap-input100 validate-input\" data-validate=\"Enter password\">
+									<input class=\"input100\" type=\"password\" name=\"pass\" placeholder=\"Password\">
+									<span class=\"focus-input100\" data-placeholder=\"&#xf191;\"></span>
+								</div>
+
 								<div class=\"contact100-form-checkbox\">
-									<input class=\"input-checkbox100\" id=\"ckb1\" type=\"checkbox\" name=\"ricordami\" >
+									<input class=\"input-checkbox100\" id=\"ckb1\" type=\"checkbox\" name=\"ricordami\">
 									<label class=\"label-checkbox100\" for=\"ckb1\">
-										Resta connesso
+										Ricordami
 									</label>
 								</div>";
-
 					}
 					echo $msg;
-						?>
-						<div>
-							<a href="#" class="txt1">
-								Password dimenticata? contatta l'ufficio tecnico
-							</a>
-						</div>
-					</div>
-
+					?>
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
@@ -105,26 +92,21 @@
 						</button>
 					</div>
 
-
-
-
+					<div class="text-center p-t-90">
+						<a class="txt1" href="#">
+							Forgot Password?
+						</a>
+					</div>
 				</form>
 
-				<div class="login100-more" style="background-image: url('images/bg-01.jpg');">
-				</div>
+
+
 			</div>
 		</div>
 	</div>
-	<?php
-		if(isset($_SESSION["usernameBZ"])){
-			header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/homeBZ.php");  //reinderizzo alla home
-
-		}
-
-	 ?>
 
 
-
+	<div id="dropDownSelect1"></div>
 
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
