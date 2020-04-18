@@ -28,6 +28,30 @@
 <!--===============================================================================================-->
 </head>
 <body>
+
+	<?php
+	function showHome($username, $password){
+
+		$msg.="
+		<div class=\"wrap-input100 validate-input\" data-validate = \"Enter username\">
+			<input class=\"input100\" type=\"text\" name=\"username\" placeholder=\"Username\" value=\"$username\">
+			<span class=\"focus-input100\" data-placeholder=\"&#xf207;\"></span>
+		</div>
+
+		<div class=\"wrap-input100 validate-input\" data-validate=\"Enter password\">
+			<input class=\"input100\" type=\"password\" name=\"pass\" placeholder=\"Password\" value=\"$password\">
+			<span class=\"focus-input100\" data-placeholder=\"&#xf191;\"></span>
+		</div>
+
+		<div class=\"contact100-form-checkbox\">
+			<input class=\"input-checkbox100\" id=\"ckb1\" type=\"checkbox\" name=\"ricordami\">
+			<label class=\"label-checkbox100\" for=\"ckb1\">
+				Ricordami
+			</label>
+		</div>";
+	}
+	?>
+	
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
@@ -42,41 +66,11 @@
 					if(isset($_COOKIE["username"]) && isset($_COOKIE["password"])){
 						$username=$_COOKIE["username"];
 						$password=$_COOKIE["password"];
-							$msg.="
-							<div class=\"wrap-input100 validate-input\" data-validate = \"Enter username\">
-								<input class=\"input100\" type=\"text\" name=\"username\" placeholder=\"Username\" value=\"$username\">
-								<span class=\"focus-input100\" data-placeholder=\"&#xf207;\"></span>
-							</div>
-
-							<div class=\"wrap-input100 validate-input\" data-validate=\"Enter password\">
-								<input class=\"input100\" type=\"password\" name=\"pass\" placeholder=\"Password\" value=\"$password\">
-								<span class=\"focus-input100\" data-placeholder=\"&#xf191;\"></span>
-							</div>
-
-							<div class=\"contact100-form-checkbox\">
-								<input class=\"input-checkbox100\" id=\"ckb1\" type=\"checkbox\" name=\"ricordami\">
-								<label class=\"label-checkbox100\" for=\"ckb1\">
-									Ricordami
-								</label>
-							</div>";
+						showHome($username, $password);
 					}else{
-								$msg.="
-								<div class=\"wrap-input100 validate-input\" data-validate = \"Enter username\">
-									<input class=\"input100\" type=\"text\" name=\"username\" placeholder=\"Username\">
-									<span class=\"focus-input100\" data-placeholder=\"&#xf207;\"></span>
-								</div>
-
-								<div class=\"wrap-input100 validate-input\" data-validate=\"Enter password\">
-									<input class=\"input100\" type=\"password\" name=\"pass\" placeholder=\"Password\">
-									<span class=\"focus-input100\" data-placeholder=\"&#xf191;\"></span>
-								</div>
-
-								<div class=\"contact100-form-checkbox\">
-									<input class=\"input-checkbox100\" id=\"ckb1\" type=\"checkbox\" name=\"ricordami\">
-									<label class=\"label-checkbox100\" for=\"ckb1\">
-										Ricordami
-									</label>
-								</div>";
+						$username="Username";
+						$password="Password";
+						showHome($username, $password);
 					}
 					echo $msg;
 					?>
