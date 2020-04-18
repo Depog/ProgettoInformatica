@@ -28,16 +28,11 @@
 <!--===============================================================================================-->
 </head>
 <body>
-
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+		<div class="container-login100">
 			<div class="wrap-login100">
-
-
 				<form class="login100-form validate-form" action="EffettuaLogin.php" method="post">
-				<a href="http://www.itistulliobuzzi.it/buzziwebsite/home/index.asp" >	<span  class="login100-form-logo">
-						<i  class="zmdi zmdi-landscape"></i>
-					</span> </a>
+				<a href="http://www.itistulliobuzzi.it/buzziwebsite/home/index.asp" >	<img src="images/buzzi.gif" alt="logoBuzzi" class="imgCenter" /> </a>
 
 					<span class="login100-form-title p-b-34 p-t-27">
 						Log in
@@ -90,16 +85,14 @@
 						<button class="login100-form-btn">
 							Login
 						</button>
-					</div>
 
-					<div class="text-center p-t-90">
+						<p style="margin-top: 30px;">
+
 						<a class="txt1" href="#">
-							Forgot Password?
-						</a>
+							Password o Username dimenticati? Clicca qui!
+						</a></p>
 					</div>
 				</form>
-
-
 
 			</div>
 		</div>
