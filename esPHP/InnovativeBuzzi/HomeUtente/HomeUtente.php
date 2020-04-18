@@ -1,3 +1,8 @@
+<?php
+  session_start();
+  $ip=$_SERVER['SERVER_NAME'];  //server per vedere sei sei localhost o hai un ip
+  $porta=$_SERVER['SERVER_PORT'];   //porta del serve, perchè c'è chi ha 80, chi 8080 etc...
+	?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,16 +25,37 @@
 	<link rel="stylesheet" type="text/css" href="Table/css/util.css">
 	<link rel="stylesheet" type="text/css" href="Table/css/main.css">
 <!--===============================================================================================-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 </head>
+	<style>
+		b{
+			position: absolute;
+			left : 800px;
+			top: 170px;
+		}
+		b.c{
+			position: : fixed;
+			left : 230px;
+			top: 100px;
+			font-size: 40px;
+		}
+
+
+	</style>
 <body>
       <?php
-
           echo "utente";
 
-       ?>
+//  header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeUtente/HomeUtente.php");  //reinderizzo alla home
+
+		   $CreaPreno="<b><button onclick=\"window.location.href='http://$ip:$porta/esPHP/InnovativeBuzzi/Prenotazione/CreaPrenotazione.php'\" type=\"button\" class=\"btn btn-outline-success\">Crea Prenotazione</button></b>";
+			 echo $CreaPreno;
+			 ?>
 	<div class="limiter">
 		<div class="container-table100">
 			<div class="wrap-table100">
+				<b class="c">Lista Acquisti </b>
 				<div class="table100 ver3 m-b-110">
 					<div class="table100-head">
 						<table>
