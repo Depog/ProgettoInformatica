@@ -29,9 +29,10 @@
 </head>
 <body>
 
+
 	<?php
 	function showHome($username, $password){
-
+		$msg=null;
 		$msg.="
 		<div class=\"wrap-input100 validate-input\" data-validate = \"Enter username\">
 			<input class=\"input100\" type=\"text\" name=\"username\" placeholder=\"Username\" value=\"$username\">
@@ -49,14 +50,18 @@
 				Ricordami
 			</label>
 		</div>";
+		echo $msg;
 	}
 	?>
-	
+
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
+
+
 				<form class="login100-form validate-form" action="EffettuaLogin.php" method="post">
-				<a href="http://www.itistulliobuzzi.it/buzziwebsite/home/index.asp" >	<img src="images/buzzi.gif" alt="logoBuzzi" class="imgCenter" /> </a>
+					<a href="http://www.itistulliobuzzi.it/buzziwebsite/home/index.asp" >	<img src="images/buzzi.gif" alt="logoBuzzi" class="imgCenter" /> </a>
 
 					<span class="login100-form-title p-b-34 p-t-27">
 						Log in
@@ -68,25 +73,26 @@
 						$password=$_COOKIE["password"];
 						showHome($username, $password);
 					}else{
-						$username="Username";
-						$password="Password";
+						$username="";
+						$password="";
 						showHome($username, $password);
 					}
-					echo $msg;
+
 					?>
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
 							Login
 						</button>
+					<<p style="margin-top: 30px;">
 
-						<p style="margin-top: 30px;">
-
-						<a class="txt1" href="#">
-							Password o Username dimenticati? Clicca qui!
-						</a></p>
+					<a class="txt1" href="#">
+						Password o Username dimenticati? Clicca qui!
+					</a></p>
 					</div>
 				</form>
+
+
 
 			</div>
 		</div>

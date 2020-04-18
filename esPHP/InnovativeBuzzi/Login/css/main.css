@@ -240,6 +240,7 @@ iframe {
   text-transform: uppercase;
 
   display: block;
+  margin-bottom: 0;
 }
 
 
@@ -251,6 +252,7 @@ iframe {
   position: relative;
   border-bottom: 2px solid rgba(255,255,255,0.24);
   margin-bottom: 30px;
+
 }
 
 .input100 {
