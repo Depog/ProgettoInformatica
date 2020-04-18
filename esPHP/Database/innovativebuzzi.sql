@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 18, 2020 alle 14:51
+-- Creato il: Apr 18, 2020 alle 20:04
 -- Versione del server: 10.4.11-MariaDB
 -- Versione PHP: 7.4.4
 
@@ -33,6 +33,17 @@ CREATE TABLE `acquisto` (
   `dataAcquisto` date DEFAULT NULL,
   `orarioAcquisto` time DEFAULT NULL,
   `Quantità` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `contiene`
+--
+
+CREATE TABLE `contiene` (
+  `idPrenotazione` int(11) NOT NULL,
+  `idFile` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -87,13 +98,6 @@ CREATE TABLE `persona` (
   `civico` int(11) DEFAULT NULL,
   `cap` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `persona`
---
-
-INSERT INTO `persona` (`codiceFiscale`, `nome`, `cognome`, `password`, `username`, `email`, `tipo`, `dataNascita`, `civico`, `cap`) VALUES
-('', NULL, NULL, '9d04b6572e137eb28b2c444c1c7d3faf', 'Fede', NULL, 'Professore\r\n', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -160,6 +164,13 @@ CREATE TABLE `studente` (
 ALTER TABLE `acquisto`
   ADD PRIMARY KEY (`idAcquisto`),
   ADD KEY `codiceFiscale` (`codiceFiscale`);
+
+--
+-- Indici per le tabelle `contiene`
+--
+ALTER TABLE `contiene`
+  ADD PRIMARY KEY (`idPrenotazione`,`idFile`),
+  ADD KEY `idFile` (`idFile`);
 
 --
 -- Indici per le tabelle `file`
@@ -256,6 +267,13 @@ ALTER TABLE `stampa`
 --
 ALTER TABLE `acquisto`
   ADD CONSTRAINT `acquisto_ibfk_1` FOREIGN KEY (`codiceFiscale`) REFERENCES `persona` (`codiceFiscale`) ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `contiene`
+--
+ALTER TABLE `contiene`
+  ADD CONSTRAINT `contiene_ibfk_1` FOREIGN KEY (`idPrenotazione`) REFERENCES `prenotazione` (`idPrenotazione`),
+  ADD CONSTRAINT `contiene_ibfk_2` FOREIGN KEY (`idFile`) REFERENCES `file` (`idFile`) ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `include`
