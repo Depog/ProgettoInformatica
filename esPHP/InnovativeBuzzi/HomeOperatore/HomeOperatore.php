@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
   session_start();
   $ip=$_SERVER['SERVER_NAME'];  //server per vedere sei sei localhost o hai un ip
   $porta=$_SERVER['SERVER_PORT'];   //porta del serve, perchè c'è chi ha 80, chi 8080 etc...

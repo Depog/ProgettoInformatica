@@ -3,8 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-
--- Creato il: Apr 19, 2020 alle 00:55
+-- Creato il: Apr 19, 2020 alle 19:51
 -- Versione del server: 10.4.11-MariaDB
 -- Versione PHP: 7.4.4
 
@@ -39,11 +38,23 @@ CREATE TABLE `acquisto` (
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `contiene`
+--
+
+CREATE TABLE `contiene` (
+  `idPrenotazione` int(11) NOT NULL,
+  `codiceFile` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+>>>>>>> 41ff4aa43edfb9ef784028a294fecfcbec7902d2
 -- Struttura della tabella `file`
 --
 
 CREATE TABLE `file` (
-  `idFile` int(11) NOT NULL,
+  `codiceFile` varchar(64) NOT NULL,
   `nomeFile` varchar(128) DEFAULT NULL,
   `dimensione` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -56,7 +67,7 @@ CREATE TABLE `file` (
 
 CREATE TABLE `formato` (
   `Tipo` varchar(16) NOT NULL,
-  `costoStampa` decimal(3,2) DEFAULT NULL
+  `costoStampa` decimal(4,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -108,6 +119,7 @@ CREATE TABLE `prenotazione` (
   `oraPrenotazione` time DEFAULT NULL,
   `quantità` int(11) DEFAULT NULL,
   `stampata` enum('si','no') DEFAULT 'no',
+  `note` varchar(64) DEFAULT NULL,
   `codiceFiscaleCliente` char(16) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -138,19 +150,19 @@ CREATE TABLE `stampa` (
   `oraRitiro` time DEFAULT NULL,
   `tipoFormato` varchar(16) DEFAULT NULL,
   `idProdotto` int(11) DEFAULT NULL,
+  `fronteRetro` enum('si','no') DEFAULT 'no',
   `tipologia` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `studente`
+-- Struttura della tabella `tipologia`
 --
 
-CREATE TABLE `studente` (
-  `codiceFiscale` char(16) NOT NULL,
-  `classe` char(3) DEFAULT NULL,
-  `sezione` tinyint(4) DEFAULT NULL
+CREATE TABLE `tipologia` (
+  `Tipologia` varchar(64) NOT NULL,
+  `costo` decimal(4,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -176,10 +188,17 @@ ALTER TABLE `acquisto`
   ADD KEY `codiceFiscale` (`codiceFiscale`);
 
 --
+-- Indici per le tabelle `contiene`
+--
+ALTER TABLE `contiene`
+  ADD PRIMARY KEY (`idPrenotazione`,`codiceFile`),
+  ADD KEY `codiceFile` (`codiceFile`);
+
+--
 -- Indici per le tabelle `file`
 --
 ALTER TABLE `file`
-  ADD PRIMARY KEY (`idFile`);
+  ADD PRIMARY KEY (`codiceFile`);
 
 --
 -- Indici per le tabelle `formato`
@@ -224,10 +243,10 @@ ALTER TABLE `stampa`
   ADD KEY `tipoFormato` (`tipoFormato`);
 
 --
--- Indici per le tabelle `studente`
+-- Indici per le tabelle `tipologia`
 --
-ALTER TABLE `studente`
-  ADD PRIMARY KEY (`codiceFiscale`);
+ALTER TABLE `tipologia`
+  ADD PRIMARY KEY (`Tipologia`);
 
 --
 -- Indici per le tabelle `tipologia`
@@ -244,12 +263,6 @@ ALTER TABLE `tipologia`
 --
 ALTER TABLE `acquisto`
   MODIFY `idAcquisto` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT per la tabella `file`
---
-ALTER TABLE `file`
-  MODIFY `idFile` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `prenotazione`
@@ -284,7 +297,7 @@ ALTER TABLE `acquisto`
 --
 ALTER TABLE `contiene`
   ADD CONSTRAINT `contiene_ibfk_1` FOREIGN KEY (`idPrenotazione`) REFERENCES `prenotazione` (`idPrenotazione`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `contiene_ibfk_2` FOREIGN KEY (`idFile`) REFERENCES `file` (`idFile`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `contiene_ibfk_2` FOREIGN KEY (`codiceFile`) REFERENCES `file` (`codiceFile`) ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `include`
