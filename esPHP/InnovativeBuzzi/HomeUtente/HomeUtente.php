@@ -256,7 +256,7 @@
               <div class=\"pren-text\">
                 <b>PRENOTAZIONE</b><br />
                 Qui accanto troverai il modulo da compilare per inviare il tuo file da stampare! Clicca sull'immagine alla sinistra oppure il bottone in fondo per andare nella pagina<br /><br />
-                <a href=\"https://google.com\" class=\"btn btn-primary\">Prenota ora</a>
+                <a href=\" http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Prenotazione/CaricamentoFile/EffettuaPrenotazione.php\" class=\"btn btn-primary\">Prenota ora</a>
               </div>
 
            </div>
