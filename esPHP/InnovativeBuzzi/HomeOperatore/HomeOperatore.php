@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
   session_start();
   $ip=$_SERVER['SERVER_NAME'];  //server per vedere sei sei localhost o hai un ip
   $porta=$_SERVER['SERVER_PORT'];   //porta del serve, perchè c'è chi ha 80, chi 8080 etc...
@@ -34,10 +33,6 @@
    	<link rel="stylesheet" type="text/css" href="../HomeUtente/Table/css/main.css">
    <!--===============================================================================================-->
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-=======
-
-    echo "operatore";
->>>>>>> update
 
    <style>
      b{
@@ -49,44 +44,49 @@
      b.c{
        position: : fixed;
        left : 230px;
-       top: 100px;
+       top: 150px;
        font-size: 40px;
+       color: #fff;
      }
 
-     .body1{
-       width:   100%;
-       height:  100%;
-       margin:  00px 00px 00px 00px;
+     .page {
+       width:100%;
+       height: 100%;
+       margin: 0px 0px 0px 0px;
+       padding: 0px 0px 0px 0px;
+       border: 0px 0px 0px 0px;
        background: url(../Login/images/wallpaper.jpg) no-repeat fixed;
        background-size: cover;
        position: fixed;
        font-family: Poppins-Regular, sans-serif;
      }
 
+
    </style>
  </head>
 
- <body class="body1">
+ <body>
        <?php
- 		   $CreaPreno="<b><button onclick=\"window.location.href='http://$ip:$porta/esPHP/InnovativeBuzzi/Prenotazione/CreaPrenotazione.php'\" type=\"button\" class=\"btn btn-outline-success\">Crea Prenotazione</button></b>";
- 			 echo $CreaPreno;
+ 		   /*$CreaPreno="<b><button onclick=\"window.location.href='http://$ip:$porta/esPHP/InnovativeBuzzi/Prenotazione/CreaPrenotazione.php'\" type=\"button\" class=\"btn btn-outline-success\">Crea Prenotazione</button></b>";
+ 			 echo $CreaPreno;*/
        ?>
-       <div class="limiter">
-      		<div class="container-table100">
-      			<div class="wrap-table100">
-      				<b class="c">Coda Stampa</b>
-      				<div class="table100 ver3 m-b-110">
-                 <?php
-                 //Creazione Coda Delle Stampe in modo dinamico
-                   include 'LogicaCodaStampa/codaStampa.php';
-                   $app = caricaCodaStampa();
-                   echo $app;
-                 ?>
-      				</div>
-      			</div>
-      		</div>
-      	</div>
-
+       <p class="page">
+         <div class="limiter">
+        		<div class="container-table100">
+        			<div class="wrap-table100">
+        				<b class="c">Coda Stampa</b>
+        				<div class="table100 ver3 m-b-110">
+                   <?php
+                   //Creazione Coda Delle Stampe in modo dinamico
+                     include 'LogicaCodaStampa/codaStampa.php';
+                     $app = caricaCodaStampa($ip,$porta);
+                     echo $app;
+                   ?>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+       </p>
 
  <!--===============================================================================================-->
  	<script src="../HomeUtente/Table/vendor/jquery/jquery-3.2.1.min.js"></script>

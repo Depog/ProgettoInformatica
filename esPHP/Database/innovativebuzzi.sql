@@ -4,7 +4,11 @@
 --
 -- Host: 127.0.0.1
 <<<<<<< HEAD
+<<<<<<< HEAD
 -- Creato il: Apr 18, 2020 alle 14:51
+=======
+-- Creato il: Apr 19, 2020 alle 00:55
+>>>>>>> update
 =======
 -- Creato il: Apr 19, 2020 alle 00:55
 >>>>>>> update
@@ -98,7 +102,11 @@ CREATE TABLE `persona` (
 
 INSERT INTO `persona` (`codiceFiscale`, `nome`, `cognome`, `password`, `username`, `email`, `tipo`, `dataNascita`, `civico`, `cap`) VALUES
 <<<<<<< HEAD
+<<<<<<< HEAD
 ('', NULL, NULL, '9d04b6572e137eb28b2c444c1c7d3faf', 'Fede', NULL, 'Professore\r\n', NULL, NULL, NULL);
+=======
+('', NULL, NULL, '9d04b6572e137eb28b2c444c1c7d3faf', 'Fede', NULL, 'Professore', NULL, NULL, NULL);
+>>>>>>> update
 =======
 ('', NULL, NULL, '9d04b6572e137eb28b2c444c1c7d3faf', 'Fede', NULL, 'Professore', NULL, NULL, NULL);
 >>>>>>> update
