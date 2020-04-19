@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 19, 2020 alle 19:51
+-- Creato il: Apr 19, 2020 alle 20:47
 -- Versione del server: 10.4.11-MariaDB
 -- Versione PHP: 7.4.4
 
@@ -112,7 +112,7 @@ CREATE TABLE `prenotazione` (
   `quantità` int(11) DEFAULT NULL,
   `stampata` enum('si','no') DEFAULT 'no',
   `note` varchar(64) DEFAULT NULL,
-  `codiceFiscaleCliente` char(16) DEFAULT NULL
+  `codiceFiscale` char(16) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -137,7 +137,7 @@ CREATE TABLE `stampa` (
   `idStampa` int(11) NOT NULL,
   `dataStampa` date DEFAULT NULL,
   `oraStampa` time DEFAULT NULL,
-  `codiceFiscalePersona` char(16) DEFAULT NULL,
+  `codiceFiscale` char(16) DEFAULT NULL,
   `dataRitiro` date DEFAULT NULL,
   `oraRitiro` time DEFAULT NULL,
   `tipoFormato` varchar(16) DEFAULT NULL,
@@ -205,7 +205,7 @@ ALTER TABLE `persona`
 --
 ALTER TABLE `prenotazione`
   ADD PRIMARY KEY (`idPrenotazione`),
-  ADD KEY `codiceFiscaleCliente` (`codiceFiscaleCliente`);
+  ADD KEY `codiceFiscale` (`codiceFiscale`);
 
 --
 -- Indici per le tabelle `prodotto`
@@ -220,7 +220,7 @@ ALTER TABLE `stampa`
   ADD PRIMARY KEY (`idStampa`),
   ADD KEY `tipologia` (`tipologia`),
   ADD KEY `idProdotto` (`idProdotto`),
-  ADD KEY `codiceFiscalePersona` (`codiceFiscalePersona`),
+  ADD KEY `codiceFiscale` (`codiceFiscale`),
   ADD KEY `tipoFormato` (`tipoFormato`);
 
 --
@@ -285,7 +285,7 @@ ALTER TABLE `include`
 -- Limiti per la tabella `prenotazione`
 --
 ALTER TABLE `prenotazione`
-  ADD CONSTRAINT `prenotazione_ibfk_1` FOREIGN KEY (`codiceFiscaleCliente`) REFERENCES `persona` (`codiceFiscale`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `prenotazione_ibfk_1` FOREIGN KEY (`codiceFiscale`) REFERENCES `persona` (`codiceFiscale`) ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `stampa`
@@ -293,7 +293,7 @@ ALTER TABLE `prenotazione`
 ALTER TABLE `stampa`
   ADD CONSTRAINT `stampa_ibfk_1` FOREIGN KEY (`tipologia`) REFERENCES `tipologia` (`Tipologia`) ON UPDATE CASCADE,
   ADD CONSTRAINT `stampa_ibfk_2` FOREIGN KEY (`idProdotto`) REFERENCES `prodotto` (`idProdotto`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `stampa_ibfk_3` FOREIGN KEY (`codiceFiscalePersona`) REFERENCES `persona` (`codiceFiscale`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `stampa_ibfk_3` FOREIGN KEY (`codiceFiscale`) REFERENCES `persona` (`codiceFiscale`) ON UPDATE CASCADE,
   ADD CONSTRAINT `stampa_ibfk_4` FOREIGN KEY (`tipoFormato`) REFERENCES `formato` (`Tipo`) ON UPDATE CASCADE;
 COMMIT;
 
