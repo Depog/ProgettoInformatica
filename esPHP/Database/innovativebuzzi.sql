@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 19, 2020 alle 00:55
+-- Creato il: Apr 19, 2020 alle 19:51
 -- Versione del server: 10.4.11-MariaDB
 -- Versione PHP: 7.4.4
 
@@ -43,7 +43,7 @@ CREATE TABLE `acquisto` (
 
 CREATE TABLE `contiene` (
   `idPrenotazione` int(11) NOT NULL,
-  `idFile` int(11) NOT NULL
+  `codiceFile` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -53,7 +53,7 @@ CREATE TABLE `contiene` (
 --
 
 CREATE TABLE `file` (
-  `idFile` int(11) NOT NULL,
+  `codiceFile` varchar(64) NOT NULL,
   `nomeFile` varchar(128) DEFAULT NULL,
   `dimensione` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -66,7 +66,7 @@ CREATE TABLE `file` (
 
 CREATE TABLE `formato` (
   `Tipo` varchar(16) NOT NULL,
-  `costoStampa` decimal(3,2) DEFAULT NULL
+  `costoStampa` decimal(4,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -99,13 +99,6 @@ CREATE TABLE `persona` (
   `cap` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dump dei dati per la tabella `persona`
---
-
-INSERT INTO `persona` (`codiceFiscale`, `nome`, `cognome`, `password`, `username`, `email`, `tipo`, `dataNascita`, `civico`, `cap`) VALUES
-('', NULL, NULL, '9d04b6572e137eb28b2c444c1c7d3faf', 'Fede', NULL, 'Professore', NULL, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -118,6 +111,7 @@ CREATE TABLE `prenotazione` (
   `oraPrenotazione` time DEFAULT NULL,
   `quantità` int(11) DEFAULT NULL,
   `stampata` enum('si','no') DEFAULT 'no',
+  `note` varchar(64) DEFAULT NULL,
   `codiceFiscaleCliente` char(16) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -148,19 +142,8 @@ CREATE TABLE `stampa` (
   `oraRitiro` time DEFAULT NULL,
   `tipoFormato` varchar(16) DEFAULT NULL,
   `idProdotto` int(11) DEFAULT NULL,
+  `fronteRetro` enum('si','no') DEFAULT 'no',
   `tipologia` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `studente`
---
-
-CREATE TABLE `studente` (
-  `codiceFiscale` char(16) NOT NULL,
-  `classe` char(3) DEFAULT NULL,
-  `sezione` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -189,14 +172,14 @@ ALTER TABLE `acquisto`
 -- Indici per le tabelle `contiene`
 --
 ALTER TABLE `contiene`
-  ADD PRIMARY KEY (`idPrenotazione`,`idFile`),
-  ADD KEY `idFile` (`idFile`);
+  ADD PRIMARY KEY (`idPrenotazione`,`codiceFile`),
+  ADD KEY `codiceFile` (`codiceFile`);
 
 --
 -- Indici per le tabelle `file`
 --
 ALTER TABLE `file`
-  ADD PRIMARY KEY (`idFile`);
+  ADD PRIMARY KEY (`codiceFile`);
 
 --
 -- Indici per le tabelle `formato`
@@ -241,12 +224,6 @@ ALTER TABLE `stampa`
   ADD KEY `tipoFormato` (`tipoFormato`);
 
 --
--- Indici per le tabelle `studente`
---
-ALTER TABLE `studente`
-  ADD PRIMARY KEY (`codiceFiscale`);
-
---
 -- Indici per le tabelle `tipologia`
 --
 ALTER TABLE `tipologia`
@@ -261,12 +238,6 @@ ALTER TABLE `tipologia`
 --
 ALTER TABLE `acquisto`
   MODIFY `idAcquisto` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT per la tabella `file`
---
-ALTER TABLE `file`
-  MODIFY `idFile` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `prenotazione`
@@ -301,7 +272,7 @@ ALTER TABLE `acquisto`
 --
 ALTER TABLE `contiene`
   ADD CONSTRAINT `contiene_ibfk_1` FOREIGN KEY (`idPrenotazione`) REFERENCES `prenotazione` (`idPrenotazione`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `contiene_ibfk_2` FOREIGN KEY (`idFile`) REFERENCES `file` (`idFile`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `contiene_ibfk_2` FOREIGN KEY (`codiceFile`) REFERENCES `file` (`codiceFile`) ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `include`
@@ -324,12 +295,6 @@ ALTER TABLE `stampa`
   ADD CONSTRAINT `stampa_ibfk_2` FOREIGN KEY (`idProdotto`) REFERENCES `prodotto` (`idProdotto`) ON UPDATE CASCADE,
   ADD CONSTRAINT `stampa_ibfk_3` FOREIGN KEY (`codiceFiscalePersona`) REFERENCES `persona` (`codiceFiscale`) ON UPDATE CASCADE,
   ADD CONSTRAINT `stampa_ibfk_4` FOREIGN KEY (`tipoFormato`) REFERENCES `formato` (`Tipo`) ON UPDATE CASCADE;
-
---
--- Limiti per la tabella `studente`
---
-ALTER TABLE `studente`
-  ADD CONSTRAINT `studente_ibfk_1` FOREIGN KEY (`codiceFiscale`) REFERENCES `persona` (`codiceFiscale`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
