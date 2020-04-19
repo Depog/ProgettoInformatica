@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Creato il: Apr 18, 2020 alle 14:51
+=======
+-- Creato il: Apr 19, 2020 alle 00:55
+>>>>>>> update
 -- Versione del server: 10.4.11-MariaDB
 -- Versione PHP: 7.4.4
 
@@ -93,7 +97,11 @@ CREATE TABLE `persona` (
 --
 
 INSERT INTO `persona` (`codiceFiscale`, `nome`, `cognome`, `password`, `username`, `email`, `tipo`, `dataNascita`, `civico`, `cap`) VALUES
+<<<<<<< HEAD
 ('', NULL, NULL, '9d04b6572e137eb28b2c444c1c7d3faf', 'Fede', NULL, 'Professore\r\n', NULL, NULL, NULL);
+=======
+('', NULL, NULL, '9d04b6572e137eb28b2c444c1c7d3faf', 'Fede', NULL, 'Professore', NULL, NULL, NULL);
+>>>>>>> update
 
 -- --------------------------------------------------------
 
@@ -135,7 +143,9 @@ CREATE TABLE `stampa` (
   `codiceFiscalePersona` char(16) DEFAULT NULL,
   `dataRitiro` date DEFAULT NULL,
   `oraRitiro` time DEFAULT NULL,
-  `tipoFormato` varchar(16) DEFAULT NULL
+  `tipoFormato` varchar(16) DEFAULT NULL,
+  `idProdotto` int(11) DEFAULT NULL,
+  `tipologia` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -148,6 +158,17 @@ CREATE TABLE `studente` (
   `codiceFiscale` char(16) NOT NULL,
   `classe` char(3) DEFAULT NULL,
   `sezione` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `tipologia`
+--
+
+CREATE TABLE `tipologia` (
+  `Tipologia` varchar(64) NOT NULL,
+  `costo` decimal(4,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -204,6 +225,8 @@ ALTER TABLE `prodotto`
 --
 ALTER TABLE `stampa`
   ADD PRIMARY KEY (`idStampa`),
+  ADD KEY `tipologia` (`tipologia`),
+  ADD KEY `idProdotto` (`idProdotto`),
   ADD KEY `codiceFiscalePersona` (`codiceFiscalePersona`),
   ADD KEY `tipoFormato` (`tipoFormato`);
 
@@ -212,6 +235,12 @@ ALTER TABLE `stampa`
 --
 ALTER TABLE `studente`
   ADD PRIMARY KEY (`codiceFiscale`);
+
+--
+-- Indici per le tabelle `tipologia`
+--
+ALTER TABLE `tipologia`
+  ADD PRIMARY KEY (`Tipologia`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -258,10 +287,20 @@ ALTER TABLE `acquisto`
   ADD CONSTRAINT `acquisto_ibfk_1` FOREIGN KEY (`codiceFiscale`) REFERENCES `persona` (`codiceFiscale`) ON UPDATE CASCADE;
 
 --
+<<<<<<< HEAD
+=======
+-- Limiti per la tabella `contiene`
+--
+ALTER TABLE `contiene`
+  ADD CONSTRAINT `contiene_ibfk_1` FOREIGN KEY (`idPrenotazione`) REFERENCES `prenotazione` (`idPrenotazione`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `contiene_ibfk_2` FOREIGN KEY (`idFile`) REFERENCES `file` (`idFile`) ON UPDATE CASCADE;
+
+--
+>>>>>>> update
 -- Limiti per la tabella `include`
 --
 ALTER TABLE `include`
-  ADD CONSTRAINT `include_ibfk_1` FOREIGN KEY (`idAcquisto`) REFERENCES `acquisto` (`idAcquisto`),
+  ADD CONSTRAINT `include_ibfk_1` FOREIGN KEY (`idAcquisto`) REFERENCES `acquisto` (`idAcquisto`) ON UPDATE CASCADE,
   ADD CONSTRAINT `include_ibfk_2` FOREIGN KEY (`idProdotto`) REFERENCES `prodotto` (`idProdotto`) ON UPDATE CASCADE;
 
 --
@@ -274,8 +313,10 @@ ALTER TABLE `prenotazione`
 -- Limiti per la tabella `stampa`
 --
 ALTER TABLE `stampa`
-  ADD CONSTRAINT `stampa_ibfk_1` FOREIGN KEY (`codiceFiscalePersona`) REFERENCES `persona` (`codiceFiscale`),
-  ADD CONSTRAINT `stampa_ibfk_2` FOREIGN KEY (`tipoFormato`) REFERENCES `formato` (`Tipo`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `stampa_ibfk_1` FOREIGN KEY (`tipologia`) REFERENCES `tipologia` (`Tipologia`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `stampa_ibfk_2` FOREIGN KEY (`idProdotto`) REFERENCES `prodotto` (`idProdotto`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `stampa_ibfk_3` FOREIGN KEY (`codiceFiscalePersona`) REFERENCES `persona` (`codiceFiscale`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `stampa_ibfk_4` FOREIGN KEY (`tipoFormato`) REFERENCES `formato` (`Tipo`) ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `studente`

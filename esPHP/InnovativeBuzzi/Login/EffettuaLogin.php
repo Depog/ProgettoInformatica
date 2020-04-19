@@ -32,19 +32,18 @@
                          echo "presente";
                          //se l'utente ha cliccato su "ricordami" salvo i suoi dati in due setcookie
                          if(isset($_POST["ricordami"])){
-                            $nomeCookie1="usernameBZ";
-                             $nomeCookie2="passwordBZ";
+                            $nomeCookie1="username";
+                             $nomeCookie2="password";
                              setcookie($nomeCookie1,$username,time() + (86400 * 30), "/");
                              setcookie($nomeCookie2,$password,time() + (86400 * 30), "/");
                          }else{ //elimino eventuali cookie presenti
-                           $nomeCookie1="usernameBZ";
-                            $nomeCookie2="passwordBz";
+                           $nomeCookie1="username";
+                            $nomeCookie2="password";
                             setcookie($nomeCookie1,null,time() + (86400 * 30), "/");
                             setcookie($nomeCookie2,null,time() + (86400 * 30), "/");
                          }
                          //dato che i dati sono corretti mi salvo l'username in una variabile di sessione
                          $_SESSION["usernameBZ"]=$username;
-                         $_SESSION["tipoBZ"]=$tipo;
                           //reindirizzo l'utente alla home
                          if($tipo=="Operatore"){    //se è un operatore lo reindirizzo alla home operatori
                            header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/HomeOperatore.php");  //reinderizzo alla home

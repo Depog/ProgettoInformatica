@@ -45,11 +45,6 @@
 	</style>
 <body>
       <?php
-        if(isset($_SESSION["usernameBZ"])){
-          //rimango qua
-        }else{
-          header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/index.php");  //reinderizzo alla home
-        }
           echo "utente";
 
 //  header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeUtente/HomeUtente.php");  //reinderizzo alla home
