@@ -1,10 +1,3 @@
-<?php
-	session_start();
-	$ip=$_SERVER['SERVER_NAME'];  //server per vedere sei sei localhost o hai un ip
-	$porta=$_SERVER['SERVER_PORT'];   //porta del serve, perchè c'è chi ha 80, chi 8080 etc...
-
-
- ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,21 +67,10 @@
 						Log in
 					</span>
 					<?php
-						if(isset( $_SESSION["usernameBZ"])){
-							if(isset($_SESSION["tipoBZ"])){
-								$ipo=$_SESSION["tipoBZ"];
-								if($tipo=="Operatore"){
-									header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/HomeOperatore.php");  //reinderizzo alla home
-								}else{
-									header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeUtente/HomeUtente.php");  //reinderizzo alla home
-
-								}
-							}
-						}
 					$msg="";
-					if(isset($_COOKIE["usernameBZ"]) && isset($_COOKIE["passwordBZ"])){
-						$username=$_COOKIE["usernameBZ"];
-						$password=$_COOKIE["passwordBZ"];
+					if(isset($_COOKIE["username"]) && isset($_COOKIE["password"])){
+						$username=$_COOKIE["username"];
+						$password=$_COOKIE["password"];
 						showHome($username, $password);
 					}else{
 						$username="";

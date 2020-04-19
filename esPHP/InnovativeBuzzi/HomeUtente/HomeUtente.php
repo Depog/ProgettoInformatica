@@ -128,6 +128,7 @@
 </head>
 
 <body>
+
   <header>
     <nav class="nav">
       <a href="#" class="nav-item is-active" active-color="orange">Home</a>
@@ -266,9 +267,6 @@
 
        echo $homeUtente;
 ?>
-
-
-
 
 
 
