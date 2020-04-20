@@ -19,7 +19,7 @@
       header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/HomeOperatore.php");
    }else {
      //_ERR
-     header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/Errore.php?msg=Si è verificato un imprevisto<br>La invitiamo a riprovare");
+     header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Si è verificato un imprevisto<br>La invitiamo a riprovare");
    }
 
  ?>
