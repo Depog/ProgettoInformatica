@@ -1,0 +1,37 @@
+
+
+form {
+  position: fixed;
+  width: 30%;
+  margin: 100px auto;
+  padding: 30px;
+  border: 0px solid #555;
+}
+input {
+  width: auto;
+  border: 1px solid #f1e1e1;
+  display: block;
+  padding: 5px 10px;
+}
+.input2{
+  width: 200px;
+  border: 1px solid #f1e1e1;
+  display: block;
+  padding: 5px 10px;
+}
+button {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+table {
+  width: 60%;
+  border-collapse: collapse;
+  margin: 100px auto;
+}
+th,
+td {
+  height: 50px;
+  vertical-align: center;
+  border: 0px solid black;
+}

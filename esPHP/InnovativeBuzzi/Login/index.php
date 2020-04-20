@@ -1,3 +1,8 @@
+<?php
+		session_start();
+		$ip=$_SERVER['SERVER_NAME'];  //server per vedere sei sei localhost o hai un ip
+		$porta=$_SERVER['SERVER_PORT'];   //porta del serve, perchè c'è chi ha 80, chi 8080 etc...
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,6 +73,15 @@
 					</span>
 					<?php
 					$msg="";
+					if(isset($_SESSION["usernameBZ"])){
+						if(isset($_SESSION["tipoBZ"])){
+							if($_SESSION["tipoBZ"]=="Operatore")
+							header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/HomeOperatore.php");
+						}else{
+							header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeUtente/HomeUtente.php");
+						}
+			    }
+
 					if(isset($_COOKIE["username"]) && isset($_COOKIE["password"])){
 						$username=$_COOKIE["username"];
 						$password=$_COOKIE["password"];
@@ -103,6 +117,7 @@
 
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="js/navbar.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
