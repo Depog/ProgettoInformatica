@@ -109,6 +109,35 @@
              }
 
 
+             ////metto l'id della stampa dentro la prenotazione
+             $sql="SELECT stampa.idStampa from stampa where stampa.dataRitiro=\"$dataRitiro\" and stampa.oraRitiro=\"$oraRitiro\" and  stampa.tipoFormato=\"$formato\"  and stampa.descrizione=\"$descrizione\"  and stampa.fronteRetro=\"$fronteRetro\"";
+               $records=$conn->query($sql);
+               if ( $records == TRUE) {
+                   //echo "<br>Query eseguita!";
+                   echo "inserito correttamente";
+               } else {
+                 die("Errore nella query: " . $conn->error);
+               }
+               if($records->num_rows ==0){
+                     //	echo "la query non ha prodotto risultato";
+
+               }else{
+                       while($tupla=$records->fetch_assoc()){
+                           $idStampa=$tupla["idStampa"];
+                       }
+              }
+
+              //inserisco id stampa dentro prenotazione
+              $sql="UPDATE Prenotazione set prenotazione.idStampa=\"$idStampa\" where prenotazione.dataPrenotazione=\"$dataOggi\" and prenotazione.oraPrenotazione=\"$oraAttuale\" and prenotazione.quantità=\"$quantità\" and prenotazione.note=\"$note\" and prenotazione.codiceFiscale=\"$codiceFiscale\" and prenotazione.codiceFile=\"$codiceFile\"";
+                $records=$conn->query($sql);
+                if ( $records == TRUE) {
+                    //echo "<br>Query eseguita!";
+                    echo "inserito correttamente";
+                } else {
+                  die("Errore nella query: " . $conn->error);
+                }
+                die("prova");
+
 
 
 

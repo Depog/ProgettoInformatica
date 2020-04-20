@@ -202,10 +202,10 @@
                                        if($records->num_rows ==0){ //se l'utente non ha ancora effettuato acquisti
                                              $dimArray=1;
                                              $descrizione[]="Nessun dato presente";
-                                             $dataPrenotazione[]="";
-                                             $dataRitiro[]="";
-                                             $oraRitiro[]="";
-                                             $quantità[]="";
+                                             $dataPrenotazione[]="Nessun dato presente";
+                                             $dataRitiro[]="Nessun dato presente";
+                                             $oraRitiro[]="Nessun dato presente";
+                                             $quantità[]="Nessun dato presente";
                                        }else{
 
                                          while($tupla=$records->fetch_assoc()){

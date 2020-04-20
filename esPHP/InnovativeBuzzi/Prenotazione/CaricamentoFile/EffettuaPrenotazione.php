@@ -82,7 +82,7 @@
           $sceltaData="<br>Inserisci la data in cui vuoi ritirarlo <input type=\"date\" name=\"dataRitiro\" value=\"$giornoDopo\" min=\"$giornoDopo\"></input>";
           echo $sceltaData;
           if(isset($_SESSION["OraMancante"])){
-            $sceltaOrario="<br>Scegli la fascia oraria<br><select id=\"oraRitiro\" name=\"oraRitiro\"> <p style=\"color:red\">Orario obbligatorio</p>
+            $sceltaOrario="<br>Scegli la fascia oraria<br><select id=\"oraRitiro\" name=\"oraRitiro\"> <p style=\"color:red\"><p>Orario obbligatorio</p>
                                              <option value=\"-\">-------</option>
                                              <option value=\"7:45\">7:45 am</option>
                                              <option value=\"9:00\">9:00 am</option>
