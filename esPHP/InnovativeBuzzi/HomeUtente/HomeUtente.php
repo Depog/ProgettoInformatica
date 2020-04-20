@@ -1,7 +1,17 @@
 <?php
   session_start();
   $ip=$_SERVER['SERVER_NAME'];  //server per vedere sei sei localhost o hai un ip
-  $porta=$_SERVER['SERVER_PORT'];   //porta del serve, perchè c'è chi ha 80, chi 8080 etc...
+  $porta=$_SERVER['SERVER_PORT'];
+  if($_SERVER["REQUEST_METHOD"]=="GET"){
+    if(isset($_GET["logout"])) {
+      $_SESSION["usernameBZ"]=null;
+      die("");
+    }
+  }
+
+  if(!isset($_SESSION["usernameBZ"])){
+    header("location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/login/index.php");
+  }
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +66,7 @@
     width: 100%;
     -webkit-box-pack: center;
             justify-content: center;
-    padding: 0 20px;
+    padding: 0 0;
     background-color: #2f3640;
   }
 
@@ -132,29 +142,21 @@
     <nav class="nav">
       <a href="" class="nav-item is-active" active-color="orange">Home</a>
       <a href="contattaci.php" class="nav-item" active-color="green">Contattaci</a>
-      <a href="#" class="nav-item" active-color="blue">Logout</a>
+      <a href="HomeUtente.php?logout=true" class="nav-item" active-color="blue">Logout</a>
       <span class="nav-indicator"></span>
     </nav>
   </header>
 
-
-
-
   <?php
-    if(isset($_SESSION["usernameBZ"])){
-      //rimango qua
-    }else{
-      header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/index.php");
-    }
-
 
   $homeUtente="<div class=\"container-table100\">
                   <div class=\"info\">
                     <b class=\"info-title\">
-                    ACQUISTI
+
+                    PRENOTAZIONI
                     </b>
                     <div class=\"info-text\">
-                    Qui a fianco troverai la cronologia dei tuoi ultimi acquisti
+                    Qui a fianco troverai la cronologia delle ultime prenotazioni
                     </div>
                   </div>
 
@@ -164,10 +166,11 @@
                 						<table>
                 							<thead>
                 								<tr class=\"row100 head\">
-                									<th class=\"cell100 column1\">Nome</th>
-                									<th class=\"cell100 column2\">Data</th>
-                									<th class=\"cell100 column3\">Ora</th>
-                									<th class=\"cell100 column4\">Quantità</th>
+                									<th class=\"cell100 column1\">Descrizione</th>
+                									<th class=\"cell100 column2\">Data-Prenotazione</th>
+                									<th class=\"cell100 column3\">Data-Ritiro</th>
+                									<th class=\"cell100 column4\">Ora-Ritiro</th>
+                                  <th class=\"cell100 column4\">Quantità</th>
                 								</tr>
                 							</thead>
                 						</table>
@@ -178,15 +181,16 @@
 
                               include "connessione.php";
                               $username=$_SESSION["usernameBZ"];
-                              $nome=array();
-                              $data=array();
-                              $ora=array();
+                              $descrizione=array();
+                              $dataPrenotazione=array();
+                              $dataRitiro=array();
+                              $oraRitiro=array();
                               $quantità=array();
 
-                              $sql = "SELECT prodotto.nomeProdotto as nome, acquisto.dataAcquisto as data, acquisto.orarioAcquisto as ora, acquisto.quantità as quantità from persona
-                                      join acquisto on persona.codiceFiscale=acquisto.codiceFiscale
-                                      join include on acquisto.idAcquisto=include.idAcquisto
-                                       join prodotto on include.idProdotto=prodotto.idProdotto
+                              $sql = "SELECT stampa.descrizione as descrizione, prenotazione.dataPrenotazione as dataPrenotazione, stampa.dataRitiro as dataRitiro, stampa.oraRitiro as oraRitiro, prenotazione.quantità as quantità
+                                      from persona
+                                      join prenotazione on persona.codiceFiscale=prenotazione.codiceFiscale
+                                       join stampa on prenotazione.idStampa=stampa.idStampa
                                       where persona.username=\"$username\"";
 
                                        $records=$conn->query($sql);
@@ -197,27 +201,30 @@
                                        }
                                        if($records->num_rows ==0){ //se l'utente non ha ancora effettuato acquisti
                                              $dimArray=1;
-                                             $nome[]="Nessun dato presente";
-                                             $data[]="";
-                                             $ora[]="";
+                                             $descrizione[]="Nessun dato presente";
+                                             $dataPrenotazione[]="";
+                                             $dataRitiro[]="";
+                                             $oraRitiro[]="";
                                              $quantità[]="";
                                        }else{
 
                                          while($tupla=$records->fetch_assoc()){
-                                           $nome[]=$tupla["nome"];
-                                           $data[]=$tupla["data"];
-                                           $ora[]=$tupla["ora"];
+                                           $descrizione[]=$tupla["descrizione"];
+                                           $dataPrenotazione[]=$tupla["dataPrenotazione"];
+                                           $dataRitiro[]=$tupla["dataRitiro"];
+                                           $oraRitiro[]=$tupla["oraRitiro"];
                                            $quantità[]=$tupla["quantità"];
                                          }
 
-                                         $dimArray=sizeof($nome);
+                                         $dimArray=sizeof($descrizione);
 
                                          if($dimArray<7){
                                            $dim=7-$dimArray;
                                            for($i=0; $i<$dim; $i++){
-                                             array_push($nome, "");
-                                             array_push($data, "");
-                                             array_push($ora, "");
+                                             array_push($descrizione, "");
+                                             array_push($dataPrenotazione, "");
+                                             array_push($dataRitiro, "");
+                                             array_push($oraRitiro, "");
                                              array_push($quantità, "");
                                            }
                                          }
@@ -227,9 +234,10 @@
                               for($i=0; $i<$dimArray; $i++){
                                 $homeUtente.="
                   								<tr class=\"row100 body\">
-                  									<td class=\"cell100 column1\">$nome[$i]</td>
-                  									<td class=\"cell100 column2\">$data[$i]</td>
-                  									<td class=\"cell100 column3\">$ora[$i]</td>
+                  									<td class=\"cell100 column1\">$descrizione[$i]</td>
+                  									<td class=\"cell100 column2\">$dataPrenotazione[$i]</td>
+                                    <td class=\"cell100 column2\">$dataRitiro[$i]</td>
+                  									<td class=\"cell100 column3\">$oraRitiro[$i]</td>
                   									<td class=\"cell100 column4\">$quantità[$i]</td>
                   								</tr>
                                   ";
