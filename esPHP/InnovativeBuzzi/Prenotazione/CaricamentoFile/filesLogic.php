@@ -15,7 +15,10 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     // the physical file on a temporary uploads directory on the server
     $file = $_FILES['myfile']['tmp_name'];
     $size = $_FILES['myfile']['size'];
-
+    if(empty($file)){
+      $_SESSION["FileNonInserito"]="vero";
+      header("location:EffettuaPrenotazione.php");
+    }
     if (!in_array($extension, ['zip', 'pdf', 'docx','jpg','jpeg','PNG', 'txt'])) {
         echo "You file extension must be .zip, .pdf, .docx, .jpg, .jpeg, .png , .txt";
     } elseif ($_FILES['myfile']['size'] > 5000000) { // file shouldn't be larger than 5Megabyte

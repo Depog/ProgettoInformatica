@@ -1,10 +1,16 @@
 <?php
   ////ricevo i dati
   session_start();
+  $ip=$_SERVER['SERVER_NAME'];  //server per vedere sei sei localhost o hai un ip
+  $porta=$_SERVER['SERVER_PORT'];   //porta del serve, perchè c'è chi ha 80, chi 8080 etc...
+  if(!isset($_SESSION["usernameBZ"])){  //torno alla home
+    header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/index.php");  //reinderizzo alla home
+  }
   include 'filesLogic.php';
     //prendo il tipo di utente collegato
-    if(isset($_SESSION["tipoDB"])){
-      $tipo= $_SESSION["tipoDB"];
+
+    if(isset($_SESSION["tipoBZ"])){
+      $tipo= $_SESSION["tipoBZ"];
       echo $tipo;
       if($tipo=="Professore"){   //ricevo i dati senza il costo dato che non paga
         echo "prof";
@@ -12,10 +18,7 @@
           $formato=$_POST["formato"];
           echo "<br>formato ". $formato;
         }
-        if(isset($_POST["tipologia"])){
-          $tipologia=$_POST["tipologia"];
-          echo "<br>Tipologia ".$tipologia;
-        }
+
         $tot=0;
       }else{ //altrimenti è uno studente e deve pagare
         echo "studente";
@@ -23,13 +26,16 @@
           $formato=$_POST["formato"];
           $arrFormato=explode("?",$formato);
           echo "<br>formato " . $arrFormato[0] . ", costo ". $arrFormato[1];
+          $formato=$arrFormato[0];
         }
-        if(isset($_POST["tipologia"])){
-          $tipologia=$_POST["tipologia"];
-            $arrTipologia=explode("?",$tipologia);
-            echo "<br>tipologia " .$arrTipologia[0] . ", costo ". $arrTipologia[1];
-        }
-        $tot=$arrFormato[1]+$arrTipologia[1];
+        $tot=$arrFormato[1];
+      }
+      if(!empty($_POST["descrizione"])){
+        $descrizione=$_POST["descrizione"];
+      }else{
+        //obbligatoria
+        $_SESSION["DescrizioneAssente"]="vero";
+        header("location:EffettuaPrenotazione.php");
       }
       if(isset($_POST["note"])){
         $note=$_POST["note"];
@@ -38,10 +44,22 @@
       }
       if(isset($_POST["fronteRetro"])){
         $fronteRetro="si";
+      }else{
+        $fronteRetro="no";
       }
       if(isset($_POST["quantità"])){
         $quantità=$_POST["quantità"];
         echo "<br>quantità " .$quantità;
+      }
+      if(isset($_POST["oraRitiro"])){
+        $oraRitiro=$_POST["oraRitiro"];
+        if($oraRitiro=="-"){
+          $_SESSION["OraMancante"]="true";
+          header("location:EffettuaPrenotazione.php");
+        }
+      }
+      if(isset($_POST["dataRitiro"])){
+        $dataRitiro=$_POST["dataRitiro"];
       }
       $costTot=$tot*$quantità;
       echo "<br> Totale = $costTot euro";
@@ -71,7 +89,7 @@
 
          $dataOggi=date("Y/m/d");
          $oraAttuale=date("h:i:sa");
-         $sql="INSERT INTO Prenotazione(dataPrenotazione,oraPrenotazione,quantità,note,codiceFiscale) VALUES(\"$dataOggi\",\"$oraAttuale\",\"$quantità\",\"$note\",\"$codiceFiscale\") ";
+         $sql="INSERT INTO Prenotazione(dataPrenotazione,oraPrenotazione,quantità,note,codiceFiscale,codiceFile) VALUES(\"$dataOggi\",\"$oraAttuale\",\"$quantità\",\"$note\",\"$codiceFiscale\",\"$codiceFile\") ";
            $records=$conn->query($sql);
            if ( $records == TRUE) {
                //echo "<br>Query eseguita!";
@@ -80,9 +98,8 @@
              die("Errore nella query: " . $conn->error);
            }
 
-           //prendo l'id della Prenotazione
-
-            $sql="SELECT prenotazione.idPrenotazione from prenotazione where prenotazione.dataPrenotazione=\"$dataOggi\" and prenotazione.oraPrenotazione=\"$oraAttuale\" and prenotazione.codiceFiscale=\"$codiceFiscale\"";
+           ///creo la query per la stampa
+           $sql="INSERT INTO STAMPA(dataRitiro,oraRitiro,tipoFormato,descrizione,fronteRetro) VALUES(\"$dataRitiro\",\"$oraRitiro\",\"$formato\",\"$descrizione\",\"$fronteRetro\")";
              $records=$conn->query($sql);
              if ( $records == TRUE) {
                  //echo "<br>Query eseguita!";
@@ -90,26 +107,6 @@
              } else {
                die("Errore nella query: " . $conn->error);
              }
-             if($records->num_rows ==0){
-                   //	echo "la query non ha prodotto risultato";
-
-             }else{
-                     while($tupla=$records->fetch_assoc()){
-                         $idPrenotazione=$tupla["idPrenotazione"];
-                     }
-            }
-
-            //creo query per contiene
-            $sql="INSERT INTO contiene(idPrenotazione,codiceFile) VALUES(\"$idPrenotazione\",\"$codiceFile\")";
-             $records=$conn->query($sql);
-             if ( $records == TRUE) {
-                 //echo "<br>Query eseguita!";
-                 echo "inserito correttamente";
-             } else {
-               die("Errore nella query: " . $conn->error);
-             }
-
-
 
 
 
