@@ -181,10 +181,10 @@ iframe {
 }
 
 /*//////////////////////////////////////////////////////////////////
-[ Table ]*/
+[ Table ]*//*
 .table100 {
   background-color: #fff;
-}
+}*/
 
 table {
   width: 100%;
@@ -228,6 +228,7 @@ th, td {
   position: relative;
   padding-top: 60px;
   width: 100%;
+  background-color: #fff;
 }
 
 .table100-head {

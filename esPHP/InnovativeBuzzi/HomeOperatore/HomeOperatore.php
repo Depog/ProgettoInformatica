@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
   session_start();
   $ip=$_SERVER['SERVER_NAME'];  //server per vedere sei sei localhost o hai un ip
   $porta=$_SERVER['SERVER_PORT'];   //porta del serve, perchè c'è chi ha 80, chi 8080 etc...
@@ -16,36 +15,30 @@
  <head>
    	<title>HOME OPERATORE</title>
    	<meta charset="UTF-8">
-   	<meta name="viewport" content="../HomeUtente/Table/width=device-width, initial-scale=1">
-   <!--===============================================================================================-->
-   	<link rel="icon" type="image/png" href="../HomeUtente/Table/images/icons/favicon.ico"/>
-   <!--===============================================================================================-->
-   	<link rel="stylesheet" type="text/css" href="../HomeUtente/Table/vendor/bootstrap/css/bootstrap.min.css">
-   <!--===============================================================================================-->
-   	<link rel="stylesheet" type="text/css" href="../HomeUtente/Table/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-   <!--===============================================================================================-->
-   	<link rel="stylesheet" type="text/css" href="../HomeUtente/Table/vendor/animate/animate.css">
-   <!--===============================================================================================-->
-   	<link rel="stylesheet" type="text/css" href="../HomeUtente/Table/vendor/select2/select2.min.css">
-   <!--===============================================================================================-->
-   	<link rel="stylesheet" type="text/css" href="../HomeUtente/Table/vendor/perfect-scrollbar/perfect-scrollbar.css">
-   <!--===============================================================================================-->
-   	<link rel="stylesheet" type="text/css" href="../HomeUtente/Table/css/util.css">
-   	<link rel="stylesheet" type="text/css" href="../HomeUtente/Table/css/main.css">
-   <!--===============================================================================================-->
+    <!--===============================================================================================-->
+    	<link rel="icon" type="image/png" href="../HomeUtente/images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    	<link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    	<link rel="stylesheet" type="text/css" href="../HomeUtente/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    	<link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/animate/animate.css">
+    <!--==============================================================================================-->
+    	<link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    	<link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <!--===============================================================================================-->
+    	<link rel="stylesheet" type="text/css" href="../HomeUtente/css/util.css">
+      <link href="../HomeUtente/css/main.css" rel="stylesheet" type="text/css"  >
+    <!--===============================================================================================-->
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
    <style>
-     b{
-       position: absolute;
-       left : 800px;
-       top: 170px;
-     }
 
      b.c{
-       position: : fixed;
-       left : 230px;
-       top: 150px;
+       position: fixed;
+       left : 21%;
+       top: 15%;
        font-size: 40px;
        color: #fff;
      }
@@ -62,15 +55,26 @@
        font-family: Poppins-Regular, sans-serif;
      }
 
-
+     .container-table100 {
+       width: 100%;
+       min-height: 100vh;
+       display: -webkit-box;
+       display: -webkit-flex;
+       display: -moz-box;
+       display: -ms-flexbox;
+       display: flex;
+       margin-top: 0px;
+       flex-wrap: wrap;
+       padding: 0px 0px;
+       margin-right: 10%;
+       position: fixed;
+       top: 25%;
+       left: 5%;
+     }
    </style>
  </head>
 
  <body>
-       <?php
- 		   /*$CreaPreno="<b><button onclick=\"window.location.href='http://$ip:$porta/esPHP/InnovativeBuzzi/Prenotazione/CreaPrenotazione.php'\" type=\"button\" class=\"btn btn-outline-success\">Crea Prenotazione</button></b>";
- 			 echo $CreaPreno;*/
-       ?>
        <p class="page">
          <div class="limiter">
         		<div class="container-table100">
@@ -89,28 +93,27 @@
         	</div>
        </p>
 
- <!--===============================================================================================-->
- 	<script src="../HomeUtente/Table/vendor/jquery/jquery-3.2.1.min.js"></script>
- <!--===============================================================================================-->
- 	<script src="../HomeUtente/Table/vendor/bootstrap/js/popper.js"></script>
- 	<script src="../HomeUtente/Table/vendor/bootstrap/js/bootstrap.min.js"></script>
- <!--===============================================================================================-->
- 	<script src="../HomeUtente/Table/vendor/select2/select2.min.js"></script>
- <!--===============================================================================================-->
- 	<script src="../HomeUtente/Table/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
- 	<script>
- 		$('.js-pscroll').each(function(){
- 			var ps = new PerfectScrollbar(this);
+<!--===============================================================================================-->
+<script src="../HomeUtente/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script type="../HomeUtente/text/javascript" src="js/navbar.js"></script>
+<!--===============================================================================================-->
+<script src="../HomeUtente/vendor/bootstrap/js/popper.js"></script>
+<script src="../HomeUtente/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="../HomeUtente/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="../HomeUtente/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script>
+		$('.js-pscroll').each(function(){
+  		var ps = new PerfectScrollbar(this);
+  	  $(window).on('resize', function(){
+  			ps.update();
+      })
+    });
+</script>
+<!--===============================================================================================-->
+<script src="../HomeUtente/js/main.js"></script>
 
- 			$(window).on('resize', function(){
- 				ps.update();
- 			})
- 		});
-
-
- 	</script>
- <!--===============================================================================================-->
- 	<script src="../HomeUtente/Table/js/main.js"></script>
 
  </body>
  </html>
