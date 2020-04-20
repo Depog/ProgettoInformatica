@@ -2,7 +2,7 @@
   session_start();
   $ip=$_SERVER['SERVER_NAME'];  //server per vedere sei sei localhost o hai un ip
   $porta=$_SERVER['SERVER_PORT'];   //porta del serve, perchè c'è chi ha 80, chi 8080 etc...
-	?>
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,14 +128,11 @@
 </head>
 
 <body>
-
   <header>
     <nav class="nav">
-      <a href="#" class="nav-item is-active" active-color="orange">Home</a>
-      <a href="#" class="nav-item" active-color="green">Stampa</a>
-      <a href="#" class="nav-item" active-color="blue">Acquista</a>
-      <a href="#" class="nav-item" active-color="red">Contattaci</a>
-      <a href="#" class="nav-item" active-color="rebeccapurple">Chi siamo</a>
+      <a href="" class="nav-item is-active" active-color="orange">Home</a>
+      <a href="contattaci.php" class="nav-item" active-color="green">Contattaci</a>
+      <a href="#" class="nav-item" active-color="blue">Logout</a>
       <span class="nav-indicator"></span>
     </nav>
   </header>
@@ -177,69 +174,67 @@
                 					</div>
                 					<div class=\"table100-body js-pscroll\">
                 						<table>
-                							<tbody>
-                								<tr class=\"row100 body\">
-                									<td class=\"cell100 column1\">Foglio</td>
-                									<td class=\"cell100 column2\">01-01-2001</td>
-                									<td class=\"cell100 column3\">9:00</td>
-                									<td class=\"cell100 column4\">1</td>
-                								</tr>
+                							<tbody>";
 
-                								<tr class=\"row100 body\">
-                									<td class=\"cell100 column1\">Matita</td>
-                									<td class=\"cell100 column2\">01-01-2011</td>
-                									<td class=\"cell100 column3\">8:00</td>
-                									<td class=\"cell100 column4\">2</td>
-                								</tr>
+                              include "connessione.php";
+                              $username=$_SESSION["usernameBZ"];
+                              $nome=array();
+                              $data=array();
+                              $ora=array();
+                              $quantità=array();
 
-                                <tr class=\"row100 body\">
-                									<td class=\"cell100 column1\">Gomma</td>
-                									<td class=\"cell100 column2\">01-01-2000</td>
-                									<td class=\"cell100 column3\">3:</td>
-                									<td class=\"cell100 column4\">3</td>
-                								</tr>
+                              $sql = "SELECT prodotto.nomeProdotto as nome, acquisto.dataAcquisto as data, acquisto.orarioAcquisto as ora, acquisto.quantità as quantità from persona
+                                      join acquisto on persona.codiceFiscale=acquisto.codiceFiscale
+                                      join include on acquisto.idAcquisto=include.idAcquisto
+                                       join prodotto on include.idProdotto=prodotto.idProdotto
+                                      where persona.username=\"$username\"";
 
-                                <tr class=\"row100 body\">
-                                  <td class=\"cell100 column1\">Gomma</td>
-                                  <td class=\"cell100 column2\">01-01-2000</td>
-                                  <td class=\"cell100 column3\">3:</td>
-                                  <td class=\"cell100 column4\">3</td>
-                                </tr>
+                                       $records=$conn->query($sql);
+                                       if ( $records == TRUE) {
+                                           //echo "<br>Query eseguita!";
+                                       } else {
+                                         die("Errore nella query: " . $conn->error);
+                                       }
+                                       if($records->num_rows ==0){ //se l'utente non ha ancora effettuato acquisti
+                                             $dimArray=1;
+                                             $nome[]="Nessun dato presente";
+                                             $data[]="";
+                                             $ora[]="";
+                                             $quantità[]="";
+                                       }else{
 
-                                <tr class=\"row100 body\">
-                                  <td class=\"cell100 column1\">Gomma</td>
-                                  <td class=\"cell100 column2\">01-01-2000</td>
-                                  <td class=\"cell100 column3\">3:</td>
-                                  <td class=\"cell100 column4\">3</td>
-                                </tr>
+                                         while($tupla=$records->fetch_assoc()){
+                                           $nome[]=$tupla["nome"];
+                                           $data[]=$tupla["data"];
+                                           $ora[]=$tupla["ora"];
+                                           $quantità[]=$tupla["quantità"];
+                                         }
 
-                                <tr class=\"row100 body\">
-                                  <td class=\"cell100 column1\">Gomma</td>
-                                  <td class=\"cell100 column2\">01-01-2000</td>
-                                  <td class=\"cell100 column3\">3:</td>
-                                  <td class=\"cell100 column4\">3</td>
-                                </tr>
+                                         $dimArray=sizeof($nome);
 
-                                <tr class=\"row100 body\">
-                                  <td class=\"cell100 column1\">Gomma</td>
-                                  <td class=\"cell100 column2\">01-01-2000</td>
-                                  <td class=\"cell100 column3\">3:</td>
-                                  <td class=\"cell100 column4\">3</td>
-                                </tr>
+                                         if($dimArray<7){
+                                           $dim=7-$dimArray;
+                                           for($i=0; $i<$dim; $i++){
+                                             array_push($nome, "");
+                                             array_push($data, "");
+                                             array_push($ora, "");
+                                             array_push($quantità, "");
+                                           }
+                                         }
+                                       }
 
-                                <tr class=\"row100 body\">
-                                  <td class=\"cell100 column1\">Gomma</td>
-                                  <td class=\"cell100 column2\">01-01-2000</td>
-                                  <td class=\"cell100 column3\">4</td>
-                                  <td class=\"cell100 column4\">4</td>
-                                </tr>
-
-                                <tr class=\"row100 body\">
-                                  <td class=\"cell100 column1\">Gomma</td>
-                                  <td class=\"cell100 column2\">01-01-2000</td>
-                                  <td class=\"cell100 column3\">3:</td>
-                                  <td class=\"cell100 column4\">3</td>
-                                </tr>
+                              /*STAMPA*/
+                              for($i=0; $i<$dimArray; $i++){
+                                $homeUtente.="
+                  								<tr class=\"row100 body\">
+                  									<td class=\"cell100 column1\">$nome[$i]</td>
+                  									<td class=\"cell100 column2\">$data[$i]</td>
+                  									<td class=\"cell100 column3\">$ora[$i]</td>
+                  									<td class=\"cell100 column4\">$quantità[$i]</td>
+                  								</tr>
+                                  ";
+                              }
+                						$homeUtente.="
                 							</tbody>
                 						</table>
                 					</div>
@@ -256,7 +251,7 @@
               <div class=\"pren-text\">
                 <b>PRENOTAZIONE</b><br />
                 Qui accanto troverai il modulo da compilare per inviare il tuo file da stampare! Clicca sull'immagine alla sinistra oppure il bottone in fondo per andare nella pagina<br /><br />
-                <a href=\" http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Prenotazione/CaricamentoFile/EffettuaPrenotazione.php\" class=\"btn btn-primary\">Prenota ora</a>
+                <a href=\"http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Prenotazione/CaricamentoFile/EffettuaPrenotazione.php\" class=\"btn btn-primary\">Prenota ora</a>
               </div>
 
            </div>
@@ -270,10 +265,13 @@
 
 
 
+
+
+
 </body>
 
 <!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="vendorjquery/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="js/navbar.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/bootstrap/js/popper.js"></script>
@@ -294,7 +292,7 @@
 
 	</script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+	<script src="js/navbar.js"></script>
 
 
 </html>

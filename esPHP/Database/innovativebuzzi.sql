@@ -49,6 +49,7 @@ CREATE TABLE `contiene` (
 -- --------------------------------------------------------
 
 --
+>>>>>>> 41ff4aa43edfb9ef784028a294fecfcbec7902d2
 -- Struttura della tabella `file`
 --
 
@@ -99,6 +100,13 @@ CREATE TABLE `persona` (
   `cap` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dump dei dati per la tabella `persona`
+--
+
+INSERT INTO `persona` (`codiceFiscale`, `nome`, `cognome`, `password`, `username`, `email`, `tipo`, `dataNascita`, `civico`, `cap`) VALUES
+('', NULL, NULL, '9d04b6572e137eb28b2c444c1c7d3faf', 'Fede', NULL, 'Professore', NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -144,6 +152,17 @@ CREATE TABLE `stampa` (
   `idProdotto` int(11) DEFAULT NULL,
   `fronteRetro` enum('si','no') DEFAULT 'no',
   `tipologia` varchar(64) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `tipologia`
+--
+
+CREATE TABLE `tipologia` (
+  `Tipologia` varchar(64) NOT NULL,
+  `costo` decimal(4,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -230,6 +249,12 @@ ALTER TABLE `tipologia`
   ADD PRIMARY KEY (`Tipologia`);
 
 --
+-- Indici per le tabelle `tipologia`
+--
+ALTER TABLE `tipologia`
+  ADD PRIMARY KEY (`Tipologia`);
+
+--
 -- AUTO_INCREMENT per le tabelle scaricate
 --
 
@@ -295,6 +320,12 @@ ALTER TABLE `stampa`
   ADD CONSTRAINT `stampa_ibfk_2` FOREIGN KEY (`idProdotto`) REFERENCES `prodotto` (`idProdotto`) ON UPDATE CASCADE,
   ADD CONSTRAINT `stampa_ibfk_3` FOREIGN KEY (`codiceFiscale`) REFERENCES `persona` (`codiceFiscale`) ON UPDATE CASCADE,
   ADD CONSTRAINT `stampa_ibfk_4` FOREIGN KEY (`tipoFormato`) REFERENCES `formato` (`Tipo`) ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `studente`
+--
+ALTER TABLE `studente`
+  ADD CONSTRAINT `studente_ibfk_1` FOREIGN KEY (`codiceFiscale`) REFERENCES `persona` (`codiceFiscale`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
