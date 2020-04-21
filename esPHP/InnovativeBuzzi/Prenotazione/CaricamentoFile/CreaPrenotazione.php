@@ -37,8 +37,8 @@
         $_SESSION["DescrizioneAssente"]="vero";
         header("location:EffettuaPrenotazione.php");
       }
-      if(isset($_POST["note"])){
-        $note=$_POST["note"];
+      if(isset($_POST["nota"])){
+        $note=$_POST["nota"];
       }else{
         $note="";
       }
