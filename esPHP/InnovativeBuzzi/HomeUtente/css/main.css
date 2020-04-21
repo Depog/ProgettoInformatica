@@ -28,7 +28,9 @@ a:hover {
 /* ------------------------------------ */
 h1,h2,h3,h4,h5,h6 {margin: 0px;}
 
-p {margin: 0px;}
+p {
+  margin: 0px;
+}
 
 .info{
   width: 50%;
@@ -45,7 +47,7 @@ p {margin: 0px;}
 }
 
 .info-text{
-
+  margin-left: 0;
   font-size: 30px;
   color: white;
 }
@@ -196,30 +198,35 @@ th, td {
 }
 
 .column1 { /*colonna NOME*/
-  width: 26%;
+  width: 20%;
   padding-left: 40px;
 }
 
 .column2 { /*colonna DATA*/
-  width: 25%;
+  width: 20%;
 }
 
 .column3 { /*colonna ORA*/
-  width: 25%;
+  width: 20%;
 }
 
 .column4 { /*colonna QUANTITA */
-  width: 24%;
+  width: 20%;
 }
 
+.column5 { /*colonna QUANTITA */
+  width: 20%;
+}
 .table100-head th {
   padding-top: 18px;
   padding-bottom: 18px;
+  text-align: center;
 }
 
 .table100-body td {
   padding-top: 16px;
   padding-bottom: 16px;
+    text-align: center;
 }
 
 /*==================================================================
