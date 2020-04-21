@@ -10,6 +10,7 @@
   }
 
   include 'codaStampa.php';
+  include 'moreInfoStampa.php';
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -67,11 +68,31 @@
         min-height: inherit;
       }
 
+      .center1 {
+        position: fixed;
+        top: 20%;
+        left: 28%;
+        text-align: center;
+        min-width: inherit;
+        min-height: inherit;
+      }
+      .viewMoreInfo {
+        color: #36bf0b;
+      }
+
     </style>
   </head>
   <body>
+    <div class="center1">
+      <h1>Si stanno per verificare eventi non ripristinabili</h1>
+    </div>
     <div class="center">
-      <h3>Si stanno per verificare eventi non ripristinabili</h3>
+      <h3>Informazioni stampa aggiuntive</h3>
+      <h3 class="viewMoreInfo">
+        <?php
+            echo "" . printMoreInfo($ip, $porta, $_GET['idPren']);
+        ?>
+      </h3>
       <h3>Si vuole procedere comunque?</h3>
       <a href="<?php echo "http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/LogicaCodaStampa/gestioneStampa.php?idPren=" . $_GET['idPren'] . ""; ?>" class="btn">SI</a>
       <a href="<?php echo "http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/HomeOperatore.php"; ?>" class="btn">NO</a>
