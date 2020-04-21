@@ -182,7 +182,7 @@ iframe {
   height: 35%;
 }
 .wrap-table100Operatore {
-  width: 75%;
+  width: 85%;
   height: 35%;
 }
 
@@ -221,33 +221,34 @@ th, td {
 .column5 { /*colonna QUANTITA */
   width: 20%;
 }
+
 .column1O { /*colonna NOME*/
   tex-align:center;
-  width: 12%;
+  width: 11%;
   padding-left: 25px;
 }
 
 .column2O { /*colonna DATA*/
-  width: 12%;
+  width: 11%;
   tex-align:center;
 }
 
 .column3O { /*colonna ORA*/
-  width: 12%;
+  width: 11%;
   tex-align:center;
 }
 
 .column4O { /*colonna QUANTITA */
-  width: 14%;
+  width: 9%;
   tex-align:center;
 }
 
 .column5O { /*colonna QUANTITA */
-  width: 10%;
+  width: 9%;
   tex-align:center;
 }
 .column6O { /*colonna QUANTITA */
-  width: 14%;
+  width: 9%;
   tex-align:center;
 }
 .column7O { /*colonna QUANTITA */
@@ -255,9 +256,15 @@ th, td {
   tex-align:center;
 }
 .column8O { /*colonna QUANTITA */
-  width: 14%;
+  width: 10%;
   tex-align:center;
 }
+
+.column9O { /*colonna QUANTITA */
+  width: 16%;
+  tex-align:center;
+}
+
 .table100-head th {
   padding-top: 18px;
   padding-bottom: 18px;

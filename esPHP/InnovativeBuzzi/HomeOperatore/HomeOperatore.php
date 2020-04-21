@@ -84,7 +84,7 @@
        position: fixed;
        height: auto;
        width: 100%;
-    /*   background: #FFFF;*/
+       background: #FFFF;
      }
      .inner-width{
        background: black;
@@ -112,15 +112,14 @@
        position: relative;
        overflow: hidden;
        width: 100%;
-      /* background-color: #fff;*/
+       background-color: #fff;
        margin-left: 500px;
-       /*box-shadow: 0 10px 40px rgba(159, 162, 177, 0.8);*/
+       box-shadow: 0 10px 40px rgba(159, 162, 177, 0.8);
        float: right;
      }
 
      .nav-item {
-       /*color: #83818c;*/
-       color: #4274b9;
+       color: #83818c;
        padding: 20px;
        text-decoration: none;
        -webkit-transition: .3s;
@@ -151,8 +150,7 @@
      }
 
      .nav-item:not(.is-active):hover {
-       /*color: #333;*/
-       color: #50ba82;
+       color: #333;
      }
 
      .nav-indicator {
@@ -179,9 +177,9 @@
        <p class="page">
          <header>
            <nav class="nav">
-             <a href="" class="nav-item is-active" active-color="#4274b9">Home</a>
-             <a href="contattaci.php" class="nav-item" active-color="#4274b9">Contattaci</a>
-             <a href="logout.php" class="nav-item" active-color="#4274b9">Logout</a>
+             <a href="" class="nav-item is-active" active-color="orange">Home</a>
+             <a href="contattaci.php" class="nav-item" active-color="green">Contattaci</a>
+             <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
              <span class="nav-indicator"></span>
            </nav>
          </header>

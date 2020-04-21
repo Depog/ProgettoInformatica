@@ -10,12 +10,13 @@
                   <tr class=\"row100 head\">
                     <th class=\"cell100 column1O\">Data Prenotazione</th>
                     <th class=\"cell100 column2O\">Orario Prenotazione</th>
-                    <th class=\"cell100 column3O\">Username Cliente</th>
-                    <th class=\"cell100 column4O\">Descrizione</th>
+                    <th class=\"cell100 column3O\">Descrizione</th>
+                    <th class=\"cell100 column4O\">Formato</th>
                     <th class=\"cell100 column5O\">Numero Copie</th>
-                    <th class=\"cell100 column6O\">Scarica</th>
-                    <th class=\"cell100 column7O\">Stampata</th>
-                    <th class=\"cell100 column8O\">Note</th>
+                    <th class=\"cell100 column6O\">Fronte&Retro</th>
+                    <th class=\"cell100 column7O\">Scarica</th>
+                    <th class=\"cell100 column8O\">Stampata</th>
+                    <th class=\"cell100 column9O\">Note</th>
                   </tr>
                 </thead>
               </table>
@@ -24,7 +25,23 @@
       $data = selectFormDB($ip,$porta);
 
       if($data == "ERRORE NO DATA") {
-        die("<h3>Nessuna Prenotazione effettuata fino ad ora</h3>");
+        $out .= "<div class=\"table100-body js-pscroll\">
+                  <table>
+                    <tbody>
+                      <tr class=\"row100 body\">
+                          <td class=\"cell100 column1O\">-</td>
+                          <td class=\"cell100 column2O\">-</td>
+                          <td class=\"cell100 column3O\">-</td>
+                          <td class=\"cell100 column4O\">-</td>
+                          <td class=\"cell100 column5O\">-</td>
+                          <td class=\"cell100 column6O\">-</td>
+                          <td class=\"cell100 column7O\">-</td>
+                          <td class=\"cell100 column8O\">-</td>
+                          <td class=\"cell100 column9O\">-</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>";
       }else {
         //procedo
         $out .= "<div class=\"table100-body js-pscroll\">
@@ -42,8 +59,10 @@
     //global $co;
     include 'connessione.php';
     $co = connect();
-    $sql = "select p.* ,f.* , pers.*,s.Descrizione FROM prenotazione p JOIN file f on (p.codiceFIle=f.codiceFile) JOIN persona pers ON(pers.codiceFiscale = p.codiceFiscale) join stampa s ON(p.idStampa=s.idStampa)
-      WHERE p.stampata = \"no\" ";
+    $sql = "select p.* ,f.* , pers.*, s.* FROM prenotazione p JOIN file f on (p.codiceFIle=f.codiceFile) JOIN persona pers ON(pers.codiceFiscale = p.codiceFiscale) join stampa s ON(p.idStampa=s.idStampa)
+      JOIN formato form ON(s.tipoFormato = form.tipo)
+      WHERE p.stampata = \"no\"
+      ORDER BY p.dataPrenotazione, p.oraPrenotazione";
 
     $result = $co->query($sql);
 
@@ -60,16 +79,17 @@
                             <td class=\"cell100 column1O\">" . $row["dataPrenotazione"] . "</td>
                             <td class=\"cell100 column2O\">" . $row["oraPrenotazione"] . "</td>
                             ";
-          $arrayRisultati .="<td class=\"cell100 column3O\">" . $row["username"] . "</td>";
-          $arrayRisultati .="<td class=\"cell100 column4O\"> " . $row["Descrizione"] . "</td>
+          $arrayRisultati .="<td class=\"cell100 column3O\">" . $row["descrizione"] . "</td>";
+          $arrayRisultati .="<td class=\"cell100 column4O\"> " . $row["tipoFormato"] . "</td>
                         <td class=\"cell100 column5O\">" . $row["quantità"] . "</td>
-                              <td class=\"cell100 column6O\">
+                        <td class=\"cell100 column6O\">" . $row["fronteRetro"] . "</td>
+                              <td class=\"cell100 column7O\">
                                 <a href=\"http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/DownloadFile/downloadFile.php?file_id=" . $row['codiceFile'] . "\">" . $row["nomeFile"] . "</a>
                               </td>";//link per scaricare il file
-          $arrayRisultati .= "<td class=\"cell100 column7O\">
+          $arrayRisultati .= "<td class=\"cell100 column8O\">
                                 <a href=\"http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/LogicaCodaStampa/doubleCKGestioneStampa.php?idPren=" . $row['idPrenotazione'] . "\">MANCANTE</a>
                               </td>
-                              <td class=\"cell100 column8O\"> " . $row["note"] . "</td>
+                              <td class=\"cell100 column9O\"> " . $row["note"] . "</td>
                             </tr>";//link per modificare lo stato della prenotazione
       }
     }
@@ -86,27 +106,36 @@
     $sql = "UPDATE prenotazione SET stampata=\"si\" WHERE idPrenotazione=$idPren";
 
     if ($co->query($sql) === TRUE) {
-      $co->close();
-
-      $co = connect();
       $user = $_SESSION['usernameBZ'];
-      $sql = "SELECT pers.* FROM persona WHERE username=\"$user\"";//Per prendere il codiceFiscaleDelOperatore
+      $sql = "SELECT pers.* FROM persona pers WHERE pers.username=\"$user\"";//Per prendere il codiceFiscaleDelOperatore
 
       $result = $co->query($sql);
       $row = $result->fetch_assoc();
-      die("Eccomi");
-      if($co->error() == NULL) {
+
+    /*  if($co->error() == "") {
         //_ERR
         $co->close();
         header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Si è verificato un imprevisto<br>La invitiamo a riprovare");
       }
-
+  */
       $codFiscOper = $row['codiceFiscale'];
-      $co->close();
 
-      $co = connect();
-      $sql = "UPDATE stampa SET codiceFiscaleOperatore=\"$codFiscOper\" WHERE idPrenotazione=$idPren";
-      if ($co->query($sql) === TRUE) {
+      $sql = "SELECT p.* FROM prenotazione p JOIN stampa s ON(p.idStampa = s.idStampa) WHERE idPrenotazione=$idPren";//Per prendere il codiceFiscaleDelOperatore
+
+      $result = $co->query($sql);
+      $row = $result->fetch_assoc();
+
+      /*if($co->error() == "") {
+        //_ERR
+        $co->close();
+        header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Si è verificato un imprevisto<br>La invitiamo a riprovare");
+      }*/
+
+      $idStampa = $row['idStampa'];
+
+      $sql = "UPDATE stampa SET codiceFiscaleOperatore=\"$codFiscOper\" WHERE idStampa=$idStampa";
+
+      if($co->query($sql) === TRUE) {
         //Fatto
       }else {
         //_ERR
