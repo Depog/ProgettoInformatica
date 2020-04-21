@@ -95,7 +95,7 @@
 
 <!--===============================================================================================-->
 <script src="../HomeUtente/vendor/jquery/jquery-3.2.1.min.js"></script>
-<script type="../HomeUtente/text/javascript" src="js/navbar.js"></script>
+<script type="text/javascript" src="../HomeUtente/js/navbar.js"></script>
 <!--===============================================================================================-->
 <script src="../HomeUtente/vendor/bootstrap/js/popper.js"></script>
 <script src="../HomeUtente/vendor/bootstrap/js/bootstrap.min.js"></script>

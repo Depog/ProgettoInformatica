@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 20, 2020 alle 19:55
+-- Creato il: Apr 21, 2020 alle 13:36
 -- Versione del server: 10.4.11-MariaDB
 -- Versione PHP: 7.4.4
 
@@ -58,6 +58,14 @@ CREATE TABLE `formato` (
   `costoStampa` decimal(4,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dump dei dati per la tabella `formato`
+--
+
+INSERT INTO `formato` (`Tipo`, `costoStampa`) VALUES
+('A3', '0.05'),
+('A4', '0.10');
+
 -- --------------------------------------------------------
 
 --
@@ -85,8 +93,18 @@ CREATE TABLE `persona` (
   `tipo` varchar(64) DEFAULT NULL,
   `dataNascita` date DEFAULT NULL,
   `civico` int(11) DEFAULT NULL,
-  `cap` int(11) DEFAULT NULL
+  `cap` int(11) DEFAULT NULL,
+  `via` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `persona`
+--
+
+INSERT INTO `persona` (`codiceFiscale`, `nome`, `cognome`, `password`, `username`, `email`, `tipo`, `dataNascita`, `civico`, `cap`, `via`) VALUES
+('abeurjwkdlerotls', 'Federico', 'Giacumbo', '9d04b6572e137eb28b2c444c1c7d3faf', 'A20382', 'Federicogiacumbo10@hotmail.it', 'Studente', '2001-10-02', 150, 59100, 'Viale della repubblica'),
+('FHRKHN84D14L105C', 'Claudio', 'Ferencz ', '202cb962ac59075b964b07152d234b70', 'A20388', 'claudioferencz@gmail.com ', 'Studente', '2001-04-21', 80, 59100, 'via roma'),
+('HVBBDP29C07I352S', 'Davide', 'Hu', '0cc175b9c0f1b6a831c399e269772661', 'A2819', 'davidehu@gmail.com', 'Studente', '2001-08-08', 58, 59100, 'via Firenze');
 
 -- --------------------------------------------------------
 
@@ -191,13 +209,13 @@ ALTER TABLE `acquisto`
 -- AUTO_INCREMENT per la tabella `prenotazione`
 --
 ALTER TABLE `prenotazione`
-  MODIFY `idPrenotazione` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPrenotazione` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT per la tabella `stampa`
 --
 ALTER TABLE `stampa`
-  MODIFY `idStampa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idStampa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- Limiti per le tabelle scaricate

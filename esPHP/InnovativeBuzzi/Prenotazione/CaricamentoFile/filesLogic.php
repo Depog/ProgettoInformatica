@@ -5,7 +5,7 @@
 if (isset($_POST['save'])) { // if save button on the form is clicked
     // name of the uploaded file
     $filename = $_FILES['myfile']['name'];
-
+    $_SESSION["nomeFile"]="uploads/".$filename;
     // destination of the file on the server
     $destination = 'uploads/' . $filename;
 
@@ -28,7 +28,7 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
         if (move_uploaded_file($file, $destination)) {
               //echo "dentro";
               include "connessione.php";
-              $dimensioneStringa=25;
+              $dimensioneStringa=15;
               function generateRandomString($length) {
                   $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
                   $charactersLength = strlen($characters);
