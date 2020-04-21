@@ -16,14 +16,17 @@
       $id = $_GET['file_id'];
       $co = connect();
       // fetch file to download from database
-      $sql = "SELECT * FROM file WHERE idFile=$id";
-      $result = $co->query($sql);
+      $sql = "SELECT file.* FROM file WHERE file.codiceFile=\"$id\" ";
 
-      if ($result->num_rows > 0) {
+      $result = $co->query($sql);
+      if ($result->num_rows == 0) {
+        //La query NON HA estrapolato righe ...
+        header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Il file da lei selezionato non è stato trovato");
+
+    }else{
         //La query ha estrapolato delle righe ...
         $file = mysqli_fetch_assoc($result);
-        $filepath = '../.././uploads/' . $file['nomeFile'];
-
+        $filepath = "../../Prenotazione/CaricamentoFile/uploads/" . $file['nomeFile'];
         if (file_exists($filepath)) {
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
@@ -31,16 +34,13 @@
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
-            header('Content-Length: ' . filesize('uploads/' . $file['nomeFile']));
-            readfile('uploads/' . $file['nomeFile']);
+            header('Content-Length: ' . filesize('../../Prenotazione/CaricamentoFile/uploads/' . $file['nomeFile']));
+            readfile('../../Prenotazione/CaricamentoFile/uploads/' . $file['nomeFile']);
       }else {
-        header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/Errore.php?msg=Il file da lei selezionato non è stato individuato sul server la preghiamo di contattare l'uficio tecnico");
+        header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Il file da lei selezionato non è stato individuato sul server la preghiamo di contattare l'uficio tecnico");
       }
-    }else{
-      //La query NON HA estrapolato righe ...
-      header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/Errore.php?msg=Il file da lei selezionato non è stato trovato");
     }
   }else {
-    header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/Errore.php?msg=Si è verificato un errore<br>La invitiamo a riprovare");
+    header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Si è verificato un errore<br>La invitiamo a riprovare");
   }
 ?>

@@ -38,30 +38,30 @@
     //global $co;
     include 'connessione.php';
     $co = connect();
-    $sql = "select p.* ,f.* , pers.* FROM prenotazione p JOIN contiene c ON(p.idPrenotazione = c.idPrenotazione)
-      JOIN File f ON(c.idFile = f.idFile) JOIN persona pers ON(pers.codiceFiscale = p.codiceFiscaleCliente)
+    $sql = "select p.* ,f.* , pers.* FROM prenotazione p JOIN file f on (p.codiceFIle=f.codiceFile) JOIN persona pers ON(pers.codiceFiscale = p.codiceFiscale)
       WHERE p.stampata = \"no\" ";
 
     $result = $co->query($sql);
 
-    if ($result->num_rows > 0) {
-        // output data of each row
-        $arrayRisultati = "";
-
-        while($row = $result->fetch_assoc()) {
-            $arrayRisultati .= "<tr class=\"row100 body\"><td class=\"cell100 column1\"> " . $row["quantità"] . "</td>";
-            $arrayRisultati .= "<td class=\"cell100 column3\">" . $row["nome"] . "</td>";
-            $arrayRisultati .= "<td class=\"cell100 column3\">
-                                  <a href=\"http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/DownloadFile/downloadFile.php?file_id=" . $row['idFile'] . "\">" . $row["nomeFile"] . "</a>
-                                </td>";//link per scaricare il file
-            $arrayRisultati .= "<td class=\"cell100 column4\">
-                                  <a href=\"http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/LogicaCodaStampa/doubleCKGestioneStampa.php?idPren=" . $row['idPrenotazione'] . "\">MANCANTE</a>
-                                </td>
-                              </tr>";//link per modificare lo stato della prenotazione
-        }
+    if($result->num_rows== 0) {
+      $arrayRisultati = "ERRORE NO DATA";
 
     }else {
-      $arrayRisultati = "ERRORE NO DATA";
+
+      // output data of each row
+      $arrayRisultati = "";
+
+      while($row = $result->fetch_assoc()) {
+          $arrayRisultati .= "<tr class=\"row100 body\"><td class=\"cell100 column1\"> " . $row["quantità"] . "</td>";
+          $arrayRisultati .= "<td class=\"cell100 column3\">" . $row["nome"] . "</td>";
+          $arrayRisultati .= "<td class=\"cell100 column3\">
+                                <a href=\"http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/DownloadFile/downloadFile.php?file_id=" . $row['codiceFile'] . "\">" . $row["nomeFile"] . "</a>
+                              </td>";//link per scaricare il file
+          $arrayRisultati .= "<td class=\"cell100 column4\">
+                                <a href=\"http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/LogicaCodaStampa/doubleCKGestioneStampa.php?idPren=" . $row['idPrenotazione'] . "\">MANCANTE</a>
+                              </td>
+                            </tr>";//link per modificare lo stato della prenotazione
+      }
     }
 
     $co->close();

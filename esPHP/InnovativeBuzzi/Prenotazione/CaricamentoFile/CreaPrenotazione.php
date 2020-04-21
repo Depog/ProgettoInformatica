@@ -136,11 +136,40 @@
                 } else {
                   die("Errore nella query: " . $conn->error);
                 }
-                die("prova");
 
+                ///////////////////////////////cambio il nome del file nel db e nel file/////////////////
+                if(isset($_SESSION["nomeFile"])){
+                  $nomeFile=$_SESSION["nomeFile"];
+                  $_SESSION["nomeFile"]=null;
+                }
 
+                      $nuovoNomeFile = $username."-".$codiceFile;
+                      $nuovoNomeFile=$nuovoNomeFile;
+                      if(file_exists($nuovoNomeFile))
+                      {
+                         die("Errore");   //_ERR
+                      }
+                      else
+                      {
+                         if(rename( $nomeFile, $nuovoNomeFile))
+                         {
+                         echo "Successfully Renamed $nomeFile to $nuovoNomeFile" ;
+                         }
+                        else
+                        {
+                         echo "A File With The Same Name Already Exists" ;
+                        }
+                      }
 
-
+                      /////////////aggiorno il nome del nuovo file///////////////////////
+                      $sql="UPDATE file set file.nomeFile=\"$nuovoNomeFile\" where file.codiceFile=\"$codiceFile\"";
+                        $records=$conn->query($sql);
+                        if ( $records == TRUE) {
+                            //echo "<br>Query eseguita!";
+                            echo "inserito correttamente";
+                        } else {
+                          die("Errore nella query: " . $conn->error);
+                        }
 
 
 
