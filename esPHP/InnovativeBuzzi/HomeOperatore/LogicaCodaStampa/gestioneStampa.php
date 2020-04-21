@@ -14,7 +14,7 @@
  <?php
    if(isset($_GET['idPren'])) {
       //tutto ok
-      checkStampa($ip,$porta);//per "modificare lo stato della prenotazione" ovevro segnare che sono state stampate tutte le copie richieste nella prenotazione
+      checkStampa($ip,$porta,$_GET['idPren']);//per "modificare lo stato della prenotazione" ovevro segnare che sono state stampate tutte le copie richieste nella prenotazione
       //fine modifiche allo stato della prenotzaione
       header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/HomeOperatore.php");
    }else {

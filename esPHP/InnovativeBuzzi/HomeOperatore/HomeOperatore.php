@@ -71,11 +71,121 @@
        top: 25%;
        left: 5%;
      }
+/*////////////////////////////////////////////////////////////////////////////// NAV BAR STYLE/////////////////////////////////////////////////////////////////*/
+     @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
+     *{
+       margin: 0;
+       padding: 0;
+       text-decoration: none;
+     }
+
+     header{
+       z-index: 9999;
+       position: fixed;
+       height: auto;
+       width: 100%;
+    /*   background: #FFFF;*/
+     }
+     .inner-width{
+       background: black;
+       max-width: 100%;
+       padding: 0 10px;
+       margin: auto;
+     }
+     /*
+     body {
+
+       display: -webkit-box;
+       display: flex;
+       height: 100vh;
+       width: 100%;
+       -webkit-box-pack: center;
+               justify-content: center;
+       padding: 0 0;
+       background-color: #2f3640;
+     }
+     */
+
+     .nav {
+       display: -webkit-inline-box;
+       display: inline-flex;
+       position: relative;
+       overflow: hidden;
+       width: 100%;
+      /* background-color: #fff;*/
+       margin-left: 500px;
+       /*box-shadow: 0 10px 40px rgba(159, 162, 177, 0.8);*/
+       float: right;
+     }
+
+     .nav-item {
+       /*color: #83818c;*/
+       color: #4274b9;
+       padding: 20px;
+       text-decoration: none;
+       -webkit-transition: .3s;
+       transition: .3s;
+       margin: 0 6px;
+       z-index: 1;
+       font-family: 'DM Sans', sans-serif;
+       font-weight: 500;
+       position: relative;
+     }
+     .nav-item:before {
+       content: "";
+       position: absolute;
+       bottom: -6px;
+       right: 0;
+       width: 100%;
+       height: 5px;
+       background-color: #dfe2ea;
+       border-radius: 8px 8px 0 0;
+       opacity: 0;
+       -webkit-transition: .3s;
+       transition: .3s;
+     }
+
+     .nav-item:not(.is-active):hover:before {
+       opacity: 1;
+       bottom: 0;
+     }
+
+     .nav-item:not(.is-active):hover {
+       /*color: #333;*/
+       color: #50ba82;
+     }
+
+     .nav-indicator {
+       position: absolute;
+       right: 0;
+       bottom: 0;
+       height: 4px;
+       -webkit-transition: .4s;
+       transition: .4s;
+       height: 5px;
+       z-index: 1;
+       border-radius: 8px 8px 0 0;
+     }
+
+     @media (max-width: 580px) {
+       .nav {
+         overflow: auto;
+       }
+     }
    </style>
  </head>
 
  <body>
        <p class="page">
+         <header>
+           <nav class="nav">
+             <a href="" class="nav-item is-active" active-color="#4274b9">Home</a>
+             <a href="contattaci.php" class="nav-item" active-color="#4274b9">Contattaci</a>
+             <a href="logout.php" class="nav-item" active-color="#4274b9">Logout</a>
+             <span class="nav-indicator"></span>
+           </nav>
+         </header>
+
          <div class="limiter">
         		<div class="container-table100">
         			<div class="wrap-table100">

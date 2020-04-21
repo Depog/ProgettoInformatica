@@ -5,6 +5,7 @@
   $ip=$_SERVER['SERVER_NAME'];  //server per vedere sei sei localhost o hai un ip
   $porta=$_SERVER['SERVER_PORT'];   //porta del serve, perchè c'è chi ha 80, chi 8080 etc...
   /*Controlli per vedere se si e' eseguito il login*/
+
   if(isset($_SESSION["usernameBZ"])){
     //rimango qua
   }else{
@@ -47,7 +48,10 @@
 			<h2>404 - Page not found</h2>
 			<p><?php echo $_GET['msg'];   ?></p>
       <?php
-        echo "<a href=\"http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/HomeOperatore.php\">Vai alla Homepage</a>";
+        if($_SESSION['tipoBZ'] == "Operatore")
+          echo "<a href=\"http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/HomeOperatore.php\">Vai alla Homepage</a>";
+        else
+          echo "<a href=\"http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeUtente/HomeUtente.php\">Vai alla Homepage</a>";
       ?>
 		</div>
 	</div>
