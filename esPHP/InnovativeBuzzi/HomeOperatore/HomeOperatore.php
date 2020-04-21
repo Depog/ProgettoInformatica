@@ -37,7 +37,7 @@
 
      b.c{
        position: fixed;
-       left : 21%;
+       left : 35%;
        top: 15%;
        font-size: 40px;
        color: #fff;
@@ -188,7 +188,7 @@
 
          <div class="limiter">
         		<div class="container-table100">
-        			<div class="wrap-table100">
+        			<div class="wrap-table100Operatore">
         				<b class="c">Coda Stampa</b>
         				<div class="table100 ver3 m-b-110">
                    <?php

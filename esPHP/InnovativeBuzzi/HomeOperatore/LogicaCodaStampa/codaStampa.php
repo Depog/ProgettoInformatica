@@ -8,10 +8,14 @@
               <table>
                 <thead>
                   <tr class=\"row100 head\">
-                    <th class=\"cell100 column1\">Numero Copie</th>
-                    <th class=\"cell100 column3\">Nome Cliente</th>
-                    <th class=\"cell100 column3\">Scarica</th>
-                    <th class=\"cell100 column4\">Stampata</th>
+                    <th class=\"cell100 column1O\">Data Prenotazione</th>
+                    <th class=\"cell100 column2O\">Orario Prenotazione</th>
+                    <th class=\"cell100 column3O\">Username Cliente</th>
+                    <th class=\"cell100 column4O\">Descrizione</th>
+                    <th class=\"cell100 column5O\">Numero Copie</th>
+                    <th class=\"cell100 column6O\">Scarica</th>
+                    <th class=\"cell100 column7O\">Stampata</th>
+                    <th class=\"cell100 column8O\">Note</th>
                   </tr>
                 </thead>
               </table>
@@ -38,7 +42,7 @@
     //global $co;
     include 'connessione.php';
     $co = connect();
-    $sql = "select p.* ,f.* , pers.* FROM prenotazione p JOIN file f on (p.codiceFIle=f.codiceFile) JOIN persona pers ON(pers.codiceFiscale = p.codiceFiscale)
+    $sql = "select p.* ,f.* , pers.*,s.Descrizione FROM prenotazione p JOIN file f on (p.codiceFIle=f.codiceFile) JOIN persona pers ON(pers.codiceFiscale = p.codiceFiscale) join stampa s ON(p.idStampa=s.idStampa)
       WHERE p.stampata = \"no\" ";
 
     $result = $co->query($sql);
@@ -52,14 +56,20 @@
       $arrayRisultati = "";
 
       while($row = $result->fetch_assoc()) {
-          $arrayRisultati .= "<tr class=\"row100 body\"><td class=\"cell100 column1\"> " . $row["quantità"] . "</td>";
-          $arrayRisultati .= "<td class=\"cell100 column3\">" . $row["nome"] . "</td>";
-          $arrayRisultati .= "<td class=\"cell100 column3\">
+          $arrayRisultati .= "<tr class=\"row100 body\">
+                            <td class=\"cell100 column1O\">" . $row["dataPrenotazione"] . "</td>
+                            <td class=\"cell100 column2O\">" . $row["oraPrenotazione"] . "</td>
+                            ";
+          $arrayRisultati .="<td class=\"cell100 column3O\">" . $row["username"] . "</td>";
+          $arrayRisultati .="<td class=\"cell100 column4O\"> " . $row["Descrizione"] . "</td>
+                        <td class=\"cell100 column5O\">" . $row["quantità"] . "</td>
+                              <td class=\"cell100 column6O\">
                                 <a href=\"http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/DownloadFile/downloadFile.php?file_id=" . $row['codiceFile'] . "\">" . $row["nomeFile"] . "</a>
                               </td>";//link per scaricare il file
-          $arrayRisultati .= "<td class=\"cell100 column4\">
+          $arrayRisultati .= "<td class=\"cell100 column7O\">
                                 <a href=\"http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/LogicaCodaStampa/doubleCKGestioneStampa.php?idPren=" . $row['idPrenotazione'] . "\">MANCANTE</a>
                               </td>
+                              <td class=\"cell100 column8O\"> " . $row["note"] . "</td>
                             </tr>";//link per modificare lo stato della prenotazione
       }
     }

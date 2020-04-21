@@ -142,16 +142,17 @@
                   $nomeFile=$_SESSION["nomeFile"];
                   $_SESSION["nomeFile"]=null;
                 }
-
+                    $est=explode(".",$nomeFile);
+                    $estensione=$est[1];
                       $nuovoNomeFile = $username."-".$codiceFile;
-                      $nuovoNomeFile=$nuovoNomeFile;
+                      $nuovoNomeFile=$nuovoNomeFile.".$estensione";
                       if(file_exists($nuovoNomeFile))
                       {
                          die("Errore");   //_ERR
                       }
                       else
                       {
-                         if(rename( $nomeFile, $nuovoNomeFile))
+                         if(rename( $nomeFile, "uploads/".$nuovoNomeFile))
                          {
                          echo "Successfully Renamed $nomeFile to $nuovoNomeFile" ;
                          }
