@@ -104,21 +104,29 @@
                                               </select>";
           }
           echo $sceltaOrario;
-        if(!isset($_SESSION["FileNonInserito"])){
-          $caricaFile="<p>Carica il file</p> <input type=\"file\" name=\"myfile\"> <br>";
-        }if(isset($_SESSION["FormatoErrato"])){
-          //descrizione non IntlRuleBasedBreakIterator
-          $caricaFile="Inserisci la descrizione<input class=\"input2\" type=\"text\" name=\"descrizione\" placeholder=\"descrizione\" ></input><p style=\"color:red\">Formato non disponibile</p>";
-          $_SESSION["FormatoErrato"]=null;
-        }else{
-          $caricaFile="<p>Carica il file</p> <input type=\"file\" name=\"myfile\"> <br><p style=\"color:red\">File Obbligatorio</p>";
-          $_SESSION["FileNonInserito"]=null;
-        }
+          if (!isset($_SESSION["FileNonInserito"]) && !isset($_SESSION["FormatoErrato"]) && !isset($_SESSION["FileTroppoGrande"]) ){
+            //caricamento normale
+            $caricaFile="<p>Carica il file</p> <input type=\"file\" name=\"myfile\"> <br>";
+          }
+           else if(isset($_SESSION["FileNonInserito"])){
+            //file non inserito
+            $caricaFile="<p>Carica il file eccomi2</p> <input type=\"file\" name=\"myfile\"> </input> <p style=\"color:red\">File Obbligatorio</p>";
+            $_SESSION["FileNonInserito"]=null;
+          }else if(isset($_SESSION["FormatoErrato"])){
+            //formato errato
+            $caricaFile="<p>Carica il file</p> <input type=\"file\" name=\"myfile\"> </input><p style=\"color:red\">Formato non disponibile. File concessi zip, .pdf, .docx, .jpg, .jpeg, .png , .txt</p>";
+            $_SESSION["FormatoErrato"]=null;
+          }else if(isset($_SESSION["FileTroppoGrande"])){
+            //file troppo grande
+            $caricaFile="<p>Carica il file</p> <input type=\"file\" name=\"myfile\"></input><p style=\"color:red\">Dimensione del file troppo grande</p>";
+            $_SESSION["FileTroppoGrande"]=null;
+          }
+
           echo $caricaFile;
           if(!isset($_SESSION["DescrizioneAssente"])){
               $descrizione="Inserisci la descrizione<input class=\"input2\" type=\"text\" name=\"descrizione\" placeholder=\"descrizione\" ></input><br>";
             }else{
-              //descrizione non IntlRuleBasedBreakIterator
+              //descrizione non presente
               $descrizione="Inserisci la descrizione<input class=\"input2\" type=\"text\" name=\"descrizione\" placeholder=\"descrizione\" ></input><p style=\"color:red\">Descrizione obbligatoria</p>";
               $_SESSION["DescrizioneAssente"]=null;
             }

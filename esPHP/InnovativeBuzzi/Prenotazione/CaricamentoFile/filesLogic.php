@@ -5,7 +5,7 @@
 if (isset($_POST['save'])) { // if save button on the form is clicked
     // name of the uploaded file
     $filename = $_FILES['myfile']['name'];
-    $_SESSION["nomeFile"]="uploads/".$filename;
+    $_SESSION["nomeFile"]="uploads/".$filename;   //mi salvo il nome del file
     // destination of the file on the server
     $destination = 'uploads/' . $filename;
 
@@ -19,12 +19,14 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
       $_SESSION["FileNonInserito"]="vero";
       header("location:EffettuaPrenotazione.php");
     }
-    if (!in_array($extension, ['zip', 'pdf', 'docx','jpg','jpeg','PNG', 'txt'])) {
-        echo "You file extension must be .zip, .pdf, .docx, .jpg, .jpeg, .png , .txt";
+    if (!in_array($extension, ['zip', 'pdf', 'docx','jpg','jpeg','PNG', 'txt', 'html'])) {
+        echo "You file extension must be .zip, .pdf, .docx, .jpg, .jpeg, .png, .txt, .html";
         $_SESSION["FormatoErrato"]="true";
         header("Location: EffettuaPrenotazione.php");  //reinderizzo alla home
     } elseif ($_FILES['myfile']['size'] > 5000000) { // file shouldn't be larger than 5Megabyte
         echo "File too large!";
+        $_SESSION["fileTroppoGrande"]="true";
+        header("Location: EffettuaPrenotazione.php");  //reinderizzo alla home
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
