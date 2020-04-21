@@ -80,12 +80,47 @@
   }
 
 
-  function checkStampa($ip, $porta) {
+  function checkStampa($ip, $porta, $idPren) {
     include '.././connessione.php';
     $co = connect();
+    $sql = "UPDATE prenotazione SET stampata=\"si\" WHERE idPrenotazione=$idPren";
 
+    if ($co->query($sql) === TRUE) {
+      $co->close();
 
+      $co = connect();
+      $user = $_SESSION['usernameBZ'];
+      $sql = "SELECT pers.* FROM persona WHERE username=\"$user\"";//Per prendere il codiceFiscaleDelOperatore
+
+      $result = $co->query($sql);
+      $row = $result->fetch_assoc();
+      die("Eccomi");
+      if($co->error() == NULL) {
+        //_ERR
+        $co->close();
+        header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Si è verificato un imprevisto<br>La invitiamo a riprovare");
+      }
+
+      $codFiscOper = $row['codiceFiscale'];
+      $co->close();
+
+      $co = connect();
+      $sql = "UPDATE stampa SET codiceFiscaleOperatore=\"$codFiscOper\" WHERE idPrenotazione=$idPren";
+      if ($co->query($sql) === TRUE) {
+        //Fatto
+      }else {
+        //_ERR
+        $co->close();
+        header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Si è verificato un imprevisto<br>La invitiamo a riprovare");
+      }
+
+    } else {
+      //_ERR
+      $co->close();
+      header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Si è verificato un imprevisto<br>La invitiamo a riprovare");
+    }
 
     $co->close();
   }
+
 ?>
