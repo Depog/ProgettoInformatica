@@ -5,6 +5,7 @@
   if($_SERVER["REQUEST_METHOD"]=="GET"){
     if(isset($_GET["logout"])) {
       $_SESSION["usernameBZ"]=null;
+      header("location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/index.php");
       die("");
     }
   }
