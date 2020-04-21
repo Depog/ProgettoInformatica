@@ -124,15 +124,15 @@
 
           echo $caricaFile;
           if(!isset($_SESSION["DescrizioneAssente"])){
-              $descrizione="Inserisci la descrizione<input class=\"input2\" type=\"text\" name=\"descrizione\" placeholder=\"descrizione\" ></input><br>";
+              $descrizione="Inserisci la descrizione<input class=\"input2\" type=\"text\" name=\"descrizione\" placeholder=\"descrizione\" maxlength=\"64\" ></input><br>";
             }else{
               //descrizione non presente
-              $descrizione="Inserisci la descrizione<input class=\"input2\" type=\"text\" name=\"descrizione\" placeholder=\"descrizione\" ></input><p style=\"color:red\">Descrizione obbligatoria</p>";
+              $descrizione="Inserisci la descrizione<input class=\"input2\" type=\"text\" name=\"descrizione\" placeholder=\"descrizione\"   maxlength=\"64\"></input><p style=\"color:red\">Descrizione obbligatoria</p>";
               $_SESSION["DescrizioneAssente"]=null;
             }
             echo $descrizione;
           ?>
-          Inserisci una nota<input class="input2" type="text" name="nota" placeholder="nota" ></input><br>
+          Inserisci una nota<input class="input2" type="text" name="nota" placeholder="nota"  maxlength="64"></input><br>
            <button type="submit" name="save" onclick="myFunction()"  >Invia Prenotazione</button>
 
 
