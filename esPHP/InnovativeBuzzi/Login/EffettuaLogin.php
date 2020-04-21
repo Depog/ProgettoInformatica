@@ -22,6 +22,8 @@
                  if($records->num_rows ==0){
                        //	echo "la query non ha prodotto risultato";
                        //utente non presente o dati errati
+                       $_SESSION["DatiErrati"]="vero";
+                       header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/index.php");  //reinderizzo alla home
                  }else{
                     //utente presente
                          while($tupla=$records->fetch_assoc()){

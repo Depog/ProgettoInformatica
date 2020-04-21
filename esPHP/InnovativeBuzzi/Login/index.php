@@ -38,6 +38,7 @@
 	<?php
 	function showHome($username, $password){
 		$msg=null;
+
 		$msg.="
 		<div class=\"wrap-input100 validate-input\" data-validate = \"Enter username\">
 			<input class=\"input100\" type=\"text\" name=\"username\" placeholder=\"Username\" value=\"$username\">
@@ -69,9 +70,20 @@
 					<a href="http://www.itistulliobuzzi.it/buzziwebsite/home/index.asp" >	<img src="images/buzzi.gif" alt="logoBuzzi" class="imgCenter" /> </a>
 
 					<span class="login100-form-title p-b-34 p-t-27">
-						Log in
+						Log in <br>
+						<?php
+								if(isset($_SESSION["DatiErrati"])){
+									//errore, dati errati o account non presente
+									$messaggioErrore="<a style=\"color: red;\"> Dati errati o account non presente!</a>";
+									echo $messaggioErrore;
+								}else{
+									//continua
+								}
+
+						 ?>
 					</span>
 					<?php
+
 					$msg="";
 					if(isset($_SESSION["usernameBZ"])){
 						if(isset($_SESSION["tipoBZ"])){
@@ -98,11 +110,24 @@
 						<button class="login100-form-btn">
 							Login
 						</button>
-					<<p style="margin-top: 30px;">
 
-					<a class="txt1" href="#">
-						Password o Username dimenticati? Clicca qui!
-					</a></p>
+						<?php
+							if(isset($_SESSION["DatiErrati"])){
+								//cosi la stampa si adatta allo scorrimento verso il basso
+								$stampaAiuto="<<p style=\"margin-top: 10px;\">
+											Per eventuali problemi, contattare la sala stampa
+								<a class=\"txt1\" href=\"#\">
+								</a></p>";
+									$_SESSION["DatiErrati"]=null;
+							}else{
+								//senza errori
+								$stampaAiuto="<<p style=\"margin-top: 30px;\">
+											Per eventuali problemi, contattare la sala stampa
+								<a class=\"txt1\" href=\"#\">
+								</a></p>";
+							}
+							echo $stampaAiuto;
+					?>
 					</div>
 				</form>
 
