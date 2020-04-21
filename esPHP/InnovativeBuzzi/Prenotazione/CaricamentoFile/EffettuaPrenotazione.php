@@ -106,6 +106,10 @@
           echo $sceltaOrario;
         if(!isset($_SESSION["FileNonInserito"])){
           $caricaFile="<p>Carica il file</p> <input type=\"file\" name=\"myfile\"> <br>";
+        }if(isset($_SESSION["FormatoErrato"])){
+          //descrizione non IntlRuleBasedBreakIterator
+          $caricaFile="Inserisci la descrizione<input class=\"input2\" type=\"text\" name=\"descrizione\" placeholder=\"descrizione\" ></input><p style=\"color:red\">Formato non disponibile</p>";
+          $_SESSION["FormatoErrato"]=null;
         }else{
           $caricaFile="<p>Carica il file</p> <input type=\"file\" name=\"myfile\"> <br><p style=\"color:red\">File Obbligatorio</p>";
           $_SESSION["FileNonInserito"]=null;

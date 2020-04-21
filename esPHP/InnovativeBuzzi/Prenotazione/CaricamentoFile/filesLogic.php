@@ -21,6 +21,8 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     }
     if (!in_array($extension, ['zip', 'pdf', 'docx','jpg','jpeg','PNG', 'txt'])) {
         echo "You file extension must be .zip, .pdf, .docx, .jpg, .jpeg, .png , .txt";
+        $_SESSION["FormatoErrato"]="true";
+        header("Location: EffettuaPrenotazione.php");  //reinderizzo alla home
     } elseif ($_FILES['myfile']['size'] > 5000000) { // file shouldn't be larger than 5Megabyte
         echo "File too large!";
     } else {
