@@ -87,12 +87,13 @@
 					$msg="";
 					if(isset($_SESSION["usernameBZ"])){
 						if(isset($_SESSION["tipoBZ"])){
-							if($_SESSION["tipoBZ"]=="Operatore")
-							header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/HomeOperatore.php");
-						}else{
-							header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeUtente/HomeUtente.php");
-						}
-			    }
+								if($_SESSION["tipoBZ"]=="Operatore"){
+								header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/HomeOperatore.php");
+								}else{
+									header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeUtente/HomeUtente.php");
+								}
+			    	}
+					}
 
 					if(isset($_COOKIE["username"]) && isset($_COOKIE["password"])){
 						$username=$_COOKIE["username"];
