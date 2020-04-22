@@ -198,6 +198,7 @@
     <header>
       <nav class="nav">
         <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
+        <a href="VisualizzaPrenotazioni.php" class="nav-item" active-color="red">Visualizza Prenotazioni</a>
         <a href="ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri Fotocopie</a>
         <a href="CreaPrenotazione/CreaPrenotazione.php" class="nav-item" active-color="purple">Crea Prenotazione</a>
         <a href="" class="nav-item is-active" active-color="green" >Contattaci</a>

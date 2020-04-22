@@ -58,6 +58,29 @@ p {
   min-height: 450px;
   max-height: 500px;
 }
+.registraAcquisto{
+  margin-top: 300px;
+  width: 100%;
+  min-height: 450px;
+  max-height: 500px;
+}
+.visualizzaCodaPrenotazioni{
+  margin-top: 800px;
+  width: 100%;
+  min-height: 450px;
+  max-height: 500px;
+  margin-left:0;
+
+}
+.visualizzaCodaRitiri{
+  position: relative;
+  margin-top: 1800px;
+  margin-right: 0px;
+  margin-right: 50px;
+  width: 100%;
+  min-height: 450px;
+  max-height: 500px;
+}
 .pren-img{
 
  max-width: 45%;
@@ -72,6 +95,33 @@ p {
   color: white;
   margin-left: 50%;
   margin-right: auto;
+
+}
+.registraAcquisto-text{
+  text-align: justify;
+  text-justify: inter-word;
+  font-size: 30px;
+  color: white;
+  margin-left: 10%;
+  margin-right: auto;
+
+}
+.visualizzaCodaPrenotazioni-text{
+  text-align: justify;
+  text-justify: inter-word;
+  font-size: 30px;
+  color: white;
+  margin-left: -10%;
+  margin-right: 20%;
+
+}
+.visualizzaCodaRitiri-text{
+  text-align: justify;
+  text-justify: inter-word;
+  font-size: 30px;
+  color: white;
+  margin-left: 0%;
+  margin-right: 0%;
 
 }
 ul, li {
