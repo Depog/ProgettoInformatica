@@ -198,6 +198,7 @@
     <header>
       <nav class="nav">
         <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
+        <a href="CreaPrenotazione/CreaPrenotazione.php" class="nav-item" active-color="purple">Crea Prenotazione</a>
         <a href="" class="nav-item is-active" active-color="green" >Contattaci</a>
         <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
         <span class="nav-indicator"></span>
