@@ -137,7 +137,7 @@
        right: 0;
        width: 100%;
        height: 5px;
-       background-color: #dfe2ea;
+       background-color: purple;
        border-radius: 8px 8px 0 0;
        opacity: 0;
        -webkit-transition: .3s;
@@ -150,7 +150,7 @@
      }
 
      .nav-item:not(.is-active):hover {
-       color: #333;
+       color: purple;
      }
 
      .nav-indicator {
@@ -182,7 +182,8 @@
          <header>
            <nav class="nav">
              <a href="../HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
-             <a href="CreaPrenotazione/CreaPrenotazione.php" class="nav-item is-active" active-color="purple">Crea Prenotazione</a>
+             <a href=".././ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri Fotocopie</a>
+             <a href="" class="nav-item is-active" active-color="purple">Crea Prenotazione</a>
              <a href="../contattaci.php" class="nav-item" active-color="green">Contattaci</a>
              <a href="../logout.php" class="nav-item" active-color="blue">Logout</a>
              <span class="nav-indicator"></span>
