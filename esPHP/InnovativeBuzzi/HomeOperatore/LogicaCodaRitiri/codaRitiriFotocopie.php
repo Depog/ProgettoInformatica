@@ -56,7 +56,7 @@
     include 'connessione.php';
     $co = connect();
     $sql = "SELECT pers.*, s.* , f.*, p.* FROM prenotazione p JOIN persona pers ON(pers.codiceFiscale = p.codiceFiscale) join stampa s ON(p.idStampa=s.idStampa) JOIN formato f ON(s.tipoFormato=f.tipo)
-      WHERE p.dataRitiroEffettuato is NULL
+      WHERE p.dataRitiroEffettuato is NULL AND p.stampata = \"si\"
       ORDER BY s.dataRitiro, s.oraRitiro";
 
     $result = $co->query($sql);
