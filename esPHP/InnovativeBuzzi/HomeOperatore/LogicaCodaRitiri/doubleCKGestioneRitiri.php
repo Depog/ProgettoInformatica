@@ -9,8 +9,6 @@
     header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/index.php");  //reinderizzo alla home
   }
 
-  include 'codaStampa.php';
-  include 'moreInfoStampa.php';
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -88,8 +86,8 @@
     </div>
     <div class="center">
       <h3>Si vuole procedere comunque?</h3>
-      <a href="<?php echo "http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/LogicaCodaStampa/gestioneStampa.php?idPren=" . $_GET['idPren'] . ""; ?>" class="btn">SI</a>
-      <a href="<?php echo "http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/HomeOperatore.php"; ?>" class="btn">NO</a>
+      <a href="<?php echo "http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/LogicaCodaRitiri/gestioneRitiri.php?idPren=" . $_GET['idPren'] . ""; ?>" class="btn">SI</a>
+      <a href="<?php echo "http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/ritiriFotocopie.php"; ?>" class="btn">NO</a>
     </div>
   </body>
 </html>

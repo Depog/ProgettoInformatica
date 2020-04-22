@@ -11,7 +11,7 @@
   //  echo "operatore";
  ?>
  <!DOCTYPE html>
- <html lang="en">
+ <html>
  <head>
    	<title>HOME OPERATORE</title>
    	<meta charset="UTF-8">
@@ -92,7 +92,8 @@
        padding: 0 10px;
        margin: auto;
      }
-     /*
+
+
      body {
 
        display: -webkit-box;
@@ -104,7 +105,7 @@
        padding: 0 0;
        background-color: #2f3640;
      }
-     */
+
 
      .nav {
        display: -webkit-inline-box;
@@ -137,7 +138,7 @@
        right: 0;
        width: 100%;
        height: 5px;
-       background-color: #dfe2ea;
+       background-color: orange;
        border-radius: 8px 8px 0 0;
        opacity: 0;
        -webkit-transition: .3s;
@@ -150,7 +151,7 @@
      }
 
      .nav-item:not(.is-active):hover {
-       color: #333;
+       color: orange;
      }
 
      .nav-indicator {
@@ -178,6 +179,7 @@
          <header>
            <nav class="nav">
              <a href="" class="nav-item is-active" active-color="orange">Home</a>
+             <a href="ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri Fotocopie</a>
              <a href="contattaci.php" class="nav-item" active-color="green">Contattaci</a>
              <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
              <span class="nav-indicator"></span>
