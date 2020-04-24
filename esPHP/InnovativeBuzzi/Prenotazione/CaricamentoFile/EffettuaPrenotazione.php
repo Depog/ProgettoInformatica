@@ -280,8 +280,7 @@
               $sceltaData="<text class=\"title\">data ritiro</text><br /><input type=\"date\" name=\"dataRitiro\" value=\"$giornoDopo\" min=\"$giornoDopo\"></input>";
               echo $sceltaData;
               if(isset($_SESSION["OraMancante"])){
-                $_SESSION["OraMancante"]=null;
-                $sceltaOrario="<br><text class=\"title\">ora ritirio</text><select id=\"oraRitiro\" name=\"oraRitiro\"> <p style=\"color:red\"><p>Orario obbligatorio</p>
+                $sceltaOrario="<br><text class=\"title\">ora ritirio</text><br><select id=\"oraRitiro\" name=\"oraRitiro\">
                                                  <option value=\"-\">-------</option>
                                                  <option value=\"7:45\">7:45 am</option>
                                                  <option value=\"9:00\">9:00 am</option>
@@ -289,8 +288,8 @@
                                                  <option value=\"11:00\">11:00 am</option>
                                                  <option value=\"12:00\">12:00 am</option>
                                                  <option value=\"1\">1 pm</option>
-                                                  </select>";
-
+                                                  </select> <p style=\"color:red\">Orario obbligatorio</p>";
+                $_SESSION["OraMancante"]=null;
               }else{
                 $sceltaOrario="<br><text class=\"title\">ora ritirio</text><br><select id=\"oraRitiro\" name=\"oraRitiro\">
                                                  <option value=\"-\">-------</option>
@@ -309,15 +308,15 @@
                 //caricamento normale
                 $caricaFile="<br /><text class=\"title\">Carica il file</text> <input type=\"file\" name=\"myfile\"> <br>";
               }
-               else if(isset($_SESSION["FileNonInserito"])){
+                if(isset($_SESSION["FileNonInserito"])){
                 //file non inserito
-                $caricaFile="<br /><text class=\"title\">Carica il file</text> <input classtype=\"file\" name=\"myfile\"> </input> <p style=\"color:red\">File Obbligatorio</p>";
+                $caricaFile="<br /><text class=\"title\">Carica il file</text> <input type=\"file\" name=\"myfile\"> </input> <p style=\"color:red\">File Obbligatorio</p>";
                 $_SESSION["FileNonInserito"]=null;
-              }else if(isset($_SESSION["FormatoErrato"])){
+              } if(isset($_SESSION["FormatoErrato"])){
                 //formato errato
                 $caricaFile="<br /><text class=\"title\">Carica il file</text> <input type=\"file\" name=\"myfile\"> </input><p style=\"color:red\">Formato non disponibile. File concessi zip, .pdf, .docx, .jpg, .jpeg, .png , .txt</p>";
                 $_SESSION["FormatoErrato"]=null;
-              }else if(isset($_SESSION["FileTroppoGrande"])){
+              } if(isset($_SESSION["FileTroppoGrande"])){
                 //file troppo grande
                 $caricaFile="<br /><text class=\"title\">Carica il file</text> <input type=\"file\" name=\"myfile\"></input><p style=\"color:red\">Dimensione del file troppo grande</p>";
                 $_SESSION["FileTroppoGrande"]=null;
@@ -325,6 +324,7 @@
 
               echo $caricaFile;
               if(!isset($_SESSION["DescrizioneAssente"])){
+                //descrizione presente
                   $descrizione="<br /><br />
                   <div class=\"Input\">
                     <input type=\"text\" id=\"input\" class=\"Input-text\" name=\"descrizione\" placeholder=\"Descrizione\">

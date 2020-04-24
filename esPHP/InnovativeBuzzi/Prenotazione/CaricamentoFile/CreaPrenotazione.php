@@ -3,6 +3,7 @@
 <?php
   ////ricevo i dati
   session_start();
+  $errore="no";
   $ip=$_SERVER['SERVER_NAME'];  //server per vedere sei sei localhost o hai un ip
   $porta=$_SERVER['SERVER_PORT'];   //porta del serve, perchè c'è chi ha 80, chi 8080 etc...
   if(!isset($_SESSION["usernameBZ"])){  //torno alla home
@@ -15,29 +16,31 @@
       $tipo= $_SESSION["tipoBZ"];
       echo $tipo;
       if($tipo=="Professore"){   //ricevo i dati senza il costo dato che non paga
-        echo "prof";
-        if(isset($_POST["formato"])){
-          $formato=$_POST["formato"];
-          echo "<br>formato ". $formato;
-        }
+            echo "prof";
+            if(isset($_POST["formato"])){
+              $formato=$_POST["formato"];
+              echo "<br>formato ". $formato;
+            }
 
         $tot=0;
       }else{ //altrimenti è uno studente e deve pagare
-        echo "studente";
-        if(isset($_POST["formato"])){
-          $formato=$_POST["formato"];
-          $arrFormato=explode("?",$formato);
-          echo "<br>formato " . $arrFormato[0] . ", costo ". $arrFormato[1];
-          $formato=$arrFormato[0];
-        }
-        $tot=$arrFormato[1];
+          echo "studente";
+          if(isset($_POST["formato"])){
+            $formato=$_POST["formato"];
+            $arrFormato=explode("?",$formato);
+            echo "<br>formato " . $arrFormato[0] . ", costo ". $arrFormato[1];
+            $formato=$arrFormato[0];
+          }
+          $tot=$arrFormato[1];
       }
+
       if(!empty($_POST["descrizione"])){
         $descrizione=$_POST["descrizione"];
       }else{
         //obbligatoria
-        $_SESSION["DescrizioneAssente"]="vero";
-        header("location:EffettuaPrenotazione.php");
+        $_SESSION["DescrizioneAssente"]="vero";                //ERRORE
+        //header("location:EffettuaPrenotazione.php");
+        $errore="si";
       }
       if(isset($_POST["nota"])){
         $note=$_POST["nota"];
@@ -57,11 +60,18 @@
         $oraRitiro=$_POST["oraRitiro"];
         if($oraRitiro=="-"){
           $_SESSION["OraMancante"]="true";
-          header("location:EffettuaPrenotazione.php");
+          //header("location:EffettuaPrenotazione.php");   //ERRORE
+          $errore="si";
         }
       }
       if(isset($_POST["dataRitiro"])){
         $dataRitiro=$_POST["dataRitiro"];
+      }
+
+
+
+      if($errore=="si"){//controllo che si sia verificato almeno uno degli errori e rrimando alla pagina precedente
+        header("location:EffettuaPrenotazione.php");
       }
       $costTot=$tot*$quantità;
       echo "<br> Totale = $costTot euro";
@@ -79,7 +89,6 @@
           }
           if($records->num_rows ==0){
                 //	echo "la query non ha prodotto risultato";
-
           }else{
                   while($tupla=$records->fetch_assoc()){
                       $codiceFiscale=$tupla["codiceFiscale"];
