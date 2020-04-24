@@ -9,8 +9,7 @@
                     <th class=\"cell100 column1OR\">Identificatico</th>
                     <th class=\"cell100 column2OR\">Data Ritiro</th>
                     <th class=\"cell100 column3OR\">Orario Ritiro</th>
-                    <th class=\"cell100 column4OR\">Nome Cliente</th>
-                    <th class=\"cell100 column5OR\">Cognome Cliente</th>
+                    <th class=\"cell100 column4OR\">Username</th>
                     <th class=\"cell100 column6OR\">Costo</th>
                     <th class=\"cell100 column7OR\">Descrizione</th>
                     <th class=\"cell100 column8OR\">Ritirato</th>
@@ -30,7 +29,6 @@
                           <td class=\"cell100 column2OR\">-</td>
                           <td class=\"cell100 column3OR\">-</td>
                           <td class=\"cell100 column4OR\">-</td>
-                          <td class=\"cell100 column5OR\">-</td>
                           <td class=\"cell100 column6OR\">-</td>
                           <td class=\"cell100 column7OR\">-</td>
                           <td class=\"cell100 column8OR\">-</td>
@@ -74,8 +72,7 @@
                                <td class=\"cell100 column1OR\">" . ++$count . "</td>
                                <td class=\"cell100 column2OR\">" . $row["dataRitiro"] . "</td>
                                <td class=\"cell100 column3OR\">" . $row["oraRitiro"] . "</td>
-                               <td class=\"cell100 column4OR\"> " . $row["nome"] . "</td>
-                               <td class=\"cell100 column5OR\">" . $row["cognome"] . "</td>";
+                               <td class=\"cell100 column4OR\"> " . $row["username"] . "</td>";
           if($row['tipo'] == "Insegnante") {
             $arrayRisultati .= "<td class=\"cell100 column6OR\">FREE</td>";
           } else {
