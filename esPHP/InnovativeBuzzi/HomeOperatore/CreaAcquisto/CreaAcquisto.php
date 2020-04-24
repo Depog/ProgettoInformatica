@@ -197,7 +197,13 @@
          </header>
 
 
-        <b class="c">Crea Acquisto Fotocopie</b>
+        				<b class="c">Crea acquisto</b>
+                <form style="position:fixed; top:50%;">
+                    <input type="text" name="testo"> </input>
+                </form>
+
+                    <?php
+
 
         <?php ?>
       </p>
