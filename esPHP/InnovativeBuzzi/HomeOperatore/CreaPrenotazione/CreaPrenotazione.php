@@ -192,8 +192,8 @@
          </header>
 
 
-        				<b class="c">Crea Prenotazione</b>
-                <form>
+        				<b class="c">Crea acquisto</b>
+                <form style="position:fixed; top:50%;">
                     <input type="text" name="testo"> </input>
                 </form>
 

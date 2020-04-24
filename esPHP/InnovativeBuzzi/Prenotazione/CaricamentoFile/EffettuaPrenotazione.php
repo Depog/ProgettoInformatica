@@ -82,13 +82,11 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <style>
   body{
-      background-color: #2f3640;
-  }
-  .mainTitle{
-    font-size: 100px;
-    color: green;
-    text-align: center;
-    width: 100%;
+
+    background: url(img/wallpaper.jpg) no-repeat fixed;
+    background-size: cover;
+    position: relative;
+    overflow: scroll;
   }
   text{
     font-family: 'Open Sans', sans-serif;
@@ -101,10 +99,8 @@
     color: green;
     padding: 0 0;
   }
-  select{
-    height: 50px;
-    width: 250px;
-  }
+
+
   @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
   *{
     margin: 0;
@@ -115,6 +111,7 @@
   header{
     z-index: 9999;
     position: fixed;
+    top: 0;
     height: auto;
     width: 100%;
     background: #FFFF;
@@ -125,18 +122,6 @@
     padding: 0 10px;
     margin: auto;
   }
-  body {
-
-    display: -webkit-box;
-    display: flex;
-    height: 100vh;
-    width: 100%;
-    -webkit-box-pack: center;
-            justify-content: center;
-    padding: 0 0;
-    background-color: #2f3640;
-  }
-
   .nav {
     display: -webkit-inline-box;
     display: inline-flex;
@@ -212,16 +197,12 @@
         <span class="nav-indicator"></span>
       </nav>
     </header>
-  <!--  <div class="mainTitle">
-      <b>PRENOTAZIONE</b>
-    </div>  -->
+
 
 
   <main>
   	<section id="content" class="content">
   		<div class="container">
-
-
         <div class="inputFile">
 
           <div class="row">
@@ -326,33 +307,44 @@
               echo $sceltaOrario;
               if (!isset($_SESSION["FileNonInserito"]) && !isset($_SESSION["FormatoErrato"]) && !isset($_SESSION["FileTroppoGrande"]) ){
                 //caricamento normale
-                $caricaFile="<p>Carica il file</p> <input type=\"file\" name=\"myfile\"> <br>";
+                $caricaFile="<br /><text class=\"title\">Carica il file</text> <input type=\"file\" name=\"myfile\"> <br>";
               }
                else if(isset($_SESSION["FileNonInserito"])){
                 //file non inserito
-                $caricaFile="<p>Carica il file eccomi2</p> <input classtype=\"file\" name=\"myfile\"> </input> <p style=\"color:red\">File Obbligatorio</p>";
+                $caricaFile="<br /><text class=\"title\">Carica il file</text> <input classtype=\"file\" name=\"myfile\"> </input> <p style=\"color:red\">File Obbligatorio</p>";
                 $_SESSION["FileNonInserito"]=null;
               }else if(isset($_SESSION["FormatoErrato"])){
                 //formato errato
-                $caricaFile="<p>Carica il file</p> <input type=\"file\" name=\"myfile\"> </input><p style=\"color:red\">Formato non disponibile. File concessi zip, .pdf, .docx, .jpg, .jpeg, .png , .txt</p>";
+                $caricaFile="<br /><text class=\"title\">Carica il file</text> <input type=\"file\" name=\"myfile\"> </input><p style=\"color:red\">Formato non disponibile. File concessi zip, .pdf, .docx, .jpg, .jpeg, .png , .txt</p>";
                 $_SESSION["FormatoErrato"]=null;
               }else if(isset($_SESSION["FileTroppoGrande"])){
                 //file troppo grande
-                $caricaFile="<p>Carica il file</p> <input type=\"file\" name=\"myfile\"></input><p style=\"color:red\">Dimensione del file troppo grande</p>";
+                $caricaFile="<br /><text class=\"title\">Carica il file</text> <input type=\"file\" name=\"myfile\"></input><p style=\"color:red\">Dimensione del file troppo grande</p>";
                 $_SESSION["FileTroppoGrande"]=null;
               }
 
               echo $caricaFile;
               if(!isset($_SESSION["DescrizioneAssente"])){
-                  $descrizione="Inserisci la descrizione<input class=\"input2\" type=\"text\" name=\"descrizione\" placeholder=\"descrizione\" maxlength=\"64\" ></input><br>";
+                  $descrizione="<br /><br />
+                  <div class=\"Input\">
+                    <input type=\"text\" id=\"input\" class=\"Input-text\" name=\"descrizione\" placeholder=\"Descrizione\">
+                    <label for=\"input\" class=\"Input-label\">Descrizione</label>
+                  </div><br><br /><br /><br />";
               }else{
                 //descrizione non presente
-                $descrizione="Inserisci la descrizione<input class=\"input2\" type=\"text\" name=\"descrizione\" placeholder=\"descrizione\"   maxlength=\"64\"></input><p style=\"color:red\">Descrizione obbligatoria</p>";
+                $descrizione="<br />
+                <div class=\"Input\">
+                  <input type=\"text\" id=\"input\" class=\"Input-text\" name=\"descrizione\" placeholder=\"Descrizione\">
+                  <label for=\"input\" class=\"Input-label\">Descrizione</label>
+                </div><br><br /><br /><br />";
                 $_SESSION["DescrizioneAssente"]=null;
               }
             echo $descrizione;
               ?>
-              <text class="title">NOTA</text><input class="input2" type="text" name="nota" placeholder="Inserisci nota" ></input><br>
+              <div class="Input">
+                <input type="text" id="input" class="Input-text" name="nota" placeholder="Nota">
+                <label for="input" class="Input-label">Nota</label>
+              </div><br><br /><br /><br />";
                <button type="submit" name="save" onclick="myFunction()">Invia Prenotazione</button>
 
 
