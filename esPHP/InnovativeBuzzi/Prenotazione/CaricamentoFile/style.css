@@ -1,13 +1,17 @@
 
 
 form {
-
-  width: 1000px;
+  text-align: center;
+  height: auto;
+  width: 100%;
   margin-top: 20%;
   border: 0px solid #555;
-  margin-left: 40%;
+  margin-left: 50%;
   margin-right: auto;
-  padding: 0;
+  padding: 50px 400px;
+  border-radius: 25px;
+  border: 3px solid #249d8b;
+  background: #262624;
 }
 main{
   margin-left: 0;
@@ -96,6 +100,10 @@ span {cursor:pointer; }
   box-sizing: border-box;
 }
 
+html {
+  font-size: 10px;
+}
+
 body {
   display: flex;
 
@@ -110,19 +118,21 @@ body {
 }
 
 
-.Input {
+.Input0 {
+
   position: relative;
 }
 
-.Input-text {
+.Input-text0 {
+  text-align: center;
   display: block;
-  margin: 0;
-  padding: var(--inputPaddingV) var(--inputPaddingH);
+  margin-left: 13%;
+  position: absolute;
   color: inherit;
-  height: 50px;
-  width: 200px;
+  height: 40px;
+  width: 250px;
   font-family: inherit;
-  font-size: var(--inputFontSize);
+  font-size: 20px;
   font-weight: inherit;
   line-height: var(--inputLineHeight);
   border: none;
@@ -130,16 +140,16 @@ body {
   transition: box-shadow var(--transitionDuration);
 }
 
-.Input-text::placeholder {
+.Input-text0::placeholder {
   color: #B0BEC5;
 }
 
-.Input-text:focus {
+.Input-text0:focus {
   outline: none;
   box-shadow: 0.2rem 0.8rem 1.6rem var(--colorPrimary600);
 }
 
-.Input-label {
+.Input-label0 {
   text-transform: uppercase;
   display: block;
   position: absolute;
@@ -161,13 +171,13 @@ body {
     z-index 0ms var(--inputTransitionDuration) var(--inputTransitionTF);
 }
 
-.Input-text:placeholder-shown + .Input-label {
+.Input-text0:placeholder-shown + .Input-label {
   visibility: hidden;
   z-index: -1;
 }
 
-.Input-text:not(:placeholder-shown) + .Input-label,
-.Input-text:focus:not(:placeholder-shown) + .Input-label {
+.Input-text0:not(:placeholder-shown) + .Input-label,
+.Input-text0:focus:not(:placeholder-shown) + .Input-label {
   visibility: visible;
   z-index: 1;
   opacity: 1;
@@ -180,9 +190,9 @@ body {
     z-index 0ms;
 }
 .container-checkbox{
+
   display: block;
   position: relative;
-  padding-left: 35px;
   margin-bottom: 12px;
   cursor: pointer;
   font-size: 22px;
@@ -201,10 +211,10 @@ body {
 .checkmark{
   position: absolute;
   top: 0;
-  left: 0;
+  margin-right: 100%;
   height: 25px;
   width: 25px;
-  background: #881238;
+  background: #FFF;
   box-shadow: 0px 4px 12px rgba(136, 18, 56, 0.15);
   border-radius: 6px;
   transition: 320ms ease;
@@ -214,7 +224,7 @@ body {
   box-shadow: 0px 4px 12px rgba(168, 31, 74, 0.2);
 }
 .container-checkbox input:checked ~ .checkmark{
-  background: #EE4540;
+  background: #249d8b;
     box-shadow: 0px 4px 12px rgba(238, 69, 64, 0.15);
 }
 .checkmark:after{
