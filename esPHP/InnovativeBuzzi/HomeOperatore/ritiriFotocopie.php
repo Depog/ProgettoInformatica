@@ -13,6 +13,17 @@
  <!DOCTYPE html>
  <html>
  <head>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
    	<title>HOME OPERATORE</title>
    	<meta charset="UTF-8">
     <!--===============================================================================================-->
@@ -192,11 +203,14 @@
         			<div class="wrap-table100OperatoreR">
         				<b class="c">Coda Ritiri</b>
         				<div class="table100 ver3 m-b-110">
+                  <input id="myInput" style="position:fixed; top:15%;" type="text" placeholder="Search..">
+
                    <?php
                    //Creazione Coda Delle Stampe in modo dinamico
-                     include 'LogicaCodaRitiri/codaRitiriFotocopie.php';
+                   include 'LogicaCodaRitiri/codaRitiriFotocopie.php';
                      $app = caricaCodaRitiri($ip,$porta);
-                     echo $app;
+                    echo $app;
+
                    ?>
         				</div>
         			</div>
@@ -222,7 +236,6 @@
       })
     });
 </script>
-
 <script>
 function myFunction() {
   var input, filter, table, tr, td, i, txtValue;
@@ -243,7 +256,6 @@ function myFunction() {
   }
 }
 </script>
-
 <!--===============================================================================================-->
 <script src="../HomeUtente/js/main.js"></script>
 

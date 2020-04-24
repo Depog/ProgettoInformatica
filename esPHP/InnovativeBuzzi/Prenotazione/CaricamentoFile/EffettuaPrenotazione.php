@@ -25,9 +25,6 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma-tooltip@3.0.2/dist/css/bulma-tooltip.min.css">
-  <link rel="stylesheet" type="text/css" href="../dist/css/datepicker-bulma.css">  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js">
     jQuery(function($) {
@@ -97,9 +94,9 @@
   }
   text.title{
     font-weight: bold;
-    font-size: 30px;
+    font-size: 40px;
     text-transform: uppercase;
-    color: #249d8b;
+    color: green;
     padding: 0 0;
   }
 
@@ -208,7 +205,7 @@
   		<div class="container">
         <div class="inputFile">
 
-          <div class="row" >
+          <div class="row">
             <form action="CreaPrenotazione.php" method="POST" enctype="multipart/form-data" >
               <?php
               include "connessioneBuzzi.php";
@@ -249,21 +246,13 @@
                                 //	echo "la query non ha prodotto risultato";
 
                           }else{
-                                $msg.="
-
-                                <br />
-                                <div class=\"select\">
-                                  <select id=\"formato\" name=\"formato\">
-                                    ";
-
-
+                                $msg.="<br /><select id=\"formato\" name=\"formato\"><br />";
                                   while($tupla=$records->fetch_assoc()){
                                     $tipo=$tupla["tipo"];
                                       $costoStampa=$tupla["costoStampa"];
                                         $msg.="<br /><option value=\"$tipo?$costoStampa\">$tipo $costoStampa euro</option>*";
                                   }
-                                    $msg.="</select>
-                                    </div>";
+                                    $msg.="</select>";
                          }
                    }
                   }
@@ -271,136 +260,104 @@
                  echo $msg;
 
                ?>
-  <!--/////////////////////////////////////////FRONTE RETRO///////////////////////////////////////////*/-->
-            <br> <br /><text class="title">Fronte retro</text>
-            <label class="container-checkbox" style="background-color: black;">
-                <input type="checkbox" checked="checked" name="fronteRetro"  >
+
+            <br> <br /><text class="title">Fronte retro</text><label class="container-checkbox" style="background-color: black;">
+                <input type="checkbox" checked="checked" name="fronteRetro" value=si/>
                 <span class="checkmark"></span>
             </label>
 
-
-  <!--/////////////////////////////////////////COPIE///////////////////////////////////////////*/-->
             <text class="title"><br>N copie</text>
-            <div style="width:200px; margin-left: 20%;">
+            <div style="width:100px;">
               <input type="number" name="quantità" value="1" placeholder="" min="1" max="100">
             </div>
-            <br />
+
+
+
 
             <?php
-              /*/////////////////////////////////////////DATA RITIRO///////////////////////////////////////////*/
              $dataOggi=date("Y-m-d");
              $giornoDopo= date( 'Y-m-d', strtotime( $dataOggi . ' +1 day' ) );
-              $sceltaData="<text class=\"title\">data ritiro</text><br />
-              <input type=\"date\" name=\"dataRitiro\" value=\"$giornoDopo\" min=\"$giornoDopo\" style= \"margin-left: 25%\"></input>";
+              $sceltaData="<text class=\"title\">data ritiro</text><br /><input type=\"date\" name=\"dataRitiro\" value=\"$giornoDopo\" min=\"$giornoDopo\"></input>";
               echo $sceltaData;
-
-
-  /*/////////////////////////////////////////ORA RITIRO///////////////////////////////////////////*/
               if(isset($_SESSION["OraMancante"])){
+                $sceltaOrario="<br><text class=\"title\">ora ritirio</text><br><select id=\"oraRitiro\" name=\"oraRitiro\">
+                                                 <option value=\"-\">-------</option>
+                                                 <option value=\"7:45\">7:45 am</option>
+                                                 <option value=\"9:00\">9:00 am</option>
+                                                 <option value=\"10:00\">10:00 am</option>
+                                                 <option value=\"11:00\">11:00 am</option>
+                                                 <option value=\"12:00\">12:00 am</option>
+                                                 <option value=\"1\">1 pm</option>
+                                                  </select> <p style=\"color:red\">Orario obbligatorio</p>";
                 $_SESSION["OraMancante"]=null;
-                $sceltaOrario="<br><text class=\"title\">ora ritiro</text><br />
-                <div class=\"select\">
-                    <select id=\"oraRitiro\" name=\"oraRitiro\">
-                       <option value=\"-\">-------</option>
-                       <option value=\"7:45\">7:45 am</option>
-                       <option value=\"9:00\">9:00 am</option>
-                       <option value=\"10:00\">10:00 am</option>
-                       <option value=\"11:00\">11:00 am</option>
-                       <option value=\"12:00\">12:00 am</option>
-                       <option value=\"1\">1 pm</option>
-                    </select><br />
-                    <b style=\"color:red;\">
-                    Ora obbligatoria
-                    </b>
-                </div>
-                <br />";
               }else{
-                $sceltaOrario="<br><text class=\"title\">ora ritiro</text><br />
-                <div class=\"select\">
-                    <select id=\"oraRitiro\" name=\"oraRitiro\">
-                       <option value=\"-\">-------</option>
-                       <option value=\"7:45\">7:45 am</option>
-                       <option value=\"9:00\">9:00 am</option>
-                       <option value=\"10:00\">10:00 am</option>
-                       <option value=\"11:00\">11:00 am</option>
-                       <option value=\"12:00\">12:00 am</option>
-                       <option value=\"1\">1 pm</option>
-                    </select>
-                </div>
-                <br />";
+                $sceltaOrario="<br><text class=\"title\">ora ritirio</text><br><select id=\"oraRitiro\" name=\"oraRitiro\">
+                                                 <option value=\"-\">-------</option>
+                                                 <option value=\"7:45\">7:45 am</option>
+                                                 <option value=\"9:00\">9:00 am</option>
+                                                 <option value=\"10:00\">10:00 am</option>
+                                                 <option value=\"11:00\">11:00 am</option>
+                                                 <option value=\"12:00\">12:00 am</option>
+                                                 <option value=\"1\">1 pm</option>
+                                                  </select>";
               }
+
+
               echo $sceltaOrario;
-
-
-                /*/////////////////////////////////////////FILE///////////////////////////////////////////*/
               if (!isset($_SESSION["FileNonInserito"]) && !isset($_SESSION["FormatoErrato"]) && !isset($_SESSION["FileTroppoGrande"]) ){
                 //caricamento normale
-                $caricaFile="<br /><text class=\"title\">Carica il file</text>
-                <input type=\"file\" name=\"myfile\" style=\"color: #249d8b; margin-left: 15%;\"> <br>";
+                $caricaFile="<br /><text class=\"title\">Carica il file</text> <input type=\"file\" name=\"myfile\"> <br>";
               }
-               else if(isset($_SESSION["FileNonInserito"])){
+                if(isset($_SESSION["FileNonInserito"])){
                 //file non inserito
-                $caricaFile="<br /><text class=\"title\">Carica il file</text>
-                <input type=\"file\" name=\"myfile\"></input> ";
+                $caricaFile="<br /><text class=\"title\">Carica il file</text> <input type=\"file\" name=\"myfile\"> </input> <p style=\"color:red\">File Obbligatorio</p>";
                 $_SESSION["FileNonInserito"]=null;
-              }else if(isset($_SESSION["FormatoErrato"])){
+              } if(isset($_SESSION["FormatoErrato"])){
                 //formato errato
-                $caricaFile="<br /><text class=\"title\">Carica il file</text>
-                <input type=\"file\" name=\"myfile\"> </input><p style=\"color:red\">Formato non disponibile. File concessi zip, .pdf, .docx, .jpg, .jpeg, .png , .txt</p>";
+                $caricaFile="<br /><text class=\"title\">Carica il file</text> <input type=\"file\" name=\"myfile\"> </input><p style=\"color:red\">Formato non disponibile. File concessi zip, .pdf, .docx, .jpg, .jpeg, .png , .txt</p>";
                 $_SESSION["FormatoErrato"]=null;
-              }else if(isset($_SESSION["FileTroppoGrande"])){
+              } if(isset($_SESSION["FileTroppoGrande"])){
                 //file troppo grande
-                $caricaFile="<br /><text class=\"title\">Carica il file</text>
-                <input type=\"file\" name=\"myfile\"></input><p style=\"color:red\">Dimensione del file troppo grande</p>";
+                $caricaFile="<br /><text class=\"title\">Carica il file</text> <input type=\"file\" name=\"myfile\"></input><p style=\"color:red\">Dimensione del file troppo grande</p>";
                 $_SESSION["FileTroppoGrande"]=null;
               }
 
               echo $caricaFile;
-
-
-                /*/////////////////////////////////////////DESCRIZIONE///////////////////////////////////////////*/
-              if(isset($_SESSION["DescrizioneAssente"])){
-                //descrizione assente
-                  $descrizione="<br />
-                  <text class=\"title\">descrizione</text>
-                  <div class=\"Input0\">
-                    <input type=\"text\" id=\"input\" class=\"Input-text0\" name=\"descrizione\" placeholder=\"Descrizione\">
-                    <label for=\"input\" class=\"Input-label0\">Descrizione</label>
-                    <b style=\"color :red;\">Descrizione obbligatoria</b>
-                  </div><br>";
-                          $_SESSION["DescrizioneAssente"]=null;
+              if(!isset($_SESSION["DescrizioneAssente"])){
+                //descrizione presente
+                  $descrizione="<br /><br />
+                  <div class=\"Input\">
+                    <input type=\"text\" id=\"input\" class=\"Input-text\" name=\"descrizione\" placeholder=\"Descrizione\">
+                    <label for=\"input\" class=\"Input-label\">Descrizione</label>
+                  </div><br><br /><br /><br />";
               }else{
-
+                //descrizione non presente
                 $descrizione="<br />
-                <text class=\"title\">DESCRIZIONE</text>
-                <div class=\"Input0\">
-                  <input type=\"text\" id=\"input\" class=\"Input-text0\" name=\"descrizione\" placeholder=\"Descrizione\">
-                  <label for=\"input\" class=\"Input-label0\">Descrizione</label>
-                </div><br><br />";
-
+                <div class=\"Input\">
+                  <input type=\"text\" id=\"input\" class=\"Input-text\" name=\"descrizione\" placeholder=\"Descrizione\">
+                  <label for=\"input\" class=\"Input-label\">Descrizione</label>
+                </div><br><br /><br /><br />";
+                $_SESSION["DescrizioneAssente"]=null;
               }
             echo $descrizione;
               ?>
-
-
-              /*/////////////////////////////////////////NOTE///////////////////////////////////////////
-              <div class="Input0">
-                <text class="title"> note</text>
-                <input type="text0" id="input" class="Input-text0" name="nota" placeholder="Nota">
-                <label for="input" class="Input-label0">Nota</label>
+              <div class="Input">
+                <input type="text" id="input" class="Input-text" name="nota" placeholder="Nota">
+                <label for="input" class="Input-label">Nota</label>
               </div><br><br /><br /><br />";
-
-
-
-               <button type="submit" name="save" onclick="myFunction()" style="border-radius: 6px;">Invia Prenotazione</button>
-
-
+               <button type="submit" name="save" onclick="myFunction()">Invia Prenotazione</button>
 
 
             </form>
           </div>
+
       </div>
-		</div>
+
+
+
+
+
+  		</div>
   	</section>
   </main>
   <script src="./bootstrap-input-spinner.js"></script>
