@@ -188,7 +188,7 @@
                               $oraRitiro=array();
                               $quantità=array();
 
-                              $sql = "SELECT stampa.descrizione as descrizione, prenotazione.dataPrenotazione as dataPrenotazione, stampa.dataRitiro as dataRitiro, stampa.oraRitiro as oraRitiro, prenotazione.quantità as quantità
+                              $sql = "SELECT stampa.descrizione as descrizione, prenotazione.dataPrenotazione as dataPrenotazione, stampa.dataRitiro as dataRitiro, stampa.oraRitiro as oraRitiro, stampa.quantità as quantità
                                       from persona
                                       join prenotazione on persona.codiceFiscale=prenotazione.codiceFiscale
                                        join stampa on prenotazione.idStampa=stampa.idStampa

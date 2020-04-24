@@ -191,8 +191,9 @@ $(document).ready(function(){
              <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
              <a href="VisualizzaPrenotazioni.php" class="nav-item" active-color="red">Visualizza Prenotazioni</a>
              <a href="ritiriFotocopie.php" class="nav-item" active-color="blue">Ritiri Fotocopie</a>
-             <a href="CreaPrenotazione/CreaPrenotazione.php" class="nav-item" active-color="purple">Crea Prenotazione</a>
-             <a href=" " class="nav-item is-active" active-color="green">Cronologia acquisti</a>
+             <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Crea Acquisto</a>
+             <a href="" class="nav-item is-active" active-color="green">Cronologia acquisti</a>
+             <a href="CronologiaPrenotazioni.php" class="nav-item " active-color="green">Cronologia prenotazioni</a>
              <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
              <span class="nav-indicator"></span>
            </nav>
@@ -214,7 +215,10 @@ $(document).ready(function(){
         				</div>
         			</div>
         		</div>
-        	</div>
+        	</div><br>
+
+
+
        </p>
 
 <!--===============================================================================================-->
@@ -243,7 +247,7 @@ function myFunction() {
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
+    td = tr[i].getElementsByTagName("td")[2];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {

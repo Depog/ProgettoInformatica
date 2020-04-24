@@ -1,6 +1,6 @@
 
 <?php
-    function caricaCodaRitiri($ip,$porta) {
+    function caricaPrenotazioniEffettuate($ip,$porta) {
       //Inizio tag table + intestazione
       $out = " <div class=\"table100-head\">
                 <table>
@@ -18,7 +18,7 @@
                 </table>
               </div>";
 
-        $data = selectFormDB($ip,$porta);
+        $data = coselectFormDB($ip,$porta);
 
         if($data == "ERRORE NO DATA") {
           $out .= "<div class=\"table100-body js-pscroll\">
@@ -49,7 +49,7 @@
     }
 
     //Metodo per estrapolare i dati dal db
-    function selectFormDB($ip, $porta) {
+    function coselectFormDB($ip, $porta) {
       //global $co;
       include 'connessione.php';
       $co = connect();
@@ -90,20 +90,6 @@
       return $arrayRisultati;
     }
 
-    function checkRitirato($ip, $porta, $idPren) {
-      include '.././connessione.php';
-      $co = connect();
-      $dataRitiro = date("Y/m/d");
-      $oraRitiro = date("H:i:s");
 
-      $sql = "UPDATE prenotazione SET dataRitiroEffettuato=\"$dataRitiro\", orarioRitiroEffettuato=\"$oraRitiro\" WHERE idPrenotazione=$idPren";
-
-      if ($co->query($sql) === TRUE) {
-          //fatto
-      } else {
-        //_ERR
-        header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Si è verificato un imprevisto<br>La invitiamo a riprovare");
-      }
-    }
 
 ?>

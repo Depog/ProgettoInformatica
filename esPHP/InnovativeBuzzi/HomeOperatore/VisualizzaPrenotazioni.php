@@ -182,6 +182,7 @@
              <a href="ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri Fotocopie</a>
              <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Crea Acquisto</a>
              <a href="CronologiaAcquisti.php" class="nav-item" active-color="green">Cronologia acquisti</a>
+             <a href="CronologiaPrenotazioni.php" class="nav-item " active-color="green">Cronologia prenotazioni</a>
              <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
              <span class="nav-indicator"></span>
            </nav>

@@ -100,7 +100,7 @@
 
          $dataOggi=date("Y/m/d");
          $oraAttuale=date("h:i:sa");
-         $sql="INSERT INTO Prenotazione(dataPrenotazione,oraPrenotazione,quantità,note,codiceFiscale,codiceFile) VALUES(\"$dataOggi\",\"$oraAttuale\",\"$quantità\",\"$note\",\"$codiceFiscale\",\"$codiceFile\") ";
+         $sql="INSERT INTO Prenotazione(dataPrenotazione,oraPrenotazione,note,codiceFiscale,codiceFile) VALUES(\"$dataOggi\",\"$oraAttuale\",\"$note\",\"$codiceFiscale\",\"$codiceFile\") ";
            $records=$conn->query($sql);
            if ( $records == TRUE) {
                //echo "<br>Query eseguita!";
@@ -110,7 +110,7 @@
            }
 
            ///creo la query per la stampa
-           $sql="INSERT INTO STAMPA(dataRitiro,oraRitiro,tipoFormato,descrizione,fronteRetro) VALUES(\"$dataRitiro\",\"$oraRitiro\",\"$formato\",\"$descrizione\",\"$fronteRetro\")";
+           $sql="INSERT INTO STAMPA(dataRitiro,oraRitiro,tipoFormato,descrizione,fronteRetro,quantità) VALUES(\"$dataRitiro\",\"$oraRitiro\",\"$formato\",\"$descrizione\",\"$fronteRetro\",\"$quantità\")";
              $records=$conn->query($sql);
              if ( $records == TRUE) {
                  //echo "<br>Query eseguita!";
@@ -121,7 +121,7 @@
 
 
              ////metto l'id della stampa dentro la prenotazione
-             $sql="SELECT stampa.idStampa from stampa where stampa.dataRitiro=\"$dataRitiro\" and stampa.oraRitiro=\"$oraRitiro\" and  stampa.tipoFormato=\"$formato\"  and stampa.descrizione=\"$descrizione\"  and stampa.fronteRetro=\"$fronteRetro\"";
+             $sql="SELECT stampa.idStampa from stampa where stampa.dataRitiro=\"$dataRitiro\" and stampa.oraRitiro=\"$oraRitiro\" and  stampa.tipoFormato=\"$formato\"  and stampa.descrizione=\"$descrizione\"  and stampa.fronteRetro=\"$fronteRetro\" and stampa.quantità=\"$quantità\"";
                $records=$conn->query($sql);
                if ( $records == TRUE) {
                    //echo "<br>Query eseguita!";
@@ -139,7 +139,7 @@
               }
 
               //inserisco id stampa dentro prenotazione
-              $sql="UPDATE Prenotazione set prenotazione.idStampa=\"$idStampa\" where prenotazione.dataPrenotazione=\"$dataOggi\" and prenotazione.oraPrenotazione=\"$oraAttuale\" and prenotazione.quantità=\"$quantità\" and prenotazione.note=\"$note\" and prenotazione.codiceFiscale=\"$codiceFiscale\" and prenotazione.codiceFile=\"$codiceFile\"";
+              $sql="UPDATE Prenotazione set prenotazione.idStampa=\"$idStampa\" where prenotazione.dataPrenotazione=\"$dataOggi\" and prenotazione.oraPrenotazione=\"$oraAttuale\"  and prenotazione.note=\"$note\" and prenotazione.codiceFiscale=\"$codiceFiscale\" and prenotazione.codiceFile=\"$codiceFile\"";
                 $records=$conn->query($sql);
                 if ( $records == TRUE) {
                     //echo "<br>Query eseguita!";
