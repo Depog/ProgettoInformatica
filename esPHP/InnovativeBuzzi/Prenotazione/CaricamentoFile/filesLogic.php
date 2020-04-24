@@ -17,16 +17,22 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     $size = $_FILES['myfile']['size'];
     if(empty($file)){
       $_SESSION["FileNonInserito"]="vero";
-      header("location:EffettuaPrenotazione.php");
+      $errore="si";
+      //header("location:EffettuaPrenotazione.php");
     }
     if (!in_array($extension, ['zip', 'pdf', 'docx','jpg','jpeg','PNG', 'txt', 'html'])) {
+      if($errore=="si"){
+
+      }else{
         echo "You file extension must be .zip, .pdf, .docx, .jpg, .jpeg, .png, .txt, .html";
         $_SESSION["FormatoErrato"]="true";
-        header("Location: EffettuaPrenotazione.php");  //reinderizzo alla home
+          $errore="si";
+      }
     } elseif ($_FILES['myfile']['size'] > 5000000) { // file shouldn't be larger than 5Megabyte
         echo "File too large!";
         $_SESSION["fileTroppoGrande"]="true";
-        header("Location: EffettuaPrenotazione.php");  //reinderizzo alla home
+        $errore="si";
+      //  header("Location: EffettuaPrenotazione.php");  //reinderizzo alla home
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
