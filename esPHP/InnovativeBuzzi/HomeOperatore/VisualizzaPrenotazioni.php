@@ -137,7 +137,7 @@
      right: 0;
      width: 100%;
      height: 5px;
-     background-color: red;
+     background-color: #ee6c4d;
      border-radius: 8px 8px 0 0;
      opacity: 0;
      -webkit-transition: .3s;
@@ -150,7 +150,7 @@
    }
 
    .nav-item:not(.is-active):hover {
-     color: red;
+     color: #ee6c4d;
    }
 
    .nav-indicator {
