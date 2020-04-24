@@ -85,6 +85,7 @@
                                 </td>
                               </tr>";//link per modificare lo stato della prenotazione
         }
+
       }
 
       $co->close();

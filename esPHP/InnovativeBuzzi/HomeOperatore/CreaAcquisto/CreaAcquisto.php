@@ -9,6 +9,10 @@
     header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/index.php");  //reinderizzo alla home
   }
   //  echo "operatore";
+  function minData() {
+    $dataOggi=date("Y-m-d");
+    echo $dataOggi;
+  }
  ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -30,9 +34,9 @@
     <!--===============================================================================================-->
     	<link rel="stylesheet" type="text/css" href="../../HomeUtente/css/util.css">
       <link href="../../HomeUtente/css/main.css" rel="stylesheet" type="text/css"  >
+
     <!--===============================================================================================-->
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
    <style>
 
      b.c{
@@ -170,10 +174,23 @@
          overflow: auto;
        }
      }
-     form{
-       width: 10px;
-       height: 100px;
+
+     .formInserimentoAcq {
+       position: relative;
+       top: 30%;
+       right: 85px;
+       color: #fff;
      }
+
+     #quantita{
+        width: 90px;
+     }
+
+     .error{
+       color : #fff;
+       position: relative;
+     }
+
    </style>
  </head>
 
@@ -184,7 +201,7 @@
              <a href="../HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
              <a href="../VisualizzaPrenotazioni.php" class="nav-item" active-color="red">Visualizza Prenotazioni</a>
              <a href=".././ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri Fotocopie</a>
-             <a href="" class="nav-item is-active" active-color="purple">Crea Prenotazione</a>
+             <a href="" class="nav-item is-active" active-color="purple">Crea Acquisto</a>
              <a href="../CronologiaAcquisti.php" class="nav-item" active-color="green">Cronologia Acquisti</a>
              <a href="../logout.php" class="nav-item" active-color="blue">Logout</a>
              <span class="nav-indicator"></span>
@@ -193,38 +210,61 @@
 
 
         				<b class="c">Crea acquisto</b>
-                <form style="position:fixed; top:50%;">
-                    <input type="text" name="testo"> </input>
+                <form class="formInserimentoAcq" method="POST" action="controllaDatiInput.php">
+                    <a>Username</a>
+                    <input type="text" name="username" id="usr" placeholder="Username"></input>
+                    <br>
+                    <a>Tipo Formato</a>
+                    <input type="text" name="tipoF" placeholder="Tipo Formato"></input>
+                    <br>
+                    <a>Descrizione</a>
+                    <input type="text" name="descrizione" placeholder="Descrizione Stampa"></input>
+                    <br><br>
+                    <a>Quantità</a>
+                    <input type="number" min="1" max="100" name="quantita" id="quantita" placeholder="Quantità"></input>
+                    <br>
+                    <a>Fronte & Retro</a>
+                    <input type="checkbox" name="f&r" id="f&r" onclick="changeStateCK()"></input><a id="relazCK"></a>
+                    <br><br>
+                    <input type="submit" >Invia</input>
                 </form>
 
-                    <?php
+      </p>
+
+    <script>
+      var count = 0;
+
+        function changeStateCK() {
+          if((count % 2) == 0)
+            document.getElementById("relazCK").innerHTML = "SI";
+          else {
+             document.getElementById("relazCK").innerHTML = "NO";
+          }
+          count = count + 1;
+        }
 
 
+    </script>
 
-                     ?>
-       </p>
-
-<!--===============================================================================================-->
-<script src="../../HomeUtente/vendor/jquery/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="../../HomeUtente/js/navbar.js"></script>
-<!--===============================================================================================-->
-<script src="../../HomeUtente/vendor/bootstrap/js/popper.js"></script>
-<script src="../../HomeUtente/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-<script src="../../HomeUtente/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-<script src="../../HomeUtente/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script>
-		$('.js-pscroll').each(function(){
-  		var ps = new PerfectScrollbar(this);
-  	  $(window).on('resize', function(){
-  			ps.update();
-      })
-    });
-</script>
-<!--===============================================================================================-->
-<script src="../../HomeUtente/js/main.js"></script>
-
-
- </body>
- </html>
+    <!--===============================================================================================-->
+    <script src="../../HomeUtente/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../../HomeUtente/js/navbar.js"></script>
+    <!--===============================================================================================-->
+    <script src="../../HomeUtente/vendor/bootstrap/js/popper.js"></script>
+    <script src="../../HomeUtente/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../../HomeUtente/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../../HomeUtente/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script>
+    		$('.js-pscroll').each(function(){
+      		var ps = new PerfectScrollbar(this);
+      	  $(window).on('resize', function(){
+      			ps.update();
+          })
+        });
+    </script>
+    <!--===============================================================================================-->
+    <script src="../../HomeUtente/js/main.js"></script>
+  </body>
+</html>
