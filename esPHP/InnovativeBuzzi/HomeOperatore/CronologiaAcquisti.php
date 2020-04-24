@@ -48,7 +48,7 @@ $(document).ready(function(){
 
      b.c{
        position: fixed;
-       left : 35%;
+       left : 25%;
        top: 15%;
        font-size: 40px;
        color: #fff;
@@ -148,7 +148,7 @@ $(document).ready(function(){
        right: 0;
        width: 100%;
        height: 5px;
-       background-color: blue;
+       background-color: green;
        border-radius: 8px 8px 0 0;
        opacity: 0;
        -webkit-transition: .3s;
@@ -161,7 +161,7 @@ $(document).ready(function(){
      }
 
      .nav-item:not(.is-active):hover {
-       color: blue;
+       color: green;
      }
 
      .nav-indicator {
@@ -190,9 +190,9 @@ $(document).ready(function(){
            <nav class="nav">
              <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
              <a href="VisualizzaPrenotazioni.php" class="nav-item" active-color="red">Visualizza Prenotazioni</a>
-             <a href="" class="nav-item is-active" active-color="blue">Ritiri Fotocopie</a>
+             <a href="ritiriFotocopie.php" class="nav-item" active-color="blue">Ritiri Fotocopie</a>
              <a href="CreaPrenotazione/CreaPrenotazione.php" class="nav-item" active-color="purple">Crea Prenotazione</a>
-             <a href="CronologiaAcquisti.php" class="nav-item" active-color="green">Cronologia acquisti</a>
+             <a href=" " class="nav-item is-active" active-color="green">Cronologia acquisti</a>
              <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
              <span class="nav-indicator"></span>
            </nav>
@@ -201,13 +201,12 @@ $(document).ready(function(){
          <div class="limiter">
         		<div class="container-table100">
         			<div class="wrap-table100OperatoreR">
-        				<b class="c">Coda Ritiri</b>
+        				<b class="c">Cronologia acquisti effettuati</b>
         				<div class="table100 ver3 m-b-110">
                   <input id="myInput" style="position:fixed; top:15%;" type="text" placeholder="Search..">
-
                    <?php
                    //Creazione Coda Delle Stampe in modo dinamico
-                   include 'LogicaCodaRitiri/codaRitiriFotocopie.php';
+                   include 'LogicaCronologiaAcquisti/acquistiEffettuati.php';
                      $app = caricaCodaRitiri($ip,$porta);
                     echo $app;
 

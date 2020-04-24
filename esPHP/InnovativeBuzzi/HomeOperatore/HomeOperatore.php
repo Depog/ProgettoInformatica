@@ -145,7 +145,7 @@
              <a href="VisualizzaPrenotazioni.php" class="nav-item"  active-color="red">Visualizza Prenotazioni</a>
              <a href="ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri Fotocopie</a>
              <a href="CreaPrenotazione/CreaPrenotazione.php" class="nav-item" active-color="purple">Crea Prenotazione</a>
-             <a href="contattaci.php" class="nav-item" active-color="green">Contattaci</a>
+             <a href="CronologiaAcquisti.php" class="nav-item" active-color="green">Cronologia acquisti</a>
              <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
              <span class="nav-indicator"></span>
            </nav>
