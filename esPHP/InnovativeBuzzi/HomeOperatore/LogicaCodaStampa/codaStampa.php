@@ -1,7 +1,3 @@
-<html>
-  <body>
-
-
 <?php
   //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::_ERR Dove va gestito l'errore ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -9,10 +5,11 @@
   function caricaCodaStampa($ip, $porta) {
     //Inizio tag table + intestazione
     $out = "<div class=\"table100-head\">
-              <table >
+              <table>
                 <thead>
                   <tr class=\"row100 head\">
-                  <th class=\"cell100 column2O\">Orario Prenotazione</th>
+                    <th class=\"cell100 column1O\">Data Prenotazione</th>
+                    <th class=\"cell100 column2O\">Orario Prenotazione</th>
                     <th class=\"cell100 column3O\">Descrizione</th>
                     <th class=\"cell100 column4O\">Formato</th>
                     <th class=\"cell100 column5O\">Numero Copie</th>
@@ -156,6 +153,3 @@
   }
 
 ?>
-
-</body>
-</html>

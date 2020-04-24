@@ -13,17 +13,6 @@
  <!DOCTYPE html>
  <html>
  <head>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
    	<title>HOME OPERATORE</title>
    	<meta charset="UTF-8">
     <!--===============================================================================================-->
@@ -203,14 +192,11 @@ $(document).ready(function(){
         			<div class="wrap-table100OperatoreR">
         				<b class="c">Coda Ritiri</b>
         				<div class="table100 ver3 m-b-110">
-                  <input id="myInput" style="position:fixed; top:15%;" type="text" placeholder="Search..">
-
                    <?php
                    //Creazione Coda Delle Stampe in modo dinamico
-                   include 'LogicaCodaRitiri/codaRitiriFotocopie.php';
+                     include 'LogicaCodaRitiri/codaRitiriFotocopie.php';
                      $app = caricaCodaRitiri($ip,$porta);
-                    echo $app;
-
+                     echo $app;
                    ?>
         				</div>
         			</div>
@@ -235,26 +221,6 @@ $(document).ready(function(){
   			ps.update();
       })
     });
-</script>
-<script>
-function myFunction() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
 </script>
 <!--===============================================================================================-->
 <script src="../HomeUtente/js/main.js"></script>
