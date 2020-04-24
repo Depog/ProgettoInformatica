@@ -9,6 +9,10 @@
     header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/index.php");  //reinderizzo alla home
   }
   //  echo "operatore";
+  function minData() {
+    $dataOggi=date("Y-m-d");
+    echo $dataOggi;
+  }
  ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -175,9 +179,17 @@
        position: relative;
        top: 30%;
        right: 85px;
+       color: #fff;
      }
 
+     #quantita{
+        width: 90px;
+     }
 
+     .error{
+       color : #fff;
+       position: relative;
+     }
 
    </style>
  </head>
@@ -198,15 +210,41 @@
 
 
         				<b class="c">Crea acquisto</b>
-                <form style="position:fixed; top:50%;">
-                    <input type="text" name="testo"> </input>
+                <form class="formInserimentoAcq" method="POST" action="controllaDatiInput.php">
+                    <a>Username</a>
+                    <input type="text" name="username" id="usr" placeholder="Username"></input>
+                    <br>
+                    <a>Tipo Formato</a>
+                    <input type="text" name="tipoF" placeholder="Tipo Formato"></input>
+                    <br>
+                    <a>Descrizione</a>
+                    <input type="text" name="descrizione" placeholder="Descrizione Stampa"></input>
+                    <br><br>
+                    <a>Quantità</a>
+                    <input type="number" min="1" max="100" name="quantita" id="quantita" placeholder="Quantità"></input>
+                    <br>
+                    <a>Fronte & Retro</a>
+                    <input type="checkbox" name="f&r" id="f&r" onclick="changeStateCK()"></input><a id="relazCK"></a>
+                    <br><br>
+                    <input type="submit" >Invia</input>
                 </form>
 
-                    <?php
-
-
-        <?php ?>
       </p>
+
+    <script>
+      var count = 0;
+
+        function changeStateCK() {
+          if((count % 2) == 0)
+            document.getElementById("relazCK").innerHTML = "SI";
+          else {
+             document.getElementById("relazCK").innerHTML = "NO";
+          }
+          count = count + 1;
+        }
+
+
+    </script>
 
     <!--===============================================================================================-->
     <script src="../../HomeUtente/vendor/jquery/jquery-3.2.1.min.js"></script>
