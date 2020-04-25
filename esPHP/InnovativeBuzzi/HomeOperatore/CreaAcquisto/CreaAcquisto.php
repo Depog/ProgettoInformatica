@@ -13,6 +13,42 @@
     $dataOggi=date("Y-m-d");
     echo $dataOggi;
   }
+
+  function createSelectTipoFormato() {
+    include '.././connessione.php';
+    try {
+      $co = connect();
+      $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+
+      $sql = "SELECT DISTINCT f.* FROM formato f";
+
+      $result = $co->query($sql);
+
+      if($result->num_rows == 0) {
+        //Nel database non sono stati inseriti tipi di formato della carta
+        $co->rollBack();
+        $co->close();
+        header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto<br>La invitiamo a rivolgersi in didattica<br>ERORRE NO TIPI FORMATO IN DB");
+      }else {
+        //Nel database ci sono i tipi di formato della carta
+        $out = " <select name=\"tipoF\">";
+        while($row = $result->fetch_assoc()) {
+          $tipoF = $row['Tipo'];//_ATT Attenzione è case sensitive nel db la colonna si chiama Tipo ...
+          $out .= "<option value=\"$tipoF\">$tipoF</option>";
+        }
+        $out .= "</select>";
+      }
+      $co->commit();
+      $co->close();
+    } catch (Exception $e) {
+        $co->rollBack();
+        $co->close();
+        header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
+    }
+
+    return $out;
+  }
+
  ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -220,8 +256,8 @@
                     <input type="text" name="username" id="usr" placeholder="Username"></input>
                     <br>
                     <a>Tipo Formato</a>
-                    <input type="text" name="tipoF" placeholder="Tipo Formato"></input>
-                    <br>
+                    <?php echo createSelectTipoFormato() ?>
+                    <br><br>
                     <a>Descrizione</a>
                     <input type="text" name="descrizione" placeholder="Descrizione Stampa"></input>
                     <br><br>
