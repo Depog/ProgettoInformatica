@@ -59,8 +59,8 @@
       try {
         $co = connect();
         $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
- 
-		$sql = "SELECT operatore.username as usernameOperatore ,utente.username as usernameUtente,stampa.dataStampa,stampa.oraStampa,stampa.descrizione,stampa.quantità,stampa.fronteRetro,stampa.tipoFormato
+
+		    $sql = "SELECT operatore.username as usernameOperatore ,utente.username as usernameUtente,stampa.dataStampa,stampa.oraStampa,stampa.descrizione,stampa.quantità,stampa.fronteRetro,stampa.tipoFormato
             from persona operatore join stampa on (operatore.codiceFiscale=stampa.codiceFiscaleOperatore) join prenotazione on (stampa.idStampa=prenotazione.idStampa) join persona utente on (prenotazione.codiceFiscale=utente.codiceFiscale)
             where operatore.tipo=\"Operatore\"
             ORDER BY stampa.dataStampa,stampa.oraStampa";
@@ -73,23 +73,23 @@
 
         }else {
 
-        // output data of each row
-        $arrayRisultati = "";
-        $count = 0;
-        while($row = $result->fetch_assoc()) {
-            $arrayRisultati .= "<tr class=\"row100 body\">
-                                 <td class=\"cell100 column1PE\">" . ++$count . "</td>
-                                 <td class=\"cell100 column2PE\">" . $row['dataStampa'] . "</td>
-                                 <td class=\"cell100 column3PE\">" . $row['oraStampa'] . "</td>
-                                 <td class=\"cell100 column4PE\">" . $row["usernameOperatore"] . "</td>
-                                 <td class=\"cell100 column5PE\">" . $row["usernameUtente"] . "</td>
-                                 <td class=\"cell100 column6PE\">" . $row["descrizione"] . "</td>
-                                 <td class=\"cell100 column7PE\"> " . $row["quantità"] . "</td>
-                                 <td class=\"cell100 column8PE\"> " . $row["tipoFormato"] . "</td>
-                                 <td class=\"cell100 column9PE\"> " . $row["fronteRetro"] . "</td>";
+          // output data of each row
+          $arrayRisultati = "";
+          $count = 0;
+          while($row = $result->fetch_assoc()) {
+              $arrayRisultati .= "<tr class=\"row100 body\">
+                                   <td class=\"cell100 column1PE\">" . ++$count . "</td>
+                                   <td class=\"cell100 column2PE\">" . $row['dataStampa'] . "</td>
+                                   <td class=\"cell100 column3PE\">" . $row['oraStampa'] . "</td>
+                                   <td class=\"cell100 column4PE\">" . $row["usernameOperatore"] . "</td>
+                                   <td class=\"cell100 column5PE\">" . $row["usernameUtente"] . "</td>
+                                   <td class=\"cell100 column6PE\">" . $row["descrizione"] . "</td>
+                                   <td class=\"cell100 column7PE\"> " . $row["quantità"] . "</td>
+                                   <td class=\"cell100 column8PE\"> " . $row["tipoFormato"] . "</td>
+                                   <td class=\"cell100 column9PE\"> " . $row["fronteRetro"] . "</td>";
 
+          }
         }
-
         $co->commit();
         $co->close();
       } catch (Exception $e) {
