@@ -240,6 +240,10 @@ iframe {
   width: 65%;
   height: 35%;
 }
+.wrap-table100OperatorePE {
+  width: 75%;
+  height: 35%;
+}
 /*//////////////////////////////////////////////////////////////////
 [ Table ]*//*
 .table100 {
@@ -353,6 +357,51 @@ th, td {
   tex-align:center;
 }
 /*-----------------------------------------------------------------------FINE PER LA TABELLA RITIRI----------------------------------------------------*/
+/*------------------------------------------------------------------------INIZIO PER LA CRONOLOGIA DELLE PRENOTAZIONI------------------------------------------*/
+.column1PE {
+  tex-align:center;
+  width: 13%;
+  padding-left: 25px;
+}
+
+.column2PE {
+  width: 12%;
+  tex-align:center;
+}
+
+.column3PE {
+  width: 11%;
+  tex-align:center;
+}
+
+.column4PE {
+  width: 11%;
+  tex-align:center;
+}
+.column5PE {
+  width: 10%;
+  tex-align:center;
+}
+
+.column6PE {
+  width: 11%;
+  tex-align:center;
+}
+.column7PE {
+  width: 11%;
+  tex-align:center;
+}
+.column8PE {
+  width: 9%;
+  tex-align:center;
+}
+.column9PE {
+  width: 11%;
+  tex-align:center;
+}
+
+
+/*------------------------------------------------------------------------FINE PER LA CRONOLOGIA DELLE PRENOTAZIONI------------------------------------------*/
 
 .table100-head th {
   padding-top: 18px;
