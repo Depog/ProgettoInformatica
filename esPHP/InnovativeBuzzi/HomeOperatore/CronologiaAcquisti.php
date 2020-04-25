@@ -208,7 +208,7 @@ $(document).ready(function(){
         			<div class="wrap-table100OperatoreR">
         				<b class="c">Storico Acquisti effettuati</b>
         				<div class="table100 ver3 m-b-110">
-                  <input id="myInput" style="position:fixed; top:15%;" type="text" placeholder="Search..">
+                  <input id="myInput" style="position:fixed; top:21%;" type="text" placeholder="Search..">
                    <?php
                    //Creazione Coda Delle Stampe in modo dinamico
                    include 'LogicaCronologiaAcquisti/acquistiEffettuati.php';

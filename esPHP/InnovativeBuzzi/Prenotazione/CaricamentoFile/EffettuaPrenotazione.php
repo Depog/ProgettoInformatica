@@ -198,9 +198,9 @@
 <body>
   <header>
    <nav class="nav">
-     <a href="../../login/index.php" class="nav-item" active-color="orange">HOME</a>
-     <a href=".php" class="nav-item"  active-color="red">CONTATTI</a>
-     <a href="" class="nav-item is-active "active-color="red">CREA PRENOTAZIONE</a>
+     <a href="../../HomeUtente/HomeUtente.php" class="nav-item" active-color="orange">HOME</a>
+     <a href="../../HomeUtente/contattaci.php" class="nav-item"  active-color="red">CONTATTI</a>
+     <a href="" class="nav-item is-active" active-color="red">CREA PRENOTAZIONE</a>
      <a href="EffettuaPrenotazione.php?logout=true" class="nav-item" active-color="#ee6c4d">LOGOUT</a>
      <span class="nav-indicator"></span>
    </nav>
