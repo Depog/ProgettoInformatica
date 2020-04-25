@@ -1,7 +1,7 @@
 
 
 form {
-    display: inline-block;
+  display: inline-block;
   position: relative;
   text-align: left;
   height: auto;
@@ -130,7 +130,7 @@ body {
   height: 35px;
   width: 250px;
   font-family: inherit;
-  font-size: 20px;
+  font-size: 13px;
   font-weight: inherit;
   line-height: var(--inputLineHeight);
   border: none;

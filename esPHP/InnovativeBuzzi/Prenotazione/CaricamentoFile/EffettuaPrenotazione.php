@@ -89,6 +89,7 @@
     text-transform: uppercase;
     color: #249d8b;
     padding: 0 0;
+
   }
 
   .info-titolo{
@@ -98,7 +99,9 @@
     text-transform: uppercase;
     font-weight: bold;
     font-size: 30px;
-    color: #1535c2;
+    color: #FFFFFF;
+     text-shadow: 2px 2px 5px black;
+     text-align: justify;
   }
 
   @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
@@ -123,6 +126,7 @@
     margin: auto;
   }
   .nav {
+    font-family: 'Open Sans', sans-serif;
     display: -webkit-inline-box;
     display: inline-flex;
     position: relative;
@@ -194,9 +198,10 @@
 <body>
   <header>
    <nav class="nav">
-     <a href="../../login/index.php" class="nav-item is-active " active-color="orange">Home</a>
-     <a href=".php" class="nav-item"  active-color="red">Contatti</a>
-     <a href="EffettuaPrenotazione.php?logout=true" class="nav-item" active-color="#ee6c4d">Logout</a>
+     <a href="../../login/index.php" class="nav-item" active-color="orange">HOME</a>
+     <a href=".php" class="nav-item"  active-color="red">CONTATTI</a>
+     <a href="" class="nav-item is-active "active-color="red">CREA PRENOTAZIONE</a>
+     <a href="EffettuaPrenotazione.php?logout=true" class="nav-item" active-color="#ee6c4d">LOGOUT</a>
      <span class="nav-indicator"></span>
    </nav>
   </header>
@@ -204,11 +209,10 @@
 	<section id="content" class="content" style="width: 100%; height: auto;">
 		<div class="container" style="width: 100%; margin-top: 150px;padding: 0;">
       <div class="info-titolo">
-        prenotazione
-        <br />
+        <p style="color: #249d8b;  text-shadow: 2px 2px 5px black; text-align: center;">prenotazione</p>
         <p style="color: white; font-size: 20px; text-transform: none;">
         Questo alla destra è il documento che dovrai compilare per prenotare a distanza una stampa.
-        Una volta fatto, ti basterà cliccare sul tasto "Invia Prenotazione" situato in basso e sarà fatto!
+        Una volta fatto, ti basterà cliccare sul tasto "Invia Prenotazione" situato in basso e il gioco sarà fatto!
         </p>
       </div>
 
@@ -224,7 +228,10 @@
             stampaNote();
         ?>
         <button type="submit" name="save" onclick="myFunction()" style="border-radius: 6px; margin-left: 50px">Invia Prenotazione</button>
+
       </form>
+      <br />
+      <br />
 	  </div>
 	</section>
 
@@ -340,7 +347,7 @@ function stampaDataRitiro(){
   $giornoDopo= date( 'Y-m-d', strtotime( $dataOggi . ' +1 day' ));
    $stampaDataRitiro="
    <text class=\"title\">data ritiro</text><br/>
-   <input type=\"date\" name=\"dataRitiro\" value=\"$giornoDopo\" min=\"$giornoDopo\"></input>
+   <input type=\"date\" name=\"dataRitiro\" value=\"$giornoDopo\" min=\"$giornoDopo\" style=\"height: 35px; width: 250px; border-radius: 5px;\"></input>
    ";
    echo $stampaDataRitiro;
 }
@@ -351,14 +358,14 @@ function stampaOraRitiro(){
     <div class=\"select\">
         <select id=\"oraRitiro\" name=\"oraRitiro\" style=\"width: 250px; height: 35px;\">
            <option value=\"-\">-------</option>
-           <option value=\"7:45\">7:45 am</option>
-           <option value=\"9:00\">9:00 am</option>
-           <option value=\"10:00\">10:00 am</option>
-           <option value=\"11:00\">11:00 am</option>
-           <option value=\"12:00\">12:00 am</option>
-           <option value=\"1\">1 pm</option>
-        </select><br/>
-        <b style=\"color:red;\">Ora obbligatoria</b>
+           <option value=\"7:45\">7:45 </option>
+           <option value=\"9:00\">9:00 </option>
+           <option value=\"10:00\">10:00 </option>
+           <option value=\"11:00\">11:00 </option>
+           <option value=\"12:00\">12:00 </option>
+           <option value=\"13:00\">13:00</option>
+        </select>
+      <b style=\"color:red;\">  !ORA OBBLIGATORIA!</b>
     </div>
     <br/>";
   }else{
@@ -366,12 +373,12 @@ function stampaOraRitiro(){
     <div class=\"select\">
         <select id=\"oraRitiro\" name=\"oraRitiro\" style=\"width: 250px; height: 35px;\">
            <option value=\"-\">-------</option>
-           <option value=\"7:45\">7:45 am</option>
-           <option value=\"9:00\">9:00 am</option>
-           <option value=\"10:00\">10:00 am</option>
-           <option value=\"11:00\">11:00 am</option>
-           <option value=\"12:00\">12:00 am</option>
-           <option value=\"1\">1 pm</option>
+           <option value=\"7:45\">7:45 </option>
+           <option value=\"9:00\">9:00 </option>
+           <option value=\"10:00\">10:00 </option>
+           <option value=\"11:00\">11:00 </option>
+           <option value=\"12:00\">12:00 </option>
+           <option value=\"13:00\">13:00</option>
         </select>
     </div>
     <br />";
@@ -382,22 +389,22 @@ function stampaCaricaIlFile(){
   if (!isset($_SESSION["FileNonInserito"]) && !isset($_SESSION["FormatoErrato"]) && !isset($_SESSION["FileTroppoGrande"]) ){
     //caricamento normale
     $stampaCaricaIlFile="<br /><text class=\"title\">Carica il file</text>
-    <input type=\"file\" name=\"myfile\" style=\"color: #FFF; border: 3px solid #249d8b;\"> <br>";
+    <input type=\"file\" name=\"myfile\" style=\"color: #FFF; \"> <br>";
   }
    else if(isset($_SESSION["FileNonInserito"])){
     //file non inserito
     $stampaCaricaIlFile="<br /><text class=\"title\">Carica il file</text>
-    <input type=\"file\" name=\"myfile\"></input> ";
+    <input type=\"file\" name=\"myfile\" style=\"color: #FFF\"></input>   <b style=\"color:red;\"> !FILE MANCANTE!</b><br />";
     $_SESSION["FileNonInserito"]=null;
   }else if(isset($_SESSION["FormatoErrato"])){
     //formato errato
     $stampaCaricaIlFile="<br /><text class=\"title\">Carica il file</text>
-    <input type=\"file\" name=\"myfile\"> </input><p style=\"color:red\">Formato non disponibile. File concessi zip, .pdf, .docx, .jpg, .jpeg, .png , .txt</p>";
+    <input type=\"file\" name=\"myfile\" style=\"color: #FFF\"> </input>  <b style=\"color:red;\">!FORMATO NON VALIDO .zip, .pdf, .docx, .jpg, .jpeg, .png, .txt!</b><br />";
     $_SESSION["FormatoErrato"]=null;
   }else if(isset($_SESSION["FileTroppoGrande"])){
     //file troppo grande
     $stampaCaricaIlFile="<br /><text class=\"title\">Carica il file</text>
-    <input type=\"file\" name=\"myfile\"></input><p style=\"color:red\">Dimensione del file troppo grande</p>";
+    <input type=\"file\" name=\"myfile\" style=\"color: #FFF></input> <b style=\"color:red;\">  !DIMENSIONE FILE TROPPO GRANDE!</b><br />";
     $_SESSION["FileTroppoGrande"]=null;
   }
   echo $stampaCaricaIlFile;
@@ -410,8 +417,9 @@ function stampaDescrizione(){
       <div class=\"Input0\">
         <input type=\"text\" id=\"input\" class=\"Input-text0\" name=\"descrizione\" placeholder=\"Descrizione\">
         <label for=\"input\" class=\"Input-label0\">Descrizione</label>
-        <b style=\"color :red;\">Descrizione obbligatoria</b>
-      </div><br>
+
+      </div><br /><br />
+       <b style=\"color: red;\">!DESCRIZIONE OBBLIGATORIA!</b>
       ";
       $_SESSION["DescrizioneAssente"]=null;
   }else{
