@@ -37,7 +37,6 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
               //echo "dentro";
-              include "connessione.php";
               $dimensioneStringa=15;
               function generateRandomString($length) {
                   $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -52,22 +51,32 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
                 $inserito=false;
               while($inserito==false){
                 $stringaRandom=generateRandomString($dimensioneStringa);
-                $sql = "INSERT INTO file(codiceFile,nomeFile, dimensione) VALUES (\"$stringaRandom\",\"$filename\", $size)";
-    								if($conn->query($sql) == TRUE) {
-    								//	echo "caricamento avvenuto con successo";
-                      echo "<br> File caricato ->[$filename,$size] ";
-                        //mi salvo il nome del file e la di
-                        $inserito=true;     //esce dal while
-                        //mi salvo il codice generato in una session
-                          $_SESSION["codiceFile"]=$stringaRandom;
-    								}else{
-    								//	echo "Error: " . $sql . "<br>" . $conn->error;
-                      //die("");
-                      //continuo a inserie generando un altro codice
-    								}
+                try {
+                  $co = connect1();
+                  $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+                  $sql = "INSERT INTO file(codiceFile,nomeFile, dimensione) VALUES (\"$stringaRandom\",\"$filename\", $size)";
+      								if($co->query($sql) == TRUE) {
+      								//	echo "caricamento avvenuto con successo";
+                        echo "<br> File caricato ->[$filename,$size] ";
+                          //mi salvo il nome del file e la di
+                          $inserito=true;     //esce dal while
+                          //mi salvo il codice generato in una session
+                            $_SESSION["codiceFile"]=$stringaRandom;
+      								}else{
+      								//	echo "Error: " . $sql . "<br>" . $co->error;
+                        //die("");
+                        //continuo a inserie generando un altro codice
+      								}
+
+
+                  $co->commit();
+                  $co->close();
+                }catch (Exception $e) {
+                    $co->rollBack();
+                    $co->close();
+                    header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
                 }
-
-
+              }
         } else {
             echo "Failed to upload file.";
         }
@@ -78,21 +87,31 @@ if (isset($_GET['file_id'])) {
     $id = $_GET['file_id'];
 
     // fetch file to download from database
-    $sql = "SELECT * FROM file WHERE id=$id";
-        if($conn->query($sql) == TRUE) {
+    try {
+      $co = connect1();
+      $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+      $sql = "SELECT * FROM file WHERE id=$id";
+          if($co->query($sql) == TRUE) {
 
-        }else{
-          echo "Error: " . $sql . "<br>" . $conn->error;
-          die("");
-        }
-
-
-        while($tupla=$records->fetch_assoc()){
-                            $id=$tupla["codiceFilm"];
-                              $foto=$tupla["foto"];
-                              $film+=Array($id=>$foto);
+          }else{
+            echo "Error: " . $sql . "<br>" . $co->error;
+            die("");
           }
 
+
+          while($tupla=$records->fetch_assoc()){
+                              $id=$tupla["codiceFilm"];
+                                $foto=$tupla["foto"];
+                                $film+=Array($id=>$foto);
+            }
+
+      $co->commit();
+      $co->close();
+    } catch (Exception $e) {
+      $co->rollBack();
+      $co->close();
+      header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
+    }
 
     $file = mysqli_fetch_assoc($result);
     $filepath = 'uploads/' . $file['name'];
@@ -110,7 +129,7 @@ if (isset($_GET['file_id'])) {
         // Now update downloads count
         $newCount = $file['downloads'] + 1;
         $updateQuery = "UPDATE files SET downloads=$newCount WHERE id=$id";
-        mysqli_query($conn, $updateQuery);
+        mysqli_query($co, $updateQuery);
         exit;
     }
 

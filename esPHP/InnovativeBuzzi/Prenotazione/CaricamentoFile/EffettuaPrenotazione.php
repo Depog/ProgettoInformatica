@@ -211,7 +211,7 @@
           <div class="row" >
             <form action="CreaPrenotazione.php" method="POST" enctype="multipart/form-data" >
               <?php
-              include "connessioneBuzzi.php";
+              include "connessione.php";
               $msg="";
               //////////formato//////////////////////////////////////////////////////////////////////
               $msg.="<label for=\"formato\" ><text class=\"title\">formato</text></label>";
@@ -219,52 +219,74 @@
                   if(isset($_SESSION["tipoBZ"])){
 
                     if($_SESSION["tipoBZ"]=="Professore"){   //non devo estrarre il costo dal db in quanto i professori non pagano
-                        $sql="SELECT tipo from formato";
-                          $records=$conn->query($sql);
-                          if ( $records == TRUE) {
-                              //echo "<br>Query eseguita!";
-                          } else {
-                            die("Errore nella query: " . $conn->error);
-                          }
-                          if($records->num_rows ==0){
-                                //	echo "la query non ha prodotto risultato";
+                      try {
+                        $co = connect1();
+                        $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+                          $sql="SELECT tipo from formato";
+                            $records=$co->query($sql);
+                            if ( $records == TRUE) {
+                                //echo "<br>Query eseguita!";
+                            } else {
+                              die("Errore nella query: " . $co->error);
+                            }
+                            if($records->num_rows ==0){
+                                  //	echo "la query non ha prodotto risultato";
 
-                          }else{
-                              $msg.="<select id=\"formato\" name=\"formato\">";
-                                  while($tupla=$records->fetch_assoc()){
-                                    $tipo=$tupla["tipo"];
-                                    $msg.="<br /><option value=\"$tipo\">$tipo</option>*";
-                                  }
-                                  $msg.="</select>";
-                         }
+                            }else{
+                                $msg.="<select id=\"formato\" name=\"formato\">";
+                                    while($tupla=$records->fetch_assoc()){
+                                      $tipo=$tupla["tipo"];
+                                      $msg.="<br /><option value=\"$tipo\">$tipo</option>*";
+                                    }
+                                    $msg.="</select>";
+                           }
+
+                        $co->commit();
+                        $co->close();
+                      } catch (Exception $e) {
+                        $co->rollBack();
+                        $co->close();
+                        header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
+                      }
+
                     }else{    //prendo anche il costo dal database
-                        $sql="SELECT tipo,costoStampa from formato";
-                          $records=$conn->query($sql);
-                          if ( $records == TRUE) {
-                              //echo "<br>Query eseguita!";
-                          } else {
-                            die("Errore nella query: " . $conn->error);
-                          }
-                          if($records->num_rows ==0){
-                                //	echo "la query non ha prodotto risultato";
+                      try {
+                        $co = connect1();
+                            $sql="SELECT tipo,costoStampa from formato";
+                            $records=$co->query($sql);
+                            if ( $records == TRUE) {
+                                //echo "<br>Query eseguita!";
+                            } else {
+                              die("Errore nella query: " . $co->error);
+                            }
+                            if($records->num_rows ==0){
+                                  //	echo "la query non ha prodotto risultato";
 
-                          }else{
-                                $msg.="
+                            }else{
+                                  $msg.="
 
-                                <br />
-                                <div class=\"select\">
-                                  <select id=\"formato\" name=\"formato\">
-                                    ";
+                                  <br />
+                                  <div class=\"select\">
+                                    <select id=\"formato\" name=\"formato\">
+                                      ";
 
 
-                                  while($tupla=$records->fetch_assoc()){
-                                    $tipo=$tupla["tipo"];
-                                      $costoStampa=$tupla["costoStampa"];
-                                        $msg.="<br /><option value=\"$tipo?$costoStampa\">$tipo $costoStampa euro</option>*";
-                                  }
-                                    $msg.="</select>
-                                    </div>";
-                         }
+                                    while($tupla=$records->fetch_assoc()){
+                                      $tipo=$tupla["tipo"];
+                                        $costoStampa=$tupla["costoStampa"];
+                                          $msg.="<br /><option value=\"$tipo?$costoStampa\">$tipo $costoStampa euro</option>*";
+                                    }
+                                      $msg.="</select>
+                                      </div>";
+                           }
+
+                         $co->commit();
+                         $co->close();
+                      } catch (Exception $e) {
+                        $co->rollBack();
+                        $co->close();
+                        header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
+                      }
                    }
                   }
 
