@@ -79,111 +79,119 @@
         //////////////////////////prendo il codice fiscale////////////////////////////////////////
         $username=$_SESSION["usernameBZ"];    //ora uso questo, ma poi uso le session
         $codiceFile=$_SESSION["codiceFile"];
-
-        $sql="SELECT persona.codiceFiscale from persona where persona.username=\"$username\" ";
-          $records=$conn->query($sql);
-          if ( $records == TRUE) {
-              //echo "<br>Query eseguita!";
-          } else {
-            die("Errore nella query: " . $conn->error);
-          }
-          if($records->num_rows ==0){
-                //	echo "la query non ha prodotto risultato";
-          }else{
-                  while($tupla=$records->fetch_assoc()){
-                      $codiceFiscale=$tupla["codiceFiscale"];
-                      echo "<br> Codice fiscale $codiceFiscale";
-                  }
-         }
-
-         //ora inserisco la Prenotazione
-
-         $dataOggi=date("Y/m/d");
-         $oraAttuale=date("h:i:sa");
-         $sql="INSERT INTO Prenotazione(dataPrenotazione,oraPrenotazione,note,codiceFiscale,codiceFile) VALUES(\"$dataOggi\",\"$oraAttuale\",\"$note\",\"$codiceFiscale\",\"$codiceFile\") ";
-           $records=$conn->query($sql);
-           if ( $records == TRUE) {
-               //echo "<br>Query eseguita!";
-               echo "inserito correttamente";
-           } else {
-             die("Errore nella query: " . $conn->error);
+        try {
+          $co = connect1();
+          $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+          $sql="SELECT persona.codiceFiscale from persona where persona.username=\"$username\" ";
+            $records=$co->query($sql);
+            if ( $records == TRUE) {
+                //echo "<br>Query eseguita!";
+            } else {
+              die("Errore nella query: " . $co->error);
+            }
+            if($records->num_rows ==0){
+                  //	echo "la query non ha prodotto risultato";
+            }else{
+                    while($tupla=$records->fetch_assoc()){
+                        $codiceFiscale=$tupla["codiceFiscale"];
+                        echo "<br> Codice fiscale $codiceFiscale";
+                    }
            }
 
-           ///creo la query per la stampa
-           $sql="INSERT INTO STAMPA(dataRitiro,oraRitiro,tipoFormato,descrizione,fronteRetro,quantità) VALUES(\"$dataRitiro\",\"$oraRitiro\",\"$formato\",\"$descrizione\",\"$fronteRetro\",\"$quantità\")";
-             $records=$conn->query($sql);
+           //ora inserisco la Prenotazione
+
+           $dataOggi=date("Y/m/d");
+           $oraAttuale=date("h:i:sa");
+           $sql="INSERT INTO Prenotazione(dataPrenotazione,oraPrenotazione,note,codiceFiscale,codiceFile) VALUES(\"$dataOggi\",\"$oraAttuale\",\"$note\",\"$codiceFiscale\",\"$codiceFile\") ";
+             $records=$co->query($sql);
              if ( $records == TRUE) {
                  //echo "<br>Query eseguita!";
                  echo "inserito correttamente";
              } else {
-               die("Errore nella query: " . $conn->error);
+               die("Errore nella query: " . $co->error);
              }
 
-
-             ////metto l'id della stampa dentro la prenotazione
-             $sql="SELECT stampa.idStampa from stampa where stampa.dataRitiro=\"$dataRitiro\" and stampa.oraRitiro=\"$oraRitiro\" and  stampa.tipoFormato=\"$formato\"  and stampa.descrizione=\"$descrizione\"  and stampa.fronteRetro=\"$fronteRetro\" and stampa.quantità=\"$quantità\"";
-               $records=$conn->query($sql);
+             ///creo la query per la stampa
+             $sql="INSERT INTO STAMPA(dataRitiro,oraRitiro,tipoFormato,descrizione,fronteRetro,quantità) VALUES(\"$dataRitiro\",\"$oraRitiro\",\"$formato\",\"$descrizione\",\"$fronteRetro\",\"$quantità\")";
+               $records=$co->query($sql);
                if ( $records == TRUE) {
                    //echo "<br>Query eseguita!";
                    echo "inserito correttamente";
                } else {
-                 die("Errore nella query: " . $conn->error);
+                 die("Errore nella query: " . $co->error);
                }
-               if($records->num_rows ==0){
-                     //	echo "la query non ha prodotto risultato";
 
-               }else{
-                       while($tupla=$records->fetch_assoc()){
-                           $idStampa=$tupla["idStampa"];
-                       }
-              }
 
-              //inserisco id stampa dentro prenotazione
-              $sql="UPDATE Prenotazione set prenotazione.idStampa=\"$idStampa\" where prenotazione.dataPrenotazione=\"$dataOggi\" and prenotazione.oraPrenotazione=\"$oraAttuale\"  and prenotazione.note=\"$note\" and prenotazione.codiceFiscale=\"$codiceFiscale\" and prenotazione.codiceFile=\"$codiceFile\"";
-                $records=$conn->query($sql);
-                if ( $records == TRUE) {
-                    //echo "<br>Query eseguita!";
-                    echo "inserito correttamente";
-                } else {
-                  die("Errore nella query: " . $conn->error);
-                }
+               ////metto l'id della stampa dentro la prenotazione
+               $sql="SELECT stampa.idStampa from stampa where stampa.dataRitiro=\"$dataRitiro\" and stampa.oraRitiro=\"$oraRitiro\" and  stampa.tipoFormato=\"$formato\"  and stampa.descrizione=\"$descrizione\"  and stampa.fronteRetro=\"$fronteRetro\" and stampa.quantità=\"$quantità\"";
+                 $records=$co->query($sql);
+                 if ( $records == TRUE) {
+                     //echo "<br>Query eseguita!";
+                     echo "inserito correttamente";
+                 } else {
+                   die("Errore nella query: " . $co->error);
+                 }
+                 if($records->num_rows ==0){
+                       //	echo "la query non ha prodotto risultato";
 
-                ///////////////////////////////cambio il nome del file nel db e nel file/////////////////
-                if(isset($_SESSION["nomeFile"])){
-                  $nomeFile=$_SESSION["nomeFile"];
-                  $_SESSION["nomeFile"]=null;
-                }
-                    $est=explode(".",$nomeFile);
-                    $estensione=$est[1];
-                      $nuovoNomeFile = $username."-".$codiceFile;
-                      $nuovoNomeFile=$nuovoNomeFile.".$estensione";
-                      if(file_exists($nuovoNomeFile))
-                      {
-                         die("Errore");   //_ERR
-                      }
-                      else
-                      {
-                         if(rename( $nomeFile, "uploads/".$nuovoNomeFile))
-                         {
-                         echo "Successfully Renamed $nomeFile to $nuovoNomeFile" ;
+                 }else{
+                         while($tupla=$records->fetch_assoc()){
+                             $idStampa=$tupla["idStampa"];
                          }
+                }
+
+                //inserisco id stampa dentro prenotazione
+                $sql="UPDATE Prenotazione set prenotazione.idStampa=\"$idStampa\" where prenotazione.dataPrenotazione=\"$dataOggi\" and prenotazione.oraPrenotazione=\"$oraAttuale\"  and prenotazione.note=\"$note\" and prenotazione.codiceFiscale=\"$codiceFiscale\" and prenotazione.codiceFile=\"$codiceFile\"";
+                  $records=$co->query($sql);
+                  if ( $records == TRUE) {
+                      //echo "<br>Query eseguita!";
+                      echo "inserito correttamente";
+                  } else {
+                    die("Errore nella query: " . $co->error);
+                  }
+
+                  ///////////////////////////////cambio il nome del file nel db e nel file/////////////////
+                  if(isset($_SESSION["nomeFile"])){
+                    $nomeFile=$_SESSION["nomeFile"];
+                    $_SESSION["nomeFile"]=null;
+                  }
+                      $est=explode(".",$nomeFile);
+                      $estensione=$est[1];
+                        $nuovoNomeFile = $username."-".$codiceFile;
+                        $nuovoNomeFile=$nuovoNomeFile.".$estensione";
+                        if(file_exists($nuovoNomeFile))
+                        {
+                           die("Errore");   //_ERR
+                        }
                         else
                         {
-                         echo "A File With The Same Name Already Exists" ;
-                        }
-                      }
-
-                      /////////////aggiorno il nome del nuovo file///////////////////////
-                      $sql="UPDATE file set file.nomeFile=\"$nuovoNomeFile\" where file.codiceFile=\"$codiceFile\"";
-                        $records=$conn->query($sql);
-                        if ( $records == TRUE) {
-                            //echo "<br>Query eseguita!";
-                            echo "inserito correttamente";
-                        } else {
-                          die("Errore nella query: " . $conn->error);
+                           if(rename( $nomeFile, "uploads/".$nuovoNomeFile))
+                           {
+                           echo "Successfully Renamed $nomeFile to $nuovoNomeFile" ;
+                           }
+                          else
+                          {
+                           echo "A File With The Same Name Already Exists" ;
+                          }
                         }
 
+                        /////////////aggiorno il nome del nuovo file///////////////////////
+                        $sql="UPDATE file set file.nomeFile=\"$nuovoNomeFile\" where file.codiceFile=\"$codiceFile\"";
+                          $records=$co->query($sql);
+                          if ( $records == TRUE) {
+                              //echo "<br>Query eseguita!";
+                              echo "inserito correttamente";
+                          } else {
+                            die("Errore nella query: " . $co->error);
+                          }
 
+            $co->commit();
+            $co->close();
+        } catch (Exception $e) {
+          $co->rollBack();
+          $co->close();
+          header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
+        }
 
 
     }

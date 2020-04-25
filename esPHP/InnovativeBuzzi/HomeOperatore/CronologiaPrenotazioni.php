@@ -189,20 +189,24 @@ $(document).ready(function(){
          <header>
            <nav class="nav">
              <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
-             <a href="VisualizzaPrenotazioni.php" class="nav-item" active-color="red">Visualizza Prenotazioni</a>
+             <a href="VisualizzaPrenotazioni.php" class="nav-item  is-active" active-color="red">Visualizza Prenotazioni</a><!--sotto pagina di Visualizza Prenotazioni-->
              <a href="ritiriFotocopie.php" class="nav-item" active-color="blue">Ritiri Fotocopie</a>
              <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Crea Acquisto</a>
-             <a href="CronologiaAcquisti.php" class="nav-item " active-color="green">Cronologia acquisti</a>
-             <a href="" class="nav-item is-active" active-color="#ffcc66">Cronologia prenotazioni</a>
+             <a href="CronologiaAcquisti.php" class="nav-item " active-color="green">Storico Acquisti</a>
              <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
+             <?php
+              $usr=$_SESSION["usernameBZ"];
+              $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 30%;\"> Username: $usr </p>";
+              echo $msgIdUtente;
+             ?>
              <span class="nav-indicator"></span>
            </nav>
          </header>
 
          <div class="limiter">
         		<div class="container-table100">
-        			<div class="wrap-table100OperatoreR">
-        				<b class="c">Cronologia acquisti effettuati</b>
+        			<div class="wrap-table100OperatorePE">
+        				<b class="c">Storico prenotazioni effettuati</b>
         				<div class="table100 ver3 m-b-110">
                   <input id="myInput" style="position:fixed; top:15%;" type="text" placeholder="Search..">
                    <?php
@@ -247,7 +251,7 @@ function myFunction() {
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[2];
+    td = tr[i].getElementsByTagName("td")[5];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {

@@ -6,13 +6,15 @@
                 <table>
                   <thead>
                     <tr class=\"row100 head\">
-                      <th class=\"cell100 column1OR\">Identificativo</th>
-                      <th class=\"cell100 column2OR\">Username</th>
-                      <th class=\"cell100 column3OR\">Descrizione</th>
-                      <th class=\"cell100 column4OR\">Quantità</th>
-                      <th class=\"cell100 column6OR\">Costo</th>
-                      <th class=\"cell100 column7OR\">Data</th>
-                      <th class=\"cell100 column8OR\">Ora</th>
+                      <th class=\"cell100 column1PE\">Identificativo</th>
+                      <th class=\"cell100 column2PE\">Data Stampa</th>
+                      <th class=\"cell100 column3PE\">Ora Stampa </th>
+                      <th class=\"cell100 column4PE\">Username Operatore</th>
+                      <th class=\"cell100 column5PE\">Username Cliente</th>
+                      <th class=\"cell100 column6PE\">Descrizione</th>
+                      <th class=\"cell100 column7PE\">Quantità</th>
+                      <th class=\"cell100 column8PE\">Formato</th>
+                      <th class=\"cell100 column9PE\">Fronte&Retro</th>
                     </tr>
                   </thead>
                 </table>
@@ -25,13 +27,14 @@
                     <table>
                       <tbody id=\"myTable\">
                         <tr class=\"row100 body\">
-                            <td class=\"cell100 column1OR\">-</td>
-                            <td class=\"cell100 column2OR\">-</td>
-                            <td class=\"cell100 column3OR\">-</td>
-                            <td class=\"cell100 column4OR\">-</td>
-                            <td class=\"cell100 column6OR\">-</td>
-                            <td class=\"cell100 column7OR\">-</td>
-                            <td class=\"cell100 column8OR\">-</td>
+                            <td class=\"cell100 column1PE\">-</td>
+                            <td class=\"cell100 column2PE\">-</td>
+                            <td class=\"cell100 column3PE\">-</td>
+                            <td class=\"cell100 column4PE\">-</td>
+                            <td class=\"cell100 column5PE\">-</td>
+                            <td class=\"cell100 column6PE\">-</td>
+                            <td class=\"cell100 column7PE\">-</td>
+                            <td class=\"cell100 column8PE\">-</td>
                         </tr>
                       </tbody>
                     </table>
@@ -52,40 +55,48 @@
     function coselectFormDB($ip, $porta) {
       //global $co;
       include 'connessione.php';
-      $co = connect();
-      $sql = "SELECT persona.*, stampa.*,formato.*,acquisto.* FROM persona join acquisto on (persona.codiceFiscale=acquisto.codiceFiscale) join include on (acquisto.idAcquisto=include.idAcquisto)
-        join stampa on (include.idStampa=stampa.idStampa) join formato on(stampa.tipoFormato=formato.tipo)
-        ORDER BY stampa.dataRitiro, stampa.oraRitiro";
 
-      $result = $co->query($sql);
+      try {
+        $co = connect();
+        $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
 
-      if($result->num_rows== 0) {
-        $arrayRisultati = "ERRORE NO DATA";
+		    $sql = "SELECT operatore.username as usernameOperatore ,utente.username as usernameUtente,stampa.dataStampa,stampa.oraStampa,stampa.descrizione,stampa.quantità,stampa.fronteRetro,stampa.tipoFormato
+            from persona operatore join stampa on (operatore.codiceFiscale=stampa.codiceFiscaleOperatore) join prenotazione on (stampa.idStampa=prenotazione.idStampa) join persona utente on (prenotazione.codiceFiscale=utente.codiceFiscale)
+            where operatore.tipo=\"Operatore\"
+            ORDER BY stampa.dataStampa,stampa.oraStampa";
 
-      }else {
 
-        // output data of each row
-        $arrayRisultati = "";
-        $count = 0;
-        while($row = $result->fetch_assoc()) {
-            $arrayRisultati .= "<tr class=\"row100 body\">
-                                 <td class=\"cell100 column1OR\">" . ++$count . "</td>
-                                 <td class=\"cell100 column2OR\">" . $row["username"] . "</td>
-                                 <td class=\"cell100 column3OR\">" . $row["descrizione"] . "</td>
-                                 <td class=\"cell100 column4OR\"> " . $row["quantità"] . "</td>";
-            if($row['tipo'] == "Professore") {
-              $arrayRisultati .= "<td class=\"cell100 column6OR\">FREE</td>";
-            } else {
-              $arrayRisultati .= "<td class=\"cell100 column6OR\">" . $row["costoStampa"] * $row["quantità"] . "</td>";
-            }
+        $result = $co->query($sql);
 
-            $arrayRisultati .= "<td class=\"cell100 column7OR\">" . $row['dataAcquisto'] . "</td>";
-            $arrayRisultati .= "<td class=\"cell100 column8OR\">"  .$row['orarioAcquisto']  . "</td>
-                              </tr>";//link per modificare lo stato della prenotazione
+        if($result->num_rows== 0) {
+          $arrayRisultati = "ERRORE NO DATA";
+
+        }else {
+
+          // output data of each row
+          $arrayRisultati = "";
+          $count = 0;
+          while($row = $result->fetch_assoc()) {
+              $arrayRisultati .= "<tr class=\"row100 body\">
+                                   <td class=\"cell100 column1PE\">" . ++$count . "</td>
+                                   <td class=\"cell100 column2PE\">" . $row['dataStampa'] . "</td>
+                                   <td class=\"cell100 column3PE\">" . $row['oraStampa'] . "</td>
+                                   <td class=\"cell100 column4PE\">" . $row["usernameOperatore"] . "</td>
+                                   <td class=\"cell100 column5PE\">" . $row["usernameUtente"] . "</td>
+                                   <td class=\"cell100 column6PE\">" . $row["descrizione"] . "</td>
+                                   <td class=\"cell100 column7PE\"> " . $row["quantità"] . "</td>
+                                   <td class=\"cell100 column8PE\"> " . $row["tipoFormato"] . "</td>
+                                   <td class=\"cell100 column9PE\"> " . $row["fronteRetro"] . "</td>";
+
+          }
         }
+        $co->commit();
+        $co->close();
+      } catch (Exception $e) {
+          $co->rollBack();
+          $co->close();
+          header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
       }
-
-      $co->close();
 
       return $arrayRisultati;
     }
