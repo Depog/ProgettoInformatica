@@ -189,49 +189,59 @@
                               $oraRitiro=array();
                               $quantità=array();
 
-                              $sql = "SELECT stampa.descrizione as descrizione, prenotazione.dataPrenotazione as dataPrenotazione, stampa.dataRitiro as dataRitiro, stampa.oraRitiro as oraRitiro, stampa.quantità as quantità
-                                      from persona
-                                      join prenotazione on persona.codiceFiscale=prenotazione.codiceFiscale
-                                       join stampa on prenotazione.idStampa=stampa.idStampa
-                                      where persona.username=\"$username\"";
+                              try {
+                                $co = connect();
+                                $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+                                $sql = "SELECT stampa.descrizione as descrizione, prenotazione.dataPrenotazione as dataPrenotazione, stampa.dataRitiro as dataRitiro, stampa.oraRitiro as oraRitiro, stampa.quantità as quantità
+                                        from persona
+                                        join prenotazione on persona.codiceFiscale=prenotazione.codiceFiscale
+                                         join stampa on prenotazione.idStampa=stampa.idStampa
+                                        where persona.username=\"$username\"";
 
-                                       $records=$conn->query($sql);
-                                       if ( $records == TRUE) {
-                                           //echo "<br>Query eseguita!";
-                                       } else {
-                                         die("Errore nella query: " . $conn->error);
-                                       }
-                                       if($records->num_rows ==0){ //se l'utente non ha ancora effettuato acquisti
-                                             $dimArray=1;
-                                             $descrizione[]="Nessun dato presente";
-                                             $dataPrenotazione[]="Nessun dato presente";
-                                             $dataRitiro[]="Nessun dato presente";
-                                             $oraRitiro[]="Nessun dato presente";
-                                             $quantità[]="Nessun dato presente";
-                                       }else{
-
-                                         while($tupla=$records->fetch_assoc()){
-                                           $descrizione[]=$tupla["descrizione"];
-                                           $dataPrenotazione[]=$tupla["dataPrenotazione"];
-                                           $dataRitiro[]=$tupla["dataRitiro"];
-                                           $oraRitiro[]=$tupla["oraRitiro"];
-                                           $quantità[]=$tupla["quantità"];
+                                         $records=$co->query($sql);
+                                         if ( $records == TRUE) {
+                                             //echo "<br>Query eseguita!";
+                                         } else {
+                                           die("Errore nella query: " . $co->error);
                                          }
+                                         if($records->num_rows ==0){ //se l'utente non ha ancora effettuato acquisti
+                                               $dimArray=1;
+                                               $descrizione[]="Nessun dato presente";
+                                               $dataPrenotazione[]="Nessun dato presente";
+                                               $dataRitiro[]="Nessun dato presente";
+                                               $oraRitiro[]="Nessun dato presente";
+                                               $quantità[]="Nessun dato presente";
+                                         }else{
 
-                                         $dimArray=sizeof($descrizione);
+                                           while($tupla=$records->fetch_assoc()){
+                                             $descrizione[]=$tupla["descrizione"];
+                                             $dataPrenotazione[]=$tupla["dataPrenotazione"];
+                                             $dataRitiro[]=$tupla["dataRitiro"];
+                                             $oraRitiro[]=$tupla["oraRitiro"];
+                                             $quantità[]=$tupla["quantità"];
+                                           }
 
-                                         if($dimArray<7){
-                                           $dim=7-$dimArray;
-                                           for($i=0; $i<$dim; $i++){
-                                             array_push($descrizione, "");
-                                             array_push($dataPrenotazione, "");
-                                             array_push($dataRitiro, "");
-                                             array_push($oraRitiro, "");
-                                             array_push($quantità, "");
+                                           $dimArray=sizeof($descrizione);
+
+                                           if($dimArray<7){
+                                             $dim=7-$dimArray;
+                                             for($i=0; $i<$dim; $i++){
+                                               array_push($descrizione, "");
+                                               array_push($dataPrenotazione, "");
+                                               array_push($dataRitiro, "");
+                                               array_push($oraRitiro, "");
+                                               array_push($quantità, "");
+                                             }
                                            }
                                          }
-                                       }
 
+                                         $co->commit();
+                                         $co->close();
+                               } catch (Exception $e) {
+                                   $co->rollBack();
+                                   $co->close();
+                                   header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
+                               }
                               /*STAMPA*/
                               for($i=0; $i<$dimArray; $i++){
                                 $homeUtente.="

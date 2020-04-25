@@ -16,7 +16,7 @@
       //tutto ok
       checkStampa($ip,$porta,$_GET['idPren']);//per "modificare lo stato della prenotazione" ovevro segnare che sono state stampate tutte le copie richieste nella prenotazione
       //fine modifiche allo stato della prenotzaione
-      header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/HomeOperatore.php");
+      header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/VisualizzaPrenotazioni.php");
    }else {
      //_ERR
      header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Si è verificato un imprevisto<br>La invitiamo a riprovare");

@@ -55,18 +55,23 @@
     function coselectFormDB($ip, $porta) {
       //global $co;
       include 'connessione.php';
-      $co = connect();
-      $sql = "SELECT operatore.username as usernameOperatore ,utente.username as usernameUtente,stampa.dataStampa,stampa.oraStampa,stampa.descrizione,stampa.quantità,stampa.fronteRetro,stampa.tipoFormato
+
+      try {
+        $co = connect();
+        $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+ 
+		$sql = "SELECT operatore.username as usernameOperatore ,utente.username as usernameUtente,stampa.dataStampa,stampa.oraStampa,stampa.descrizione,stampa.quantità,stampa.fronteRetro,stampa.tipoFormato
             from persona operatore join stampa on (operatore.codiceFiscale=stampa.codiceFiscaleOperatore) join prenotazione on (stampa.idStampa=prenotazione.idStampa) join persona utente on (prenotazione.codiceFiscale=utente.codiceFiscale)
             where operatore.tipo=\"Operatore\"
             ORDER BY stampa.dataStampa,stampa.oraStampa";
 
-      $result = $co->query($sql);
 
-      if($result->num_rows== 0) {
-        $arrayRisultati = "ERRORE NO DATA";
+        $result = $co->query($sql);
 
-      }else {
+        if($result->num_rows== 0) {
+          $arrayRisultati = "ERRORE NO DATA";
+
+        }else {
 
         // output data of each row
         $arrayRisultati = "";
@@ -84,9 +89,14 @@
                                  <td class=\"cell100 column9PE\"> " . $row["fronteRetro"] . "</td>";
 
         }
-      }
 
-      $co->close();
+        $co->commit();
+        $co->close();
+      } catch (Exception $e) {
+          $co->rollBack();
+          $co->close();
+          header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
+      }
 
       return $arrayRisultati;
     }

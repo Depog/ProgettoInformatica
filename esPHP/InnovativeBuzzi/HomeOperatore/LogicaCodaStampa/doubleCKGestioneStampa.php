@@ -89,7 +89,7 @@
     <div class="center">
       <h3>Si vuole procedere comunque?</h3>
       <a href="<?php echo "http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/LogicaCodaStampa/gestioneStampa.php?idPren=" . $_GET['idPren'] . ""; ?>" class="btn">SI</a>
-      <a href="<?php echo "http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/HomeOperatore.php"; ?>" class="btn">NO</a>
+      <a href="<?php echo "http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/VisualizzaPrenotazioni.php"; ?>" class="btn">NO</a>
     </div>
   </body>
 </html>

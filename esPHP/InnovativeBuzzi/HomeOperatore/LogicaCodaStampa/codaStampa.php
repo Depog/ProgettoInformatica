@@ -12,10 +12,11 @@
               <table >
                 <thead>
                   <tr class=\"row100 head\">
+                  <th class=\"cell100 column1O\">Data Prenotazione</th>
                   <th class=\"cell100 column2O\">Orario Prenotazione</th>
                     <th class=\"cell100 column3O\">Descrizione</th>
                     <th class=\"cell100 column4O\">Formato</th>
-                    <th class=\"cell100 column5O\">Numero Copie</th>
+                    <th class=\"cell100 column5O\">Quantità</th>
                     <th class=\"cell100 column6O\">Fronte&Retro</th>
                     <th class=\"cell100 column7O\">Scarica</th>
                     <th class=\"cell100 column8O\">Stampata</th>
@@ -61,43 +62,51 @@
   function selectFormDB($ip, $porta) {
     //global $co;
     include 'connessione.php';
-    $co = connect();
-    $sql = "select p.* ,f.* , pers.*, s.* FROM prenotazione p JOIN file f on (p.codiceFIle=f.codiceFile) JOIN persona pers ON(pers.codiceFiscale = p.codiceFiscale) join stampa s ON(p.idStampa=s.idStampa)
-      JOIN formato form ON(s.tipoFormato = form.tipo)
-      WHERE p.stampata = \"no\"
-      ORDER BY p.dataPrenotazione, p.oraPrenotazione";
+    try {
+      $co = connect();
+      $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+      $sql = "select p.* ,f.* , pers.*, s.* FROM prenotazione p JOIN file f on (p.codiceFIle=f.codiceFile) JOIN persona pers ON(pers.codiceFiscale = p.codiceFiscale) join stampa s ON(p.idStampa=s.idStampa)
+        JOIN formato form ON(s.tipoFormato = form.tipo)
+        WHERE p.stampata = \"no\"
+        ORDER BY p.dataPrenotazione, p.oraPrenotazione";
 
-    $result = $co->query($sql);
+      $result = $co->query($sql);
 
-    if($result->num_rows== 0) {
-      $arrayRisultati = "ERRORE NO DATA";
+      if($result->num_rows== 0) {
+        $arrayRisultati = "ERRORE NO DATA";
 
-    }else {
+      }else {
 
-      // output data of each row
-      $arrayRisultati = "";
+        // output data of each row
+        $arrayRisultati = "";
 
-      while($row = $result->fetch_assoc()) {
-          $arrayRisultati .= "<tr class=\"row100 body\">
-                            <td class=\"cell100 column1O\">" . $row["dataPrenotazione"] . "</td>
-                            <td class=\"cell100 column2O\">" . $row["oraPrenotazione"] . "</td>
-                            ";
-          $arrayRisultati .="<td class=\"cell100 column3O\">" . $row["descrizione"] . "</td>";
-          $arrayRisultati .="<td class=\"cell100 column4O\"> " . $row["tipoFormato"] . "</td>
-                        <td class=\"cell100 column5O\">" . $row["quantità"] . "</td>
-                        <td class=\"cell100 column6O\">" . $row["fronteRetro"] . "</td>
-                              <td class=\"cell100 column7O\">
-                                <a href=\"http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/DownloadFile/downloadFile.php?file_id=" . $row['codiceFile'] . "\">" . $row["nomeFile"] . "</a>
-                              </td>";//link per scaricare il file
-          $arrayRisultati .= "<td class=\"cell100 column8O\">
-                                <a href=\"http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/LogicaCodaStampa/doubleCKGestioneStampa.php?idPren=" . $row['idPrenotazione'] . "\">MANCANTE</a>
-                              </td>
-                              <td class=\"cell100 column9O\"> " . $row["note"] . "</td>
-                            </tr>";//link per modificare lo stato della prenotazione
+        while($row = $result->fetch_assoc()) {
+            $arrayRisultati .= "<tr class=\"row100 body\">
+                              <td class=\"cell100 column1O\">" . $row["dataPrenotazione"] . "</td>
+                              <td class=\"cell100 column2O\">" . $row["oraPrenotazione"] . "</td>
+                              ";
+            $arrayRisultati .="<td class=\"cell100 column3O\">" . $row["descrizione"] . "</td>";
+            $arrayRisultati .="<td class=\"cell100 column4O\"> " . $row["tipoFormato"] . "</td>
+                          <td class=\"cell100 column5O\">" . $row["quantità"] . "</td>
+                          <td class=\"cell100 column6O\">" . $row["fronteRetro"] . "</td>
+                                <td class=\"cell100 column7O\">
+                                  <a href=\"http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/DownloadFile/downloadFile.php?file_id=" . $row['codiceFile'] . "\">" . $row["nomeFile"] . "</a>
+                                </td>";//link per scaricare il file
+            $arrayRisultati .= "<td class=\"cell100 column8O\">
+                                  <a href=\"http://". $ip .":" . $porta . "/esPHP/InnovativeBuzzi/HomeOperatore/LogicaCodaStampa/doubleCKGestioneStampa.php?idPren=" . $row['idPrenotazione'] . "\">MANCANTE</a>
+                                </td>
+                                <td class=\"cell100 column9O\"> " . $row["note"] . "</td>
+                              </tr>";//link per modificare lo stato della prenotazione
+        }
       }
-    }
 
-    $co->close();
+      $co->commit();
+      $co->close();
+    } catch (Exception $e) {
+        $co->rollBack();
+        $co->close();
+        header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
+    }
 
     return $arrayRisultati;
   }
@@ -105,54 +114,59 @@
 
   function checkStampa($ip, $porta, $idPren) {
     include '.././connessione.php';
-    $co = connect();
-    $sql = "UPDATE prenotazione SET stampata=\"si\" WHERE idPrenotazione=$idPren";
+    try {
+      $co = connect();
+      $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+      $sql = "UPDATE prenotazione SET stampata=\"si\" WHERE idPrenotazione=$idPren";
 
-    if ($co->query($sql) === TRUE) {
-      $user = $_SESSION['usernameBZ'];
-      $sql = "SELECT pers.* FROM persona pers WHERE pers.username=\"$user\"";//Per prendere il codiceFiscaleDelOperatore
+      if ($co->query($sql) === TRUE) {
+        $user = $_SESSION['usernameBZ'];
+        $sql = "SELECT pers.* FROM persona pers WHERE pers.username=\"$user\"";//Per prendere il codiceFiscaleDelOperatore
 
-      $result = $co->query($sql);
-      $row = $result->fetch_assoc();
+        $result = $co->query($sql);
+        $row = $result->fetch_assoc();
 
-    /*  if($co->error() == "") {
+        $codFiscOper = $row['codiceFiscale'];
+
+        $sql = "SELECT p.* FROM prenotazione p JOIN stampa s ON(p.idStampa = s.idStampa) WHERE idPrenotazione=$idPren";//Per prendere il codiceFiscaleDelOperatore
+
+        $result = $co->query($sql);
+        $row = $result->fetch_assoc();
+
+        /*if($co->error() == "") {
+          //_ERR
+          $co->close();
+          header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Si è verificato un imprevisto<br>La invitiamo a riprovare");
+        }*/
+
+        $idStampa = $row['idStampa'];
+        $dataAttuale = date("Y/m/d");
+        $oraAttuale = date("h:i:s");
+        $sql = "UPDATE stampa SET codiceFiscaleOperatore=\"$codFiscOper\",dataStampa=\"$dataAttuale\",oraStampa=\"$oraAttuale\" WHERE idStampa=$idStampa";
+
+        if($co->query($sql) === TRUE) {
+          //Fatto
+        }else {
+          //_ERR
+          $co->rollBack();
+          $co->close();
+          header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Si è verificato un imprevisto<br>La invitiamo a riprovare");
+        }
+
+      } else {
         //_ERR
+        $co->rollBack();
         $co->close();
         header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Si è verificato un imprevisto<br>La invitiamo a riprovare");
       }
-  */
-      $codFiscOper = $row['codiceFiscale'];
 
-      $sql = "SELECT p.* FROM prenotazione p JOIN stampa s ON(p.idStampa = s.idStampa) WHERE idPrenotazione=$idPren";//Per prendere il codiceFiscaleDelOperatore
-
-      $result = $co->query($sql);
-      $row = $result->fetch_assoc();
-
-      /*if($co->error() == "") {
-        //_ERR
-        $co->close();
-        header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Si è verificato un imprevisto<br>La invitiamo a riprovare");
-      }*/
-
-      $idStampa = $row['idStampa'];
-
-      $sql = "UPDATE stampa SET codiceFiscaleOperatore=\"$codFiscOper\" WHERE idStampa=$idStampa";
-
-      if($co->query($sql) === TRUE) {
-        //Fatto
-      }else {
-        //_ERR
-        $co->close();
-        header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Si è verificato un imprevisto<br>La invitiamo a riprovare");
-      }
-
-    } else {
-      //_ERR
+      $co->commit();
       $co->close();
-      header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Si è verificato un imprevisto<br>La invitiamo a riprovare");
+    } catch (Exception $e) {
+        $co->rollBack();
+        $co->close();
+        header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
     }
-
-    $co->close();
   }
 
 ?>

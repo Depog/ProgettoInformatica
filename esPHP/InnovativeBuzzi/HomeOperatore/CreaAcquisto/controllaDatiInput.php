@@ -14,20 +14,29 @@
 
   if(isset($_POST['username'])){
       $username = $_POST['username'];
-      $co = connect();
-      $sql = "SELECT p.* FROM persona p WHERE p.username=\"$username\" AND p.tipo !=\"Operatore\" ";
-      $result = $co->query($sql);
+      try {
+        $co = connect();
+        $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+        $sql = "SELECT p.* FROM persona p WHERE p.username=\"$username\" AND p.tipo !=\"Operatore\" ";
+        $result = $co->query($sql);
 
-      if ($result->num_rows > 0) {
-          // output data of each row
-          $row = $result->fetch_assoc();
-          $codFisc = $row['codiceFiscale'];
+        if ($result->num_rows > 0) {
+            // output data of each row
+            $row = $result->fetch_assoc();
+            $codFisc = $row['codiceFiscale'];
+        } else {
+          $co->rollBack();
           $co->close();
-      } else {
-        $co->close();
           header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/CreaAcquisto/CreaAcquisto.php");
-      }
+        }
 
+        $co->commit();
+        $co->close();
+      } catch (Exception $e) {
+          $co->rollBack();
+          $co->close();
+          header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
+      }
 
   }else {
     header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/CreaAcquisto/CreaAcquisto.php");
@@ -36,15 +45,26 @@
   if(isset($_POST['tipoF'])) {
     //Ho inserito il tipo di formato ora controllo se c'è nel db
     $tipoF = $_POST['tipoF'];
-    $co = connect();
-    $sql = "SELECT f.* FROM formato f WHERE f.tipo=\"$tipoF\" ";
-    $result = $co->query($sql);
+    try {
+      $co = connect();
+      $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+      $sql = "SELECT f.* FROM formato f WHERE f.tipo=\"$tipoF\" ";
+      $result = $co->query($sql);
 
-    if ($result->num_rows > 0) {
-        $co->close();//il formato inserito e' presente nel db , ok
-    } else {
-      $co->close();//il formato e' stato inventato, non ok
+      if ($result->num_rows > 0) {
+      //il formato inserito e' presente nel db , ok
+      } else {
+        $co->rollBack();
+        $co->close();//il formato e' stato inventato, non ok
         header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/CreaAcquisto/CreaAcquisto.php");
+      }
+
+      $co->commit();
+      $co->close();
+    } catch (Exception $e) {
+        $co->rollBack();
+        $co->close();
+        header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
     }
   }else {//Non ho inserito il formato , non ok
   header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/CreaAcquisto/CreaAcquisto.php");
@@ -65,16 +85,12 @@
   }
   //--------------------------------------------------------------CONTROLLI SUPERATI
 
-  $co = connect();
   $dataAttuale = date("Y/m/d");
   $oraAttuale = date("h:i:s");
-
-
-
   $quant = $_POST['quantita'];
 
-
   try {
+    $co = connect();
     $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
 
     $sql = "INSERT INTO acquisto(codiceFiscale,dataAcquisto,orarioAcquisto,quantità) value (\"$codFisc\",\"$dataAttuale\",\"$oraAttuale\", $quant)";
@@ -90,6 +106,7 @@
         }
 
     } else {
+      $co->rollBack();
       $co->close();
       die("NO BUONO");
     }
@@ -117,6 +134,7 @@
         }
 
     } else {
+      $co->rollBack();
       $co->close();
       die("NO BUONO");
     }
