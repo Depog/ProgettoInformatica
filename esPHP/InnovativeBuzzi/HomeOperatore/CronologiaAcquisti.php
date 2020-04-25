@@ -192,9 +192,13 @@ $(document).ready(function(){
              <a href="VisualizzaPrenotazioni.php" class="nav-item" active-color="red">Visualizza Prenotazioni</a>
              <a href="ritiriFotocopie.php" class="nav-item" active-color="blue">Ritiri Fotocopie</a>
              <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Crea Acquisto</a>
-             <a href="" class="nav-item is-active" active-color="green">Cronologia acquisti</a>
-             <a href="CronologiaPrenotazioni.php" class="nav-item " active-color="green">Cronologia prenotazioni</a>
+             <a href="" class="nav-item is-active" active-color="green">Storico Acquisti</a>
              <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
+             <?php
+              $usr=$_SESSION["usernameBZ"];
+              $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 30%;\"> Username: $usr </p>";
+              echo $msgIdUtente;
+             ?>
              <span class="nav-indicator"></span>
            </nav>
          </header>
@@ -202,7 +206,7 @@ $(document).ready(function(){
          <div class="limiter">
         		<div class="container-table100">
         			<div class="wrap-table100OperatoreR">
-        				<b class="c">Cronologia acquisti effettuati</b>
+        				<b class="c">Storico Acquisti effettuati</b>
         				<div class="table100 ver3 m-b-110">
                   <input id="myInput" style="position:fixed; top:15%;" type="text" placeholder="Search..">
                    <?php

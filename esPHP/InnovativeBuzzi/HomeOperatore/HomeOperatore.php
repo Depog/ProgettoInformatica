@@ -145,10 +145,13 @@
              <a href="VisualizzaPrenotazioni.php" class="nav-item"  active-color="red">Visualizza Prenotazioni</a>
              <a href="ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri Fotocopie</a>
              <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Crea Acquisto</a>
-             <a href="CronologiaAcquisti.php" class="nav-item" active-color="green">Cronologia acquisti</a>
-             <a href="CronologiaPrenotazioni.php" class="nav-item " active-color="green">Cronologia prenotazioni</a>
+             <a href="CronologiaAcquisti.php" class="nav-item" active-color="green">Storico Acquisti</a>
              <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
-             <p style="align:right;"> prova </p>
+             <?php
+              $usr=$_SESSION["usernameBZ"];
+              $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 28%;\"> Username: $usr </p>";
+              echo $msgIdUtente;
+             ?>
              <span class="nav-indicator"></span>
            </nav>
          </header>

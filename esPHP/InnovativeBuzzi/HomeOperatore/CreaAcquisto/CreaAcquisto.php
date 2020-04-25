@@ -40,8 +40,8 @@
    <style>
 
      b.c{
-       position: fixed;
-       left : 35%;
+       position: relative;
+       left : 8%;
        top: 15%;
        font-size: 40px;
        color: #fff;
@@ -202,9 +202,13 @@
              <a href="../VisualizzaPrenotazioni.php" class="nav-item" active-color="red">Visualizza Prenotazioni</a>
              <a href=".././ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri Fotocopie</a>
              <a href="" class="nav-item is-active" active-color="purple">Crea Acquisto</a>
-             <a href="../CronologiaAcquisti.php" class="nav-item" active-color="green">Cronologia Acquisti</a>
-              <a href="CronologiaPrenotazioni.php" class="nav-item " active-color="green">Cronologia prenotazioni</a>
+             <a href="../CronologiaAcquisti.php" class="nav-item" active-color="green">Storico Acquisti</a>
              <a href="../logout.php" class="nav-item" active-color="blue">Logout</a>
+             <?php
+              $usr=$_SESSION["usernameBZ"];
+              $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 30%;\"> Username: $usr </p>";
+              echo $msgIdUtente;
+             ?>
              <span class="nav-indicator"></span>
            </nav>
          </header>
