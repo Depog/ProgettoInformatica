@@ -117,8 +117,9 @@
       $f_r = "no";
 
     $descrizione = $_POST["descrizione"];
-
-
+    $sql = "INSERT INTO stampa(dataStampa,oraStampa,codiceFiscaleOperatore,dataRitiro,oraRitiro, tipoFormato,descrizione,fronteRetro,quantità)
+      value (\"$dataAttuale\", \"$oraAttuale\", \"$codFiscOperatore\", \"$dataAttuale\", \"$oraAttuale\" ,\"$tipoF\",\"$descrizione\", \"$f_r\",$quant)";
+      die("proa");
     $result = $co->query($sql);
 
   //---------------------------------

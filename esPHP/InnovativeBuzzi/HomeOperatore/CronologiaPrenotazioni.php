@@ -148,7 +148,7 @@ $(document).ready(function(){
        right: 0;
        width: 100%;
        height: 5px;
-       background-color: #ffcc66;
+       background-color: red;
        border-radius: 8px 8px 0 0;
        opacity: 0;
        -webkit-transition: .3s;
@@ -161,7 +161,7 @@ $(document).ready(function(){
      }
 
      .nav-item:not(.is-active):hover {
-       color: #ffcc66;
+       color: red;
      }
 
      .nav-indicator {
@@ -190,9 +190,9 @@ $(document).ready(function(){
          <header>
            <nav class="nav">
              <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
-             <a href="VisualizzaPrenotazioni.php" class="nav-item  is-active" active-color="red">Visualizza Prenotazioni</a><!--sotto pagina di Visualizza Prenotazioni-->
-             <a href="ritiriFotocopie.php" class="nav-item" active-color="blue">Ritiri Fotocopie</a>
-             <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Crea Acquisto</a>
+             <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Reigstra Acquisto</a>
+             <a href="VisualizzaPrenotazioni.php" class="nav-item  is-active" active-color="red">Prenotazioni</a><!--sotto pagina di Prenotazioni-->
+             <a href="ritiriFotocopie.php" class="nav-item" active-color="blue">Ritiri</a>
              <a href="CronologiaAcquisti.php" class="nav-item " active-color="green">Storico Acquisti</a>
              <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
              <?php

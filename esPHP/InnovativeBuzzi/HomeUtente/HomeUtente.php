@@ -143,7 +143,7 @@
     <nav class="nav">
       <a href="" class="nav-item is-active" active-color="orange">Home</a>
       <a href="contattaci.php" class="nav-item" active-color="green">Contattaci</a>
-      <a href="../Prenotazione/CaricamentoFile/EffettuaPrenotazione.php" class="nav-item" active-color="red">Crea Prenotazione</a>
+      <a href="../Prenotazione/CaricamentoFile/EffettuaPrenotazione.php" class="nav-item" active-color="red">Effettua Prenotazione</a>
       <a href="HomeUtente.php?logout=true" class="nav-item" active-color="blue">Logout</a>
       <span class="nav-indicator"></span>
     </nav>

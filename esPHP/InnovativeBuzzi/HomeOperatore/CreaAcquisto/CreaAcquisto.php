@@ -268,7 +268,7 @@
    <header>
      <nav class="nav">
        <a href="../HomeOperatore.php" class="nav-item" active-color="orange" style="font-size: 20px">Home</a>
-       <a href="" class="nav-item is-active " active-color="purple">Crea Acquisto</a>
+       <a href="" class="nav-item is-active " active-color="purple">Reigstra Acquisto</a>
        <a href="../VisualizzaPrenotazioni.php" class="nav-item"  active-color="red">Prenotazioni</a>
        <a href="../ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri</a>
        <a href="../CronologiaAcquisti.php" class="nav-item" active-color="green">Storico Acquisti</a>
@@ -285,9 +285,9 @@
    <section id="content" class="content" style="width: 100%; height: auto;">
      <div class="container" style="width: 100%; margin-top: 150px;padding: 0;">
         <div class="info-titolo">
-          <p style="color: #249d8b;  text-shadow: 2px 2px 5px black; text-align: center;">crea acquisto</p>
+          <p style="color: #249d8b;  text-shadow: 2px 2px 5px black; text-align: center;">Reigstra Acquisto</p>
           <p style="color: white; font-size: 20px; text-transform: none;">
-          Questo alla destra è il documento che dovrai compilare per aggiungere un acquisto fatto fisicamente da un cliente. Una volta compilato, ti basterà cliccare sul pulsante "Crea Acquisto" in basso e automaticamente verrà registrato
+          Questo alla destra è il documento che dovrai compilare per aggiungere un acquisto fatto fisicamente da un cliente. Una volta compilato, ti basterà cliccare sul pulsante "Reigstra Acquisto" in basso e automaticamente verrà registrato
           </p>
         </div>
 
@@ -312,7 +312,7 @@
    </section>
 
          <!---
-        				<b class="c">Crea acquisto</b>
+        				<b class="c">Reigstra Acquisto</b>
                 <form class="formInserimentoAcq" method="POST" action="controllaDatiInput.php">
                     <a>Username</a>
                     <input type="text" name="username" id="usr" placeholder="Username"></input>
