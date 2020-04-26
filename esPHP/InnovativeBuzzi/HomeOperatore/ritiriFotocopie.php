@@ -189,9 +189,9 @@ $(document).ready(function(){
          <header>
            <nav class="nav">
              <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
-             <a href="VisualizzaPrenotazioni.php" class="nav-item" active-color="red">Visualizza Prenotazioni</a>
-             <a href="" class="nav-item is-active" active-color="blue">Ritiri Fotocopie</a>
              <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Crea Acquisto</a>
+             <a href="VisualizzaPrenotazioni.php" class="nav-item"  active-color="red">Prenotazioni</a>
+             <a href="" class="nav-item is-active" active-color="#ee6c4d">Ritiri</a>
              <a href="CronologiaAcquisti.php" class="nav-item" active-color="green">Storico Acquisti</a>
              <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
              <?php

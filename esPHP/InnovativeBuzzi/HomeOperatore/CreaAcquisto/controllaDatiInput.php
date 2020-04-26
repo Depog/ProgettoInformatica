@@ -93,18 +93,17 @@
     $co = connect();
     $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
 
-    $sql = "INSERT INTO acquisto(codiceFiscale,dataAcquisto,orarioAcquisto,quantità) value (\"$codFisc\",\"$dataAttuale\",\"$oraAttuale\", $quant)";
+    $sql = "INSERT INTO acquisto(codiceFiscale,dataAcquisto,orarioAcquisto) value (\"$codFisc\",\"$dataAttuale\",\"$oraAttuale\")";
 
     $result = $co->query($sql);
     $userO = $_SESSION['usernameBZ'];
     $sql = "SELECT p.* FROM persona p WHERE p.username=\"$userO\" AND p.tipo=\"Operatore\"";
     $result = $co->query($sql);
     if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-              $codFiscOperatore = $row['codiceFiscale'];
+      while($row = $result->fetch_assoc()) {
+            $codFiscOperatore = $row['codiceFiscale'];
 
-        }
-
+      }
     } else {
       $co->rollBack();
       $co->close();
@@ -117,8 +116,8 @@
       $f_r = "no";
 
     $descrizione = $_POST["descrizione"];
-    $sql = "INSERT INTO stampa(dataStampa,oraStampa,codiceFiscaleOperatore,dataRitiro,oraRitiro, tipoFormato,descrizione,fronteRetro)
-    value (\"$dataAttuale\", \"$oraAttuale\", \"$codFiscOperatore\", \"$dataAttuale\", \"$oraAttuale\" ,\"$tipoF\",\"$descrizione\", \"$f_r\")";
+    $sql = "INSERT INTO stampa(dataStampa,oraStampa,codiceFiscaleOperatore,dataRitiro,oraRitiro, tipoFormato,descrizione,fronteRetro, quantità)
+    value (\"$dataAttuale\", \"$oraAttuale\", \"$codFiscOperatore\", \"$dataAttuale\", \"$oraAttuale\" ,\"$tipoF\",\"$descrizione\", \"$f_r\", $quant)";
 
     $result = $co->query($sql);
 
