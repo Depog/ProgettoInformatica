@@ -140,62 +140,59 @@
 
 <body>
   <header>
-           <nav class="nav">
-             <a href="" class="nav-item is-active " active-color="orange">Home</a>
-             <a href="VisualizzaPrenotazioni.php" class="nav-item"  active-color="red">Visualizza Prenotazioni</a>
-             <a href="ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri Fotocopie</a>
-             <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Crea Acquisto</a>
-             <a href="CronologiaAcquisti.php" class="nav-item" active-color="green">Storico Acquisti</a>
-             <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
-             <?php
-              $usr=$_SESSION["usernameBZ"];
-              $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 28%;\"> Username: $usr </p>";
-              echo $msgIdUtente;
-             ?>
-             <span class="nav-indicator"></span>
-           </nav>
-         </header>
+   <nav class="nav">
+     <a href="" class="nav-item is-active " active-color="orange">Home</a>
+     <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Registra Acquisto</a>
+     <a href="VisualizzaPrenotazioni.php" class="nav-item"  active-color="red">Prenotazioni</a>
+     <a href="ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri</a>
+     <a href="CronologiaAcquisti.php" class="nav-item" active-color="green">Storico Acquisti</a>
+     <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
 
-  <?php
-  $homeUtente="
-          <!----------------------PRENOTAZIONE----------------------------------->
-            <div class=\"registraAcquisto\">
+     <span class="nav-indicator"></span>
+     <?php
+      $usr=$_SESSION["usernameBZ"];
+      echo "<p style=\"border-style:ridge; margin-top: 18px; margin-left: 24%; margin-right: auto;\"> Username: $usr </p>";
 
-                <div class=\"registraAcquisto-text\">
-                  <b>REGISTRA ACQUISTO</b><br>
-                  Qui accanto troverai il modulo da compilare per registrare un acquisto! Clicca sull'immagine alla sinistra, il bottone per andare nella pagina oppure direttamente dalla barra di navigazione in alto<br /><br />
-                  <a href=\"http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/.php\" class=\"btn btn-primary\">Registra acquisto</a>
-                </div>
-           </div>
+     ?>
+   </nav>
+  </header>
 
+  <div class="cont">
 
-            <!----------------------VISUALIZZA CODA RITIRO STAMPA----------------------------------->
-              <div class=\"visualizzaCodaRitiri\">
+    <div class="registraAcquisto">
+      <div class="registraAcquisto-text">
+        <b style="color: purple; ">REGISTRA ACQUISTO</b>
+        <p style="text-shadow: 2px 2px 5px black">Qui accanto troverai il modulo da compilare per registrare un acquisto! Clicca sull'immagine alla destra o il pulsante sottostante per andare alla pagina interessata</p><br />
+        <a href="CreaAcquisto/CreaAcquisto.php" class="btn btn-primary">Registra acquisto</a>
+      </div>
+      <img src="img/Cattura.png" alt="registraAcquisto" style=" width: 500px; max-width: 60%;  max-height: 310px; margin-left: 50%;"/>
+   </div>
 
-                  <div class=\"visualizzaCodaRitiri-text\">
-                    <b>VISUALIZZA CODA RITIRO STAMPA</b><br>
-                    Qui accanto troverai il modulo da compilare per registrare un acquisto! Clicca sull'immagine alla sinistra, il bottone per andare nella pagina oppure direttamente dalla barra di navigazione in alto<br /><br />
-                    <a href=\"http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/.php\" class=\"btn btn-primary\">Registra acquisto</a>
-                  </div>
-             </div>
-             <!----------------------VISUALIZZA CODA STAMPA----------------------------------->
-               <div class=\"visualizzaCodaPrenotazioni\">
+   <div class="prenotazioni">
+     <div class="prenotazioni-text">
+       <b style="color: red">PRENOTAZIONI</b><br>
+       Alla sinistra troverai la tabella con la lista delle prenotazioni<br />
+       <a href="VisualizzaPrenotazioni.php" class="btn btn-primary">Prenotazioni</a>
+     </div>
+   </div>
 
-                   <div class=\"visualizzaCodaPrenotazioni-text\">
-                     <b>VISUALIZZA CODA PRENOTAZIONI</b><br>
-                     Qui accanto troverai il modulo da compilare per registrare un acquisto! Clicca sull'immagine alla sinistra, il bottone per andare nella pagina oppure direttamente dalla barra di navigazione in alto<br /><br />
-                     <a href=\"http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/.php\" class=\"btn btn-primary\">Registra acquisto</a>
-                   </div>
-              </div>
-       ";
+   <div class="ritiri">
+     <div class="ritiri-text">
+       <b style="color: blue">RITIRI</b><br>
+       Alla destra troverai la tabella dei ritiri<br />
+       <a href="ritiriFotocopie.php" class="btn btn-primary" style="width: 130px">Ritiri</a>
+     </div>
+   </div>
 
-       echo $homeUtente;
-?>
+   <div class="acquisti">
+     <div class="acquisti-text">
+       <b style="color: green">STORICO ACQUISTI</b><br>
+       Alla sinistra troverai la tabella dei ritiri<br />
+       <a href="CronologiaAcquisti.php" class="btn btn-primary">Acquisti</a>
+     </div>
+   </div>
 
-
-
-
-
+  </div>
 
 
 
