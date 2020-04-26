@@ -178,7 +178,7 @@
 
    <div class="ritiri">
      <div class="ritiri-text">
-       <b style="color: blue">RITIRI</b><br>
+       <b style="color: brown">RITIRI</b><br>
        Alla destra troverai la tabella dei ritiri<br />
        <a href="ritiriFotocopie.php" class="btn btn-primary" style="width: 130px">Ritiri</a>
      </div>

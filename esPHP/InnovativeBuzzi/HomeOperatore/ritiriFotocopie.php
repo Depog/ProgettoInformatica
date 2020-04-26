@@ -148,7 +148,7 @@ $(document).ready(function(){
        right: 0;
        width: 100%;
        height: 5px;
-       background-color: blue;
+       background-color: brown;
        border-radius: 8px 8px 0 0;
        opacity: 0;
        -webkit-transition: .3s;
@@ -161,7 +161,7 @@ $(document).ready(function(){
      }
 
      .nav-item:not(.is-active):hover {
-       color: blue;
+       color: brown;
      }
 
      .nav-indicator {
@@ -189,6 +189,7 @@ $(document).ready(function(){
          <header>
            <nav class="nav">
              <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
+
              <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Crea Acquisto</a>
              <a href="VisualizzaPrenotazioni.php" class="nav-item"  active-color="red">Prenotazioni</a>
              <a href="" class="nav-item is-active" active-color="#ee6c4d">Ritiri</a>

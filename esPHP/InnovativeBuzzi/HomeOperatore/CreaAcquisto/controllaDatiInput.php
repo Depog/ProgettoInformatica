@@ -86,7 +86,8 @@
   //--------------------------------------------------------------CONTROLLI SUPERATI
 
   $dataAttuale = date("Y/m/d");
-  $oraAttuale = date("h:i:s");
+  $oA = date("h:i:sa");
+  $oraAttuale  = DATE("H:i:s", STRTOTIME($oA));
   $quant = $_POST['quantita'];
 
   try {
@@ -116,8 +117,7 @@
       $f_r = "no";
 
     $descrizione = $_POST["descrizione"];
-    $sql = "INSERT INTO stampa(dataStampa,oraStampa,codiceFiscaleOperatore,dataRitiro,oraRitiro, tipoFormato,descrizione,fronteRetro, quantità)
-    value (\"$dataAttuale\", \"$oraAttuale\", \"$codFiscOperatore\", \"$dataAttuale\", \"$oraAttuale\" ,\"$tipoF\",\"$descrizione\", \"$f_r\", $quant)";
+
 
     $result = $co->query($sql);
 

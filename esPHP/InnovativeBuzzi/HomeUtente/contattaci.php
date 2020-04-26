@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    $ip=$_SERVER['SERVER_NAME'];  //server per vedere sei sei localhost o hai un ip
+    $porta=$_SERVER['SERVER_PORT'];
+    if(!isset($_SESSION["usernameBZ"])){
+      header("location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/login/index.php");
+    }
+
+
+ ?>
 <html>
 <head>
 
