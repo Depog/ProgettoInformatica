@@ -104,7 +104,8 @@
         $co = connect();
         $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
         $dataRitiro = date("Y/m/d");
-        $oraRitiro = date("H:i:s");
+        $oA = date("h:i:sa");
+        $oraRitiro  = DATE("H:i:s", STRTOTIME($oA));
 
         $sql = "UPDATE prenotazione SET dataRitiroEffettuato=\"$dataRitiro\", orarioRitiroEffettuato=\"$oraRitiro\" WHERE idPrenotazione=$idPren";
 
