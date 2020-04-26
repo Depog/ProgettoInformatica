@@ -1,5 +1,7 @@
 <?php
-  session_start();
+    session_start();
+    $ip=$_SERVER['SERVER_NAME'];  //server per vedere sei sei localhost o hai un ip
+    $porta=$_SERVER['SERVER_PORT'];   //porta del serve, perchè c'è chi ha 80, chi 8080 etc...
   header("Expires: on, 01 Jan 1970 00:00:00 GMT");
   header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
   header("Cache-Control: no-store, no-cache, must-revalidate");
@@ -399,12 +401,12 @@ function stampaCaricaIlFile(){
   }else if(isset($_SESSION["FormatoErrato"])){
     //formato errato
     $stampaCaricaIlFile="<br /><text class=\"title\">Carica il file</text>
-    <input type=\"file\" name=\"myfile\" style=\"color: #FFF\"> </input>  <b style=\"color:red;\">!FORMATO NON VALIDO .zip, .pdf, .docx, .jpg, .jpeg, .png, .txt!</b><br />";
+    <input type=\"file\" name=\"myfile\" style=\"color: #FFF\"> </input>  <b style=\"color:red;\"> !FORMATO NON VALIDO .zip, .pdf, .docx, .jpg, .jpeg, .png, .txt!</b><br />";
     $_SESSION["FormatoErrato"]=null;
   }else if(isset($_SESSION["FileTroppoGrande"])){
     //file troppo grande
     $stampaCaricaIlFile="<br /><text class=\"title\">Carica il file</text>
-    <input type=\"file\" name=\"myfile\" style=\"color: #FFF></input> <b style=\"color:red;\">  !DIMENSIONE FILE TROPPO GRANDE!</b><br />";
+    <input type=\"file\" name=\"myfile\" style=\"color: #FFF\"></input> <b style=\"color:red;\">  !DIMENSIONE FILE TROPPO GRANDE!</b><br />";
     $_SESSION["FileTroppoGrande"]=null;
   }
   echo $stampaCaricaIlFile;

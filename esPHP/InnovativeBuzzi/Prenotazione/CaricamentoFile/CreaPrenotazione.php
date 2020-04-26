@@ -103,7 +103,8 @@
        //ora inserisco la Prenotazione
 
        $dataOggi=date("Y/m/d");
-       $oraAttuale=date("h:i:sa");
+       $oA = date("h:i:sa");
+       $oraAttuale  = DATE("H:i:s", STRTOTIME($oA));
        $sql="INSERT INTO Prenotazione(dataPrenotazione,oraPrenotazione,note,codiceFiscale,codiceFile) VALUES(\"$dataOggi\",\"$oraAttuale\",\"$note\",\"$codiceFiscale\",\"$codiceFile\") ";
          $records=$co->query($sql);
          if ( $records == TRUE) {

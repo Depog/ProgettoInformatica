@@ -28,11 +28,11 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
         $_SESSION["FormatoErrato"]="true";
           $errore="si";
       }
-    } elseif ($_FILES['myfile']['size'] > 5000000) { // file shouldn't be larger than 5Megabyte
+    } else if ($_FILES['myfile']['size'] > 5000000) { // file shouldn't be larger than 5Megabyte
         echo "File too large!";
-        $_SESSION["fileTroppoGrande"]="true";
+        $_SESSION["FileTroppoGrande"]="true";
         $errore="si";
-      //  header("Location: EffettuaPrenotazione.php");  //reinderizzo alla home
+       //header("Location: EffettuaPrenotazione.php");  //reinderizzo alla home
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {

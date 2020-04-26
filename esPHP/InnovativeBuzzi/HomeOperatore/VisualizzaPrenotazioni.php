@@ -207,7 +207,10 @@
         			</div>
         		</div>
         	</div>
-            <a style="left:70%; position:fixed; top: 90%;"href="CronologiaPrenotazioni.php"><button> Visualizza storico prenotazioni </button> </a>
+          
+
+
+            <a style="left:70%; position:fixed; top: 90%;"href="CronologiaPrenotazioni.php" class="btn btn-primary"> Visualizza storico prenotazioni </a>
        </p>
 
 <!--===============================================================================================-->

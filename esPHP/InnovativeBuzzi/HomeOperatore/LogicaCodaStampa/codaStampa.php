@@ -68,7 +68,7 @@
       $sql = "select p.* ,f.* , pers.*, s.* FROM prenotazione p JOIN file f on (p.codiceFIle=f.codiceFile) JOIN persona pers ON(pers.codiceFiscale = p.codiceFiscale) join stampa s ON(p.idStampa=s.idStampa)
         JOIN formato form ON(s.tipoFormato = form.tipo)
         WHERE p.stampata = \"no\"
-        ORDER BY p.dataPrenotazione, p.oraPrenotazione";
+        ORDER BY s.dataRitiro, s.oraRitiro";
 
       $result = $co->query($sql);
 
@@ -82,8 +82,8 @@
 
         while($row = $result->fetch_assoc()) {
             $arrayRisultati .= "<tr class=\"row100 body\">
-                              <td class=\"cell100 column1O\">" . $row["dataPrenotazione"] . "</td>
-                              <td class=\"cell100 column2O\">" . $row["oraPrenotazione"] . "</td>
+                              <td class=\"cell100 column1O\">" . $row["dataRitiro"] . "</td>
+                              <td class=\"cell100 column2O\">" . $row["oraRitiro"] . "</td>
                               ";
             $arrayRisultati .="<td class=\"cell100 column3O\">" . $row["descrizione"] . "</td>";
             $arrayRisultati .="<td class=\"cell100 column4O\"> " . $row["tipoFormato"] . "</td>
@@ -141,7 +141,8 @@
 
         $idStampa = $row['idStampa'];
         $dataAttuale = date("Y/m/d");
-        $oraAttuale = date("h:i:s");
+        $oA = date("h:i:sa");
+        $oraAttuale  = DATE("H:i:s", STRTOTIME($oA));
         $sql = "UPDATE stampa SET codiceFiscaleOperatore=\"$codFiscOper\",dataStampa=\"$dataAttuale\",oraStampa=\"$oraAttuale\" WHERE idStampa=$idStampa";
 
         if($co->query($sql) === TRUE) {

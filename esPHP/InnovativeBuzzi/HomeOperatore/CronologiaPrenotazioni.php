@@ -181,6 +181,7 @@ $(document).ready(function(){
          overflow: auto;
        }
      }
+
    </style>
  </head>
 
@@ -209,9 +210,11 @@ $(document).ready(function(){
         				<b class="c">Storico prenotazioni effettuati</b>
         				<div class="table100 ver3 m-b-110">
                   <input id="myInput" style="position:fixed; top:21%;" type="text" placeholder="Search..">
+
+
                    <?php
                    //Creazione Coda Delle Stampe in modo dinamico
-                   include 'logicaCronologiaPrenotazioni/prenotazioniEffettuate.php';
+                   include 'LogicaCronologiaPrenotazioni/prenotazioniEffettuate.php';
                      $app = caricaPrenotazioniEffettuate($ip,$porta);
                     echo $app;
 
@@ -242,6 +245,9 @@ $(document).ready(function(){
   			ps.update();
       })
     });
+    $('.search-button').click(function(){
+  $(this).parent().toggleClass('open');
+});
 </script>
 <script>
 function myFunction() {
