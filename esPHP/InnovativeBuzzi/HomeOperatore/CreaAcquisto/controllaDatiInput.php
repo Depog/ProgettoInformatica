@@ -101,11 +101,10 @@
     $sql = "SELECT p.* FROM persona p WHERE p.username=\"$userO\" AND p.tipo=\"Operatore\"";
     $result = $co->query($sql);
     if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-              $codFiscOperatore = $row['codiceFiscale'];
+      while($row = $result->fetch_assoc()) {
+            $codFiscOperatore = $row['codiceFiscale'];
 
-        }
-
+      }
     } else {
       $co->rollBack();
       $co->close();
@@ -118,8 +117,7 @@
       $f_r = "no";
 
     $descrizione = $_POST["descrizione"];
-    $sql = "INSERT INTO stampa(dataStampa,oraStampa,codiceFiscaleOperatore,dataRitiro,oraRitiro, tipoFormato,descrizione,fronteRetro,quantità)
-    value (\"$dataAttuale\", \"$oraAttuale\", \"$codFiscOperatore\", \"$dataAttuale\", \"$oraAttuale\" ,\"$tipoF\",\"$descrizione\", \"$f_r\",$quant)";
+
 
     $result = $co->query($sql);
 

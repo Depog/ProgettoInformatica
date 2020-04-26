@@ -177,10 +177,10 @@
        <p class="page">
          <header>
            <nav class="nav">
-             <a href="HomeOperatore.php" class="nav-item " active-color="orange">Home</a>
-             <a href="" class="nav-item is-active"  active-color="red">Visualizza Prenotazioni</a>
-             <a href="ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri Fotocopie</a>
-             <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Crea Acquisto</a>
+             <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
+             <a href="CreaAcquisto/CreaAcquisto.php"  class="nav-item" active-color="purple">Crea Acquisto</a>
+             <a href="" class="nav-item is-active "  active-color="red">Prenotazioni</a>
+             <a href="ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri</a>
              <a href="CronologiaAcquisti.php" class="nav-item" active-color="green">Storico Acquisti</a>
              <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
              <?php
@@ -207,7 +207,7 @@
         			</div>
         		</div>
         	</div>
-          
+
 
 
             <a style="left:70%; position:fixed; top: 90%;"href="CronologiaPrenotazioni.php" class="btn btn-primary"> Visualizza storico prenotazioni </a>
