@@ -32,6 +32,13 @@ p {
   margin: 0px;
 }
 
+.cont{
+  width: 100%;
+  height: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
 .info{
   width: 50%;
   height: 35%;
@@ -58,30 +65,69 @@ p {
   min-height: 450px;
   max-height: 500px;
 }
+
 .registraAcquisto{
-  margin-top: 300px;
+  margin-top: 200px;
   width: 100%;
-  min-height: 450px;
-  max-height: 500px;
+  height: 40%;
+  padding: 10px;
 }
-.visualizzaCodaPrenotazioni{
-  margin-top: 800px;
+.registraAcquisto-text{
+  float: left;
+  text-align: right;
+  font-size: 25px;
+  color: white;
+  width: 40%;
+  max-width: 40%;
+  max-height: 10px;
+}
+.prenotazioni{
+  margin-top: 15%;
   width: 100%;
-  min-height: 450px;
-  max-height: 500px;
-  margin-left:0;
+  height: 40%;
+  padding: 10px;
+}
+.prenotazioni-text{
+  float: right;
+  text-align: justify;
+  font-size: 25px;
+  color: white;
+  width: 45%;
+  max-width: 50%;
+  max-height: 100%;
+}
 
+.ritiri{
+  margin-top: 10%;
+  width: 100%;
+  height: 40%;
+  padding: 10px;
+}
+.ritiri-text{
+  text-align: justify;
+  font-size: 25px;
+  color: white;
+  width: 45%;
+  max-width: 50%;
+  max-height: 100%;
 }
 
-.visualizzaCodaRitiri{
-  position: relative;
-  margin-top: 1800px;
-  margin-right: 0px;
-  margin-right: 50px;
+.acquisti{
+  margin-top: 10%;
   width: 100%;
-  min-height: 450px;
-  max-height: 500px;
+  height: 40%;
+  padding: 10px;
 }
+.acquisti-text{
+  float: right;
+  text-align: justify;
+  font-size: 25px;
+  color: white;
+  width: 45%;
+  max-width: 50%;
+  max-height: 100%;
+}
+
 .pren-img{
 
  max-width: 45%;
@@ -98,15 +144,7 @@ p {
   margin-right: auto;
 
 }
-.registraAcquisto-text{
-  text-align: justify;
-  text-justify: inter-word;
-  font-size: 30px;
-  color: white;
-  margin-left: 10%;
-  margin-right: auto;
 
-}
 .visualizzaCodaPrenotazioni-text{
   text-align: justify;
   text-justify: inter-word;
@@ -126,6 +164,20 @@ p {
   margin-right: 0%;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ul, li {
 	margin: 0px;
 	list-style-type: none;
