@@ -12,7 +12,7 @@
   include '.././connessione.php';
 
 
-  if(isset($_POST['username'])){
+  if($_POST['username'] != ""){
       $username = $_POST['username'];
       try {
         $co = connect();
@@ -27,7 +27,9 @@
         } else {
           $co->rollBack();
           $co->close();
+          $_SESSION["UsernameAssente"] = "sbagliato";//Se l'username non e' presente nel db
           header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/CreaAcquisto/CreaAcquisto.php");
+          die("redirect riga 31");//obbligatoria altrimenti potrebbe continuare con il flusso delle operazioni
         }
 
         $co->commit();
@@ -39,7 +41,26 @@
       }
 
   }else {
+    $_SESSION["UsernameAssente"] = " ";
+
+    if($_POST['descrizione'] != "") {
+      //Ho inserito la descrizione , ok
+
+    } else {//Non ho inserito la descrizione , non ok
+      $_SESSION["DescrizioneAssente"] = " ";
+    }
+
     header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/CreaAcquisto/CreaAcquisto.php");
+    die("redirect riga 53");
+  }
+
+  if($_POST['descrizione'] != "") {
+    //Ho inserito la descrizione , ok
+
+  } else {//Non ho inserito la descrizione , non ok
+    $_SESSION["DescrizioneAssente"] = " ";
+    header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/CreaAcquisto/CreaAcquisto.php");
+    die("redirect riga 62");
   }
 
   if(isset($_POST['tipoF'])) {
@@ -68,13 +89,6 @@
     }
   }else {//Non ho inserito il formato , non ok
   header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/CreaAcquisto/CreaAcquisto.php");
-  }
-
-  if(isset($_POST['descrizione'])) {
-    //Ho inserito la descrizione , ok
-
-  } else {//Non ho inserito la descrizione , non ok
-    header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/CreaAcquisto/CreaAcquisto.php");
   }
 
   if(isset($_POST['quantita'])) {
@@ -108,7 +122,7 @@
     } else {
       $co->rollBack();
       $co->close();
-      die("NO BUONO");
+      header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
     }
 
     if($_POST['f&r'])
@@ -119,7 +133,7 @@
     $descrizione = $_POST["descrizione"];
     $sql = "INSERT INTO stampa(dataStampa,oraStampa,codiceFiscaleOperatore,dataRitiro,oraRitiro, tipoFormato,descrizione,fronteRetro,quantità)
       value (\"$dataAttuale\", \"$oraAttuale\", \"$codFiscOperatore\", \"$dataAttuale\", \"$oraAttuale\" ,\"$tipoF\",\"$descrizione\", \"$f_r\",$quant)";
-      die("proa");
+
     $result = $co->query($sql);
 
   //---------------------------------
@@ -136,7 +150,7 @@
     } else {
       $co->rollBack();
       $co->close();
-      die("NO BUONO");
+      header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
     }
 
     $sql = "INSERT INTO include(idAcquisto,idStampa) value($idAcquisto, $idStampa)";
@@ -149,5 +163,11 @@
       header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
   }
 
-  echo "OK";
+  $_SESSION["stato_acquisto"] = "FATTO";
+  header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/HomeOperatore/CreaAcquisto/CreaAcquisto.php");
+  /*
+
+
+
+  */
 ?>

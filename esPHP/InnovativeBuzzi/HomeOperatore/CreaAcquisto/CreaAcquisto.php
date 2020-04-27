@@ -291,7 +291,7 @@
           </p>
         </div>
 
-        <form  method="POST" action="controllaDatiInput.php" enctype="multipart/form-data" style="float: right;">
+        <form  method="POST" action="controllaDatiInput.php"  style="float: right;">
           <?php
               stampaUsername();
               echo "<br />";
@@ -302,38 +302,17 @@
               echo "<br />";
               stampaDescrizione();
               echo "<br />";
+              statoAcquisto();
           ?>
-          <button type="submit" name="save" onclick="myFunction()" style="border-radius: 6px; margin-left: 75px; text-align: center">Invia Prenotazione</button>
-
+          <button type="submit" name="save" style="border-radius: 6px; margin-left: 75px; text-align: center">Invia Prenotazione</button>
+<!--enctype="multipart/form-data"
+ onclick="myFunction()"
+-->
         </form>
         <br />
         <br />
      </div>
    </section>
-
-         <!---
-        				<b class="c">Reigstra Acquisto</b>
-                <form class="formInserimentoAcq" method="POST" action="controllaDatiInput.php">
-                    <a>Username</a>
-                    <input type="text" name="username" id="usr" placeholder="Username"></input>
-                    <br>
-                    <a>Tipo Formato</a>
-                    <input type="text" name="tipoF" placeholder="Tipo Formato"></input>
-                    <br>
-                    <a>Descrizione</a>
-                    <input type="text" name="descrizione" placeholder="Descrizione Stampa"></input>
-                    <br><br>
-                    <a>Quantità</a>
-                    <input type="number" min="1" max="100" name="quantita" id="quantita" placeholder="Quantità"></input>
-                    <br>
-                    <a>Fronte & Retro</a>
-                    <input type="checkbox" name="f&r" id="f&r" onclick="changeStateCK()"></input><a id="relazCK"></a>
-                    <br><br>
-                    <input type="submit" >Invia</input>
-                </form>-->
-
-
-
 
     <script>
       var count = 0;
@@ -385,20 +364,27 @@
 </html>
 
 <?php
+
 function stampaFormato(){
-  include "../connessioneBuzzi.php";
+  include "../connessione.php";
   $stampaFormato="";
 
   $stampaFormato.="<label for=\"formato\"><text class=\"title\">formato</text></label>";
       //faccio un query dal database  per prendere i formati di stampa disponibili
   if(isset($_SESSION["tipoBZ"])){
     if($_SESSION["tipoBZ"]=="Professore"){   //non devo estrarre il costo dal db in quanto i professori non pagano
+      try {
+        $co = connect();
+        $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+
         $sql="SELECT tipo from formato";
-        $records=$conn->query($sql);
+        $records=$co->query($sql);
         if ( $records == TRUE) {
             //echo "<br>Query eseguita!";
         } else {
-          die("Errore nella query: " . $conn->error);
+          $co->rollBack();
+          $co->close();
+          header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
         }
         if($records->num_rows ==0){
               //	echo "la query non ha prodotto risultato";
@@ -414,13 +400,28 @@ function stampaFormato(){
               }
               $stampaFormato.="</select>";
         }
+
+        $co->commit();
+        $co->close();
+      } catch (Exception $e) {
+          $co->rollBack();
+          $co->close();
+          header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
+      }
+
     }else{    //prendo anche il costo dal database
+      try {
+        $co = connect();
+        $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+
         $sql="SELECT tipo,costoStampa from formato";
-        $records=$conn->query($sql);
+        $records=$co->query($sql);
         if ($records == TRUE) {
             //echo "<br>Query eseguita!";
         }else{
-          die("Errore nella query: " . $conn->error);
+          $co->rollBack();
+          $co->close();
+          header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
         }
         if($records->num_rows ==0){
               //	echo "la query non ha prodotto risultato";
@@ -433,15 +434,27 @@ function stampaFormato(){
           while($tupla=$records->fetch_assoc()){
             $tipo=$tupla["tipo"];
             $costoStampa=$tupla["costoStampa"];
-            $stampaFormato.="<br /><option value=\"$tipo?$costoStampa\">$tipo $costoStampa euro</option>*";
+            $stampaFormato.="<br /><option value=\"$tipo\">$tipo $costoStampa euro</option>*";
           }
           $stampaFormato.="</select>
           </div>";
         }
-     }
+
+        $co->commit();
+        $co->close();
+      } catch (Exception $e) {
+          $co->rollBack();
+          $co->close();
+          header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
+      }
+
+    }
+
   }
+
    echo $stampaFormato;
 }
+
 function stampaFronteRetro(){
   $stampaFronteRetro="";
   $stampaFronteRetro="
@@ -454,6 +467,7 @@ function stampaFronteRetro(){
   ";
   echo $stampaFronteRetro;
 }
+
 function stampaNCopie(){
   $stampaNCopie="";
   $stampaNCopie="<br /><text class=\"title\"><br>N copie</text>
@@ -465,16 +479,17 @@ function stampaNCopie(){
   echo $stampaNCopie;
 
 }
+
 function stampaDescrizione(){
   if(isset($_SESSION["DescrizioneAssente"])){
       $stampaDescrizione="
       <text class=\"title\">descrizione</text>
       <div class=\"Input0\">
-        <input type=\"text\" id=\"input\" class=\"Input-text0\" name=\"descrizione\" placeholder=\"Descrizione\">
+        <input type=\"text\" id=\"input\" class=\"Input-text0\" name=\"descrizione\" value=\"\" placeholder=\"Descrizione\">
         <label for=\"input\" class=\"Input-label0\">Descrizione</label>
 
-      </div><br /><br />
-       <b style=\"color: red;\">!DESCRIZIONE OBBLIGATORIA!</b>
+      </div><br><br><br>
+       <b style=\"color: red; position: relative;\">!DESCRIZIONE OBBLIGATORIA!</b>
       ";
       $_SESSION["DescrizioneAssente"]=null;
   }else{
@@ -482,33 +497,51 @@ function stampaDescrizione(){
     $stampaDescrizione="
     <text class=\"title\">DESCRIZIONE</text>
     <div class=\"Input0\">
-      <input type=\"text\" id=\"input\" class=\"Input-text0\" name=\"descrizione\" placeholder=\"Descrizione\">
+      <input type=\"text\" id=\"input\" class=\"Input-text0\" name=\"descrizione\" value=\"\" placeholder=\"Descrizione\">
       <label for=\"input\" class=\"Input-label0\">Descrizione</label>
-    </div><br><br />
+    </div><br><br>
     ";
   }
   echo $stampaDescrizione;
 }
+
 function stampaUsername(){
   if(isset($_SESSION["UsernameAssente"])){
       $stampaUsername="
       <text class=\"title\">username</text>
       <div class=\"Input0\">
-        <input type=\"text\" id=\"input\" class=\"Input-text0\" name=\"username\" placeholder=\"Username\">
-      </div><br /><br />
-       <b style=\"color: red;\">!USERNAME OBBLIGATORIA!</b>
-      ";
+        <input type=\"text\" id=\"input\" class=\"Input-text0\" name=\"username\" value=\"\" placeholder=\"Username\">
+      </div><br><br><br>";
+      if($_SESSION["UsernameAssente"] == "sbagliato") {
+        $stampaUsername.="
+         <b style=\"color: red; position: relative;\">!USERNAME INESISTENTE!</b>
+         ";
+      }else {
+        $stampaUsername.="
+         <b style=\"color: red; position: relative;\">!USERNAME OBBLIGATORIO!</b>
+         ";
+      }
       $_SESSION["UsernameAssente"]=null;
   }else{
 
     $stampaUsername="
     <text class=\"title\">Username</text>
     <div class=\"Input0\">
-      <input type=\"text\" id=\"input\" class=\"Input-text0\" name=\"Username\" placeholder=\"Username\">
+      <input type=\"text\" id=\"input\" class=\"Input-text0\" name=\"username\" value=\"\" placeholder=\"Username\">
       <label for=\"input\" class=\"Input-label0\">Username</label>
-    </div><br><br />
+    </div><br><br>
     ";
   }
   echo $stampaUsername;
 }
+
+function statoAcquisto() {
+  if(isset($_SESSION["stato_acquisto"])) {
+    $_SESSION["stato_acquisto"] = null;
+    echo "<b style=\"color: #249d8b; position: relative; text-align: center;\">Acquisto andato a buon fine<br><br>";
+  }else {
+    echo "";
+  }
+}
+
  ?>
