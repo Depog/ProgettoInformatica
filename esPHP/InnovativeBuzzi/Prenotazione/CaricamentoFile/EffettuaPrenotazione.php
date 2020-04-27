@@ -204,6 +204,10 @@
      <a href="" class="nav-item is-active" active-color="red">Crea Preotaizone</a>
      <a href="../../HomeUtente/contattaci.php" class="nav-item"  active-color="red">Contatti</a>
      <a href="EffettuaPrenotazione.php?logout=true" class="nav-item" active-color="#ee6c4d">Logout</a>
+     <?php
+        $usr=$_SESSION["usernameBZ"];
+        echo "<p style=\"border-style:ridge; size-text:10px; margin-top: 18px; margin-left: 24%; margin-right: auto;\"> Username: $usr </p>";
+      ?>
      <span class="nav-indicator"></span>
    </nav>
   </header>
