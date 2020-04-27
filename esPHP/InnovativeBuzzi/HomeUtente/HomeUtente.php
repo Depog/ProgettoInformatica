@@ -142,9 +142,13 @@
   <header>
     <nav class="nav">
       <a href="" class="nav-item is-active" active-color="orange">Home</a>
-      <a href="contattaci.php" class="nav-item" active-color="green">Contattaci</a>
       <a href="../Prenotazione/CaricamentoFile/EffettuaPrenotazione.php" class="nav-item" active-color="red">Effettua Prenotazione</a>
+      <a href="contattaci.php" class="nav-item" active-color="green">Contattaci</a>
       <a href="HomeUtente.php?logout=true" class="nav-item" active-color="blue">Logout</a>
+      <?php
+       $usr=$_SESSION["usernameBZ"];
+       echo "<p style=\"border-style:ridge; margin-top: 18px; margin-left: 24%; margin-right: auto;\"> Username: $usr </p>";
+      ?>
       <span class="nav-indicator"></span>
     </nav>
   </header>

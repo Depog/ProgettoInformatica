@@ -196,8 +196,8 @@
     <header>
       <nav class="nav">
         <a href="HomeUtente.php" class="nav-item" active-color="orange">Home</a>
-        <a href="" class="nav-item is-active" active-color="green">Contattaci</a>
         <a href="../Prenotazione/CaricamentoFile/EffettuaPrenotazione.php" class="nav-item" active-color="red">Effettua Prenotazione</a>
+        <a href="" class="nav-item is-active" active-color="green">Contattaci</a>
         <a href="HomeUtente.php?logout=true" class="nav-item" active-color="blue">Logout</a>
         <span class="nav-indicator"></span>
       </nav>
