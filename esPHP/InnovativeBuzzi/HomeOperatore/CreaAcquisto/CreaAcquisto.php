@@ -538,7 +538,7 @@ function stampaUsername(){
 function statoAcquisto() {
   if(isset($_SESSION["stato_acquisto"])) {
     $_SESSION["stato_acquisto"] = null;
-    echo "<b style=\"color: #249d8b; position: relative; text-align: center;\">Acquisto andato a buon fine<br><br>";
+    echo "<b style=\"color: green; position: relative; text-align: center;\">ACQUISTO ANDATO A BUON FINE<br><br>";
   }else {
     echo "";
   }
