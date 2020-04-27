@@ -43,7 +43,8 @@ $(document).ready(function(){
       <link href="../HomeUtente/css/main.css" rel="stylesheet" type="text/css"  >
     <!--===============================================================================================-->
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+   <!--Style per la search bar-->
+   <link rel="stylesheet" type="text/css" href="StyleForSearchBar/searchBarCSS.css">
    <style>
 
      b.c{
@@ -205,12 +206,14 @@ $(document).ready(function(){
          </header>
 
          <div class="limiter">
+           <label class="search" for="inpt_search">
+             <input id="myInput" type="text" ></input>
+           </label>
+         </div>
         		<div class="container-table100">
         			<div class="wrap-table100OperatoreR">
         				<b class="c">Coda Ritiri</b>
         				<div class="table100 ver3 m-b-110">
-                  <input id="myInput" style="position:fixed; top:21%;" type="text" placeholder="Search..">
-
                    <?php
                    //Creazione Coda Delle Stampe in modo dinamico
                    include 'LogicaCodaRitiri/codaRitiriFotocopie.php';
@@ -221,7 +224,6 @@ $(document).ready(function(){
         				</div>
         			</div>
         		</div>
-        	</div>
        </p>
 
 <!--===============================================================================================-->
@@ -234,6 +236,8 @@ $(document).ready(function(){
 <script src="../HomeUtente/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
 <script src="../HomeUtente/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<!--SCRIPT PER LA SEARCH BAR-->
+<script src="StyleForSearchBar/searchBarJS.js" charset="utf-8"></script>
 <script>
 		$('.js-pscroll').each(function(){
   		var ps = new PerfectScrollbar(this);
