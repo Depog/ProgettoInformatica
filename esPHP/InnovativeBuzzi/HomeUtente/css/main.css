@@ -59,12 +59,6 @@ p {
   color: white;
 }
 
-.pren{
-  margin-top: 450px;
-  width: 100%;
-  min-height: 450px;
-  max-height: 500px;
-}
 
 .registraAcquisto{
   margin-top: 200px;
@@ -128,22 +122,6 @@ p {
   max-height: 100%;
 }
 
-.pren-img{
-
- max-width: 45%;
- max-height: 450px;
- margin-left: auto;
- margin-right: 50%;
-}
-.pren-text{
-  text-align: justify;
-  text-justify: inter-word;
-  font-size: 30px;
-  color: white;
-  margin-left: 50%;
-  margin-right: auto;
-
-}
 
 .visualizzaCodaPrenotazioni-text{
   text-align: justify;
@@ -256,8 +234,8 @@ iframe {
 
 
 .container-table100 {
+  min-width: 100%;
   width: 100%;
-  min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -265,8 +243,8 @@ iframe {
   display: flex;
   margin-top: 200px;
   flex-wrap: wrap;
-  padding: 33px 30px;
-  margin-right: 10%;
+  padding: 33px 5%;
+  height: 40%;
 }
 
 .wrap-table100 {

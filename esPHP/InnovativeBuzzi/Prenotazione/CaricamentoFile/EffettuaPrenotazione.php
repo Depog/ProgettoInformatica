@@ -201,10 +201,8 @@
   <header>
    <nav class="nav">
      <a href="../../HomeUtente/HomeUtente.php" class="nav-item" active-color="orange">Home</a>
-     <a href="" class="nav-item is-active" active-color="red">Effettua Preotaizone</a>
-
+     <a href="" class="nav-item is-active" active-color="red">Effettua Preotazione</a>
      <a href="../../HomeUtente/contattaci.php" class="nav-item"  active-color="red">Contatti</a>
-
      <a href="EffettuaPrenotazione.php?logout=true" class="nav-item" active-color="#ee6c4d">Logout</a>
      <?php
         $usr=$_SESSION["usernameBZ"];
@@ -217,7 +215,7 @@
 	<section id="content" class="content" style="width: 100%; height: auto;">
 		<div class="container" style="width: 100%; margin-top: 150px;padding: 0;">
       <div class="info-titolo">
-        <p style="color: #249d8b;  text-shadow: 2px 2px 5px black; text-align: center;">prenotazione</p>
+        <p style="color: #249d8b;  text-shadow: 2px 2px 5px black; text-align: center;">effettua prenotazione</p>
         <p style="color: white; font-size: 20px; text-transform: none;">
         Questo alla destra è il documento che dovrai compilare per prenotare a distanza una stampa.
         Una volta fatto, ti basterà cliccare sul tasto "Invia Prenotazione" situato in basso e il gioco sarà fatto!
