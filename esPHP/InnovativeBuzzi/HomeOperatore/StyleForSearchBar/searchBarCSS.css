@@ -32,7 +32,7 @@
 .search.active,
 .search:hover {
   color:#fff;
-  width: 170px;
+  width: 200px;
   margin-right: 0px;
 }
 
@@ -53,6 +53,6 @@
 }
 .limiter{
   position: relative;
-  top: 19%;
+  top: 20%;
   left: -39.6%;
 }
