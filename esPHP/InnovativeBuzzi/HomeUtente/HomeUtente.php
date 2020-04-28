@@ -69,6 +69,7 @@
             justify-content: center;
     padding: 0 0;
     background-color: #2f3640;
+    overflow: scroll;
   }
 
   .nav {
@@ -129,12 +130,31 @@
     z-index: 1;
     border-radius: 8px 8px 0 0;
   }
-
   @media (max-width: 580px) {
     .nav {
       overflow: auto;
     }
   }
+
+  .pren{
+    width: 100%;
+    margin-top: 400px;
+  }
+  .pren-img{
+    float: left;
+    width: 45%;
+    max-width: 45%;
+    height: 100%;
+
+  }
+  .pren-text{
+    float: right;
+    color: white;
+    max-width: 50%;
+    width: 50%;
+    height: 100%;
+  }
+
 </style>
 </head>
 
@@ -153,144 +173,126 @@
     </nav>
   </header>
 
-  <?php
+  <div class="container-table100">
+    <div class="info">
+      <b class="info-title">
+      LISTA PRENOTAZIONI
+      </b>
+      <div class="info-text">
+      Qui a fianco troverai la cronologia completa delle tue prenotazioni.
+      </div>
+    </div>
 
-  $homeUtente="<div class=\"container-table100\">
-                  <div class=\"info\">
-                    <b class=\"info-title\">
+		<div class="wrap-table100">
+			<div class="table100 ver3 m-b-110">
+				<div class="table100-head">
+					<table>
+						<thead>
+							<tr class="row100 head">
+								<th class="cell100 column1">Descrizione</th>
+								<th class="cell100 column2">Data-Prenotazione</th>
+								<th class="cell100 column3">Data-Ritiro</th>
+								<th class="cell100 column4">Ora-Ritiro</th>
+                <th class="cell100 column4">Quantità</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div class="table100-body js-pscroll">
+					<table>
+						<tbody>
+              <?php
+                include "connessione.php";
+                $username=$_SESSION["usernameBZ"];
+                $descrizione=array();
+                $dataPrenotazione=array();
+                $dataRitiro=array();
+                $oraRitiro=array();
+                $quantità=array();
 
-                    PRENOTAZIONI
-                    </b>
-                    <div class=\"info-text\">
-                    Qui a fianco troverai la cronologia delle ultime prenotazioni
-                    </div>
-                  </div>
+                try {
+                  $co = connect();
+                  $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+                  $sql = "SELECT stampa.descrizione as descrizione, prenotazione.dataPrenotazione as dataPrenotazione, stampa.dataRitiro as dataRitiro, stampa.oraRitiro as oraRitiro, stampa.quantità as quantità
+                          from persona
+                          join prenotazione on persona.codiceFiscale=prenotazione.codiceFiscale
+                           join stampa on prenotazione.idStampa=stampa.idStampa
+                          where persona.username=\"$username\"";
 
-            			<div class=\"wrap-table100\">
-                				<div class=\"table100 ver3 m-b-110\">
-                					<div class=\"table100-head\">
-                						<table>
-                							<thead>
-                								<tr class=\"row100 head\">
-                									<th class=\"cell100 column1\">Descrizione</th>
-                									<th class=\"cell100 column2\">Data-Prenotazione</th>
-                									<th class=\"cell100 column3\">Data-Ritiro</th>
-                									<th class=\"cell100 column4\">Ora-Ritiro</th>
-                                  <th class=\"cell100 column4\">Quantità</th>
-                								</tr>
-                							</thead>
-                						</table>
-                					</div>
-                					<div class=\"table100-body js-pscroll\">
-                						<table>
-                							<tbody>";
+                           $records=$co->query($sql);
+                           if ( $records == TRUE) {
+                               //echo "<br>Query eseguita!";
+                           } else {
+                             die("Errore nella query: " . $co->error);
+                           }
+                           if($records->num_rows ==0){ //se l'utente non ha ancora effettuato acquisti
+                                 $dimArray=1;
+                                 $descrizione[]="Nessun dato presente";
+                                 $dataPrenotazione[]="Nessun dato presente";
+                                 $dataRitiro[]="Nessun dato presente";
+                                 $oraRitiro[]="Nessun dato presente";
+                                 $quantità[]="Nessun dato presente";
+                           }else{
 
-                              include "connessione.php";
-                              $username=$_SESSION["usernameBZ"];
-                              $descrizione=array();
-                              $dataPrenotazione=array();
-                              $dataRitiro=array();
-                              $oraRitiro=array();
-                              $quantità=array();
+                             while($tupla=$records->fetch_assoc()){
+                               $descrizione[]=$tupla["descrizione"];
+                               $dataPrenotazione[]=$tupla["dataPrenotazione"];
+                               $dataRitiro[]=$tupla["dataRitiro"];
+                               $oraRitiro[]=$tupla["oraRitiro"];
+                               $quantità[]=$tupla["quantità"];
+                             }
 
-                              try {
-                                $co = connect();
-                                $co->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
-                                $sql = "SELECT stampa.descrizione as descrizione, prenotazione.dataPrenotazione as dataPrenotazione, stampa.dataRitiro as dataRitiro, stampa.oraRitiro as oraRitiro, stampa.quantità as quantità
-                                        from persona
-                                        join prenotazione on persona.codiceFiscale=prenotazione.codiceFiscale
-                                         join stampa on prenotazione.idStampa=stampa.idStampa
-                                        where persona.username=\"$username\"";
+                             $dimArray=sizeof($descrizione);
 
-                                         $records=$co->query($sql);
-                                         if ( $records == TRUE) {
-                                             //echo "<br>Query eseguita!";
-                                         } else {
-                                           die("Errore nella query: " . $co->error);
-                                         }
-                                         if($records->num_rows ==0){ //se l'utente non ha ancora effettuato acquisti
-                                               $dimArray=1;
-                                               $descrizione[]="Nessun dato presente";
-                                               $dataPrenotazione[]="Nessun dato presente";
-                                               $dataRitiro[]="Nessun dato presente";
-                                               $oraRitiro[]="Nessun dato presente";
-                                               $quantità[]="Nessun dato presente";
-                                         }else{
-
-                                           while($tupla=$records->fetch_assoc()){
-                                             $descrizione[]=$tupla["descrizione"];
-                                             $dataPrenotazione[]=$tupla["dataPrenotazione"];
-                                             $dataRitiro[]=$tupla["dataRitiro"];
-                                             $oraRitiro[]=$tupla["oraRitiro"];
-                                             $quantità[]=$tupla["quantità"];
-                                           }
-
-                                           $dimArray=sizeof($descrizione);
-
-                                           if($dimArray<7){
-                                             $dim=7-$dimArray;
-                                             for($i=0; $i<$dim; $i++){
-                                               array_push($descrizione, "");
-                                               array_push($dataPrenotazione, "");
-                                               array_push($dataRitiro, "");
-                                               array_push($oraRitiro, "");
-                                               array_push($quantità, "");
-                                             }
-                                           }
-                                         }
-
-                                         $co->commit();
-                                         $co->close();
-                               } catch (Exception $e) {
-                                   $co->rollBack();
-                                   $co->close();
-                                   header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
+                             if($dimArray<7){
+                               $dim=7-$dimArray;
+                               for($i=0; $i<$dim; $i++){
+                                 array_push($descrizione, "");
+                                 array_push($dataPrenotazione, "");
+                                 array_push($dataRitiro, "");
+                                 array_push($oraRitiro, "");
+                                 array_push($quantità, "");
                                }
-                              /*STAMPA*/
-                              for($i=0; $i<$dimArray; $i++){
-                                $homeUtente.="
-                  								<tr class=\"row100 body\">
-                  									<td class=\"cell100 column1\">$descrizione[$i]</td>
-                  									<td class=\"cell100 column2\">$dataPrenotazione[$i]</td>
-                                    <td class=\"cell100 column2\">$dataRitiro[$i]</td>
-                  									<td class=\"cell100 column3\">$oraRitiro[$i]</td>
-                  									<td class=\"cell100 column4\">$quantità[$i]</td>
-                  								</tr>
-                                  ";
-                              }
-                						$homeUtente.="
-                							</tbody>
-                						</table>
-                					</div>
-              				</div>
-                    </div>
-          <!----------------------PRENOTAZIONE----------------------------------->
+                             }
+                           }
 
-            <div class=\"pren\">
-              <div class=\"pren-img\">
-
-              </div>
-              <div class=\"pren-text\">
-                <b>PRENOTAZIONE</b><br />
-                Qui accanto troverai il modulo da compilare per inviare il tuo file da stampare! Clicca sull'immagine alla sinistra oppure il bottone in fondo per andare nella pagina<br /><br />
-                <a href=\"http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Prenotazione/CaricamentoFile/EffettuaPrenotazione.php\" class=\"btn btn-primary\">Prenota ora</a>
-              </div>
-
-           </div>
-
-
+                           $co->commit();
+                           $co->close();
+                 } catch (Exception $e) {
+                     $co->rollBack();
+                     $co->close();
+                     header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/Errore/Errore.php?msg=Siamo spiacente si è verificato un imprevisto");
+                 }
+                $homeUtente="";
+                for($i=0; $i<$dimArray; $i++){
+                  $homeUtente.="
+    								<tr class=\"row100 body\">
+    									<td class=\"cell100 column1\">$descrizione[$i]</td>
+    									<td class=\"cell100 column2\">$dataPrenotazione[$i]</td>
+                      <td class=\"cell100 column2\">$dataRitiro[$i]</td>
+    									<td class=\"cell100 column3\">$oraRitiro[$i]</td>
+    									<td class=\"cell100 column4\">$quantità[$i]</td>
+    								</tr>
+                    ";
+                }
+                echo $homeUtente;
+              ?>
+            </tbody>
+  				</table>
   			</div>
-       ";
-
-       echo $homeUtente;
-?>
-
-
-
-
-
-
-
+		 </div>
+    </div>
+    <div class="pren">
+      <div class="pren-img">
+        <a href="../Prenotazione/CaricamentoFile/EffettuaPrenotazione.php"><img style="float: right" src="images/foto.png" alt="moduloPrenotazione" /></a>
+      </div>
+      <div class="pren-text">
+        <b class="info-title" style="color: red">EFFETTUA PRENOTAZIONE</b>
+        <p class="info-text">Questo alla sinistra è il modulo per la prenotazione. Clicca sulla foto o il bottone qua in basso</p>
+        <a href="../Prenotazione/CaricamentoFile/EffettuaPrenotazione.php" class="btn btn-primary">Vai alla pagina</a>
+      </div>
+    </div>
+  </div>
 
 <!--===============================================================================================-->
 	<script src="vendorjquery/jquery-3.2.1.min.js"></script>
