@@ -20,11 +20,11 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
       $errore="si";
       //header("location:EffettuaPrenotazione.php");
     }
-    if (!in_array($extension, ['zip', 'pdf', 'docx','jpg','jpeg','PNG', 'txt', 'html'])) {
+    if (!in_array($extension, ['pdf', 'docx','jpg','jpeg','PNG', 'txt', 'html','doc'])) {
       if($errore=="si"){
 
       }else{
-        echo "You file extension must be .zip, .pdf, .docx, .jpg, .jpeg, .png, .txt, .html";
+        echo "You file extension must be  .pdf, .docx, .jpg, .jpeg, .png, .txt, .html, .doc";
         $_SESSION["FormatoErrato"]="true";
           $errore="si";
       }

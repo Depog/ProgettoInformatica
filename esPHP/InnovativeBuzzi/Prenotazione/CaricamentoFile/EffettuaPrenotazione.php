@@ -370,6 +370,7 @@ function stampaOraRitiro(){
            <option value=\"11:00\">11:00 </option>
            <option value=\"12:00\">12:00 </option>
            <option value=\"13:00\">13:00</option>
+           <option value=\"13:30\">13:30</option>
         </select>
       <b style=\"color:red;\">  !ORA OBBLIGATORIA!</b>
     </div>
@@ -385,6 +386,8 @@ function stampaOraRitiro(){
            <option value=\"11:00\">11:00 </option>
            <option value=\"12:00\">12:00 </option>
            <option value=\"13:00\">13:00</option>
+           <option value=\"13:30\">13:30</option>
+
         </select>
     </div>
     <br />";
@@ -405,7 +408,7 @@ function stampaCaricaIlFile(){
   }else if(isset($_SESSION["FormatoErrato"])){
     //formato errato
     $stampaCaricaIlFile="<br /><text class=\"title\">Carica il file</text>
-    <input type=\"file\" name=\"myfile\" style=\"color: #FFF\"> </input>  <b style=\"color:red;\"> !FORMATO NON VALIDO .zip, .pdf, .docx, .jpg, .jpeg, .png, .txt!</b><br />";
+    <input type=\"file\" name=\"myfile\" style=\"color: #FFF\"> </input>  <b style=\"color:red;\"> !FORMATO NON VALIDO! FORMATI VALIDI [ .pdf, .docx, .jpg, .jpeg, .png, .txt, .html, .doc]</b><br />";
     $_SESSION["FormatoErrato"]=null;
   }else if(isset($_SESSION["FileTroppoGrande"])){
     //file troppo grande
