@@ -200,7 +200,7 @@
       max-height: 50%;
     }
     .info-cont{
-      padding: 10% 20px;
+      padding: 8% 20px;
       text-align: center;
 
       float: right;
@@ -239,11 +239,12 @@
       <div class="info-ora">
         <b>ORARIO</b>
         <p>Lunedì - Sabato </p>
-        <p>8:00 - 13:00</p>
+        <p>Per i professori 7:45 - 13:30</p>
+        <p>Per gli studenti 8:00 - 13:30</p>
       </div>
       <div class="info-cont">
         <b>CONTATTI</b>
-        <p>Numero di telefono: 320302309</p>
+        <p>Numero di telefono: 0574/58981</p>
       </div>
     </div>
 
