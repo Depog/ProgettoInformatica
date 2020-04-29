@@ -81,46 +81,7 @@ p {
   height: 40%;
   padding: 10px;
 }
-.prenotazioni-text{
-  float: right;
-  text-align: justify;
-  font-size: 25px;
-  color: white;
-  width: 45%;
-  max-width: 50%;
-  max-height: 100%;
-}
 
-.ritiri{
-  margin-top: 10%;
-  width: 100%;
-  height: 40%;
-  padding: 10px;
-}
-.ritiri-text{
-  text-align: justify;
-  font-size: 25px;
-  color: white;
-  width: 45%;
-  max-width: 50%;
-  max-height: 100%;
-}
-
-.acquisti{
-  margin-top: 10%;
-  width: 100%;
-  height: 40%;
-  padding: 10px;
-}
-.acquisti-text{
-  float: right;
-  text-align: justify;
-  font-size: 25px;
-  color: white;
-  width: 45%;
-  max-width: 50%;
-  max-height: 100%;
-}
 
 
 .visualizzaCodaPrenotazioni-text{
