@@ -20,7 +20,7 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
       $errore="si";
       //header("location:EffettuaPrenotazione.php");
     }
-    if (!in_array($extension, ['pdf', 'docx','jpg','jpeg','png', 'txt', 'html','doc','PNG'])) {
+    if (!in_array($extension, ['pdf', 'docx','jpg','jpeg','PNG', 'txt', 'html','doc'])) {
       if($errore=="si"){
 
       }else{

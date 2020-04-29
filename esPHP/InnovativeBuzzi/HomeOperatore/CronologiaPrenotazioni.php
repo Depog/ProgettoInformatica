@@ -46,27 +46,6 @@ $(document).ready(function(){
    <!--Style per la search bar-->
    <link rel="stylesheet" type="text/css" href="StyleForSearchBar/searchBarCSS.css">
    <style>
-
-     b.c{
-       position: fixed;
-       left : 25%;
-       top: 15%;
-       font-size: 40px;
-       color: #fff;
-     }
-
-     .page {
-       width:100%;
-       height: 100%;
-       margin: 0px 0px 0px 0px;
-       padding: 0px 0px 0px 0px;
-       border: 0px 0px 0px 0px;
-       background: url(../Login/images/wallpaper.jpg) no-repeat fixed;
-       background-size: cover;
-       position: fixed;
-       font-family: Poppins-Regular, sans-serif;
-     }
-
      .container-table100 {
        width: 100%;
        min-height: 100vh;
@@ -77,9 +56,10 @@ $(document).ready(function(){
        display: flex;
        margin-top: 0px;
        flex-wrap: wrap;
-       padding: 0px 0px;
-       margin-right: 10%;
-       position: fixed;
+       padding-left: 4%;
+       padding-right: 4%;
+       padding-top: 0;
+       text-align: center;
        top: 25%;
        left: 5%;
      }
@@ -106,17 +86,11 @@ $(document).ready(function(){
      }
 
      body {
-
-       display: -webkit-box;
-       display: flex;
-       height: 100vh;
-       width: 100%;
-       -webkit-box-pack: center;
-               justify-content: center;
-       padding: 0 0;
-       background-color: #2f3640;
+       background: url(img/wallpaper.jpg) no-repeat;
+       background-size: cover;
+       height: 100%;
+       width: auto;
      }
-
 
      .nav {
        display: -webkit-inline-box;
@@ -182,63 +156,68 @@ $(document).ready(function(){
          overflow: auto;
        }
      }
-
+     .searchBox{
+       width: auto;
+       height: auto;
+       padding-left: 4%;
+     }
+     .titolo{
+       width: 100%;
+       height: auto;
+       text-align: center;
+       color: red;
+       font-size: 40px;
+       padding-top: 100px;
+     }
    </style>
  </head>
 
+
  <body>
-       <p class="page">
-         <header>
-           <nav class="nav">
-             <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
-             <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Registra Acquisto</a>
-             <a href="VisualizzaPrenotazioni.php" class="nav-item  is-active" active-color="red">Prenotazioni</a><!--sotto pagina di Prenotazioni-->
-             <a href="ritiriFotocopie.php" class="nav-item" active-color="blue">Ritiri</a>
-             <a href="CronologiaAcquisti.php" class="nav-item " active-color="green">Storico Acquisti</a>
-             <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
-             <?php
-              $usr=$_SESSION["usernameBZ"];
-              $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 30%;\"> Username: $usr </p>";
-              echo $msgIdUtente;
-             ?>
-             <span class="nav-indicator"></span>
-           </nav>
-         </header>
+   <header>
+     <nav class="nav">
+       <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
+       <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Registra Acquisto</a>
+       <a href="VisualizzaPrenotazioni.php" class="nav-item  is-active" active-color="red">Prenotazioni</a><!--sotto pagina di Prenotazioni-->
+       <a href="ritiriFotocopie.php" class="nav-item" active-color="blue">Ritiri</a>
+       <a href="CronologiaAcquisti.php" class="nav-item " active-color="green">Storico Acquisti</a>
+       <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
+       <?php
+        $usr=$_SESSION["usernameBZ"];
+        $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 30%;\"> Username: $usr </p>";
+        echo $msgIdUtente;
+       ?>
+       <span class="nav-indicator"></span>
+     </nav>
+   </header>
 
-         <div class="limiter">
-           <label class="search" for="inpt_search">
-             <input id="myInput" type="text" ></input>
-           </label>
-         </div>
-        		<div class="container-table100" style="width: 90%;">
-        			<div class="wrap-table100OperatorePE" style="width: 90%;">
-        				<b class="c">STORICO COMPLETO DELLE PRENOTAZIONI</b>
-        				<div class="table100 ver3 m-b-110">
-                   <?php
-                   //Creazione Coda Delle Stampe in modo dinamico
-                   include 'LogicaCronologiaPrenotazioni/prenotazioniEffettuate.php';
-                     $app = caricaPrenotazioniEffettuate($ip,$porta);
-                    echo $app;
+   <div class="titolo"><b>STORICO COMPLETO DELLE PRENOTAZIONI</b></div>
 
-                   ?>
-        				</div>
-        			</div>
-        		</div>
-        	<br>
+   <div class="searchBox">
+    <label class="search" for="inpt_search">
+      <input id="myInput" type="text" ></input>
+    </label>
+   </div>
+  	<div class="container-table100" style="width: 90%;">
+  		<div class="wrap-table100OperatorePE" style="width: 100%;">
+  			<div class="table100 ver3 m-b-110">
+           <?php
+             include 'LogicaCronologiaPrenotazioni/prenotazioniEffettuate.php';
+             $app = caricaPrenotazioniEffettuate($ip,$porta);
+             echo $app;
+           ?>
+  		  </div>
+  		</div>
+    </div>
 
 
 
-       </p>
 
-<!--===============================================================================================-->
 <script src="../HomeUtente/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="../HomeUtente/js/navbar.js"></script>
-<!--===============================================================================================-->
 <script src="../HomeUtente/vendor/bootstrap/js/popper.js"></script>
 <script src="../HomeUtente/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
 <script src="../HomeUtente/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
 <script src="../HomeUtente/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <!--SCRIPT PER LA SEARCH BAR-->
 <script src="StyleForSearchBar/searchBarJS.js" charset="utf-8"></script>
@@ -277,5 +256,5 @@ function myFunction() {
 <script src="../HomeUtente/js/main.js"></script>
 
 
- </body>
- </html>
+</body>
+</html>
