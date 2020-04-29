@@ -106,17 +106,11 @@ $(document).ready(function(){
      }
 
      body {
-
-       display: -webkit-box;
-       display: flex;
-       height: 100vh;
-       width: 100%;
-       -webkit-box-pack: center;
-               justify-content: center;
-       padding: 0 0;
-       background-color: #2f3640;
+       background: url(img/wallpaper.jpg) no-repeat;
+       background-size: cover;
+       height: 100%;
+       width: auto;
      }
-
 
      .nav {
        display: -webkit-inline-box;
@@ -128,6 +122,7 @@ $(document).ready(function(){
        margin-left: 500px;
        box-shadow: 0 10px 40px rgba(159, 162, 177, 0.8);
        float: right;
+       max-height: 100px;
      }
 
      .nav-item {
@@ -182,49 +177,64 @@ $(document).ready(function(){
          overflow: auto;
        }
      }
+     .infoRit{
+       padding-left: 50px;
+       width: 40%;
+       max-width: 40%;
+       height: 100%;
+       color: white;
+       float: right;
+     }
+     .infoRit-text{
+       font-size: 15px;
+
+     }
    </style>
  </head>
 
  <body>
-       <p class="page">
-         <header>
-           <nav class="nav">
-             <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
+   <header>
+     <nav class="nav">
+       <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
+       <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Registra Acquisto</a>
+       <a href="VisualizzaPrenotazioni.php" class="nav-item"  active-color="red">Prenotazioni</a>
+       <a href="" class="nav-item is-active" active-color="brown">Ritiri</a>
+       <a href="CronologiaAcquisti.php" class="nav-item" active-color="green">Storico Acquisti</a>
+       <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
+       <?php
+        $usr=$_SESSION["usernameBZ"];
+        $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 30%;\"> Username: $usr </p>";
+        echo $msgIdUtente;
+       ?>
+       <span class="nav-indicator"></span>
+     </nav>
+   </header>
 
-             <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Reigstra Acquisto</a>
-             <a href="VisualizzaPrenotazioni.php" class="nav-item"  active-color="red">Prenotazioni</a>
-             <a href="" class="nav-item is-active" active-color="brown">Ritiri</a>
-             <a href="CronologiaAcquisti.php" class="nav-item" active-color="green">Storico Acquisti</a>
-             <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
+   <div class="limiter">
+     <label class="search" for="inpt_search">
+       <input id="myInput" type="text" ></input>
+     </label>
+   </div>
+  		<div class="container-table100" >
+  			<div class="wrap-table100OperatoreR" style="width: 50%; max-width: 50%">
+  				<div class="table100 ver3 m-b-110">
              <?php
-              $usr=$_SESSION["usernameBZ"];
-              $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 30%;\"> Username: $usr </p>";
-              echo $msgIdUtente;
+             //Creazione Coda Delle Stampe in modo dinamico
+             include 'LogicaCodaRitiri/codaRitiriFotocopie.php';
+               $app = caricaCodaRitiri($ip,$porta);
+              echo $app;
+
              ?>
-             <span class="nav-indicator"></span>
-           </nav>
-         </header>
+  				</div>
+  			</div>
 
-         <div class="limiter">
-           <label class="search" for="inpt_search">
-             <input id="myInput" type="text" ></input>
-           </label>
-         </div>
-        		<div class="container-table100">
-        			<div class="wrap-table100OperatoreR">
-        				<b class="c">Coda Ritiri</b>
-        				<div class="table100 ver3 m-b-110">
-                   <?php
-                   //Creazione Coda Delle Stampe in modo dinamico
-                   include 'LogicaCodaRitiri/codaRitiriFotocopie.php';
-                     $app = caricaCodaRitiri($ip,$porta);
-                    echo $app;
-
-                   ?>
-        				</div>
-        			</div>
-        		</div>
-       </p>
+        <div class="infoRit">
+          <div class="infoRit-text">
+            <b style="color: brown;  font-size: 35px; float: center">RITIRI</b>
+            <p style="text-align: justify">Questa alla sinistra è la tabella che racchiude la l</p>
+          </div>
+        </div>
+  		</div>
 
 <!--===============================================================================================-->
 <script src="../HomeUtente/vendor/jquery/jquery-3.2.1.min.js"></script>
