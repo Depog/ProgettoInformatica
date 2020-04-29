@@ -55,7 +55,8 @@
      font-family: Poppins-Regular, sans-serif;
    }
 
-   .container-table100 {
+   .container-table1003 {
+     margin-top: 10%;
      width: 100%;
      min-height: 100vh;
      display: -webkit-box;
@@ -63,13 +64,7 @@
      display: -moz-box;
      display: -ms-flexbox;
      display: flex;
-     margin-top: 0px;
      flex-wrap: wrap;
-     padding: 0px 0px;
-     margin-right: 10%;
-     position: fixed;
-     top: 25%;
-     left: 5%;
    }
 /*////////////////////////////////////////////////////////////////////////////// NAV BAR STYLE/////////////////////////////////////////////////////////////////*/
    @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
@@ -81,7 +76,6 @@
 
    header{
      z-index: 9999;
-     position: fixed;
      height: auto;
      width: 100%;
      background: #FFFF;
@@ -94,15 +88,11 @@
    }
 
    body {
-
-     display: -webkit-box;
-     display: flex;
-     height: 100vh;
-     width: 100%;
-     -webkit-box-pack: center;
-             justify-content: center;
-     padding: 0 0;
-     background-color: #2f3640;
+     background: url(img/wallpaper.jpg) no-repeat;
+     background-size: cover;
+     height: auto;
+     width: auto;
+     overflow: scroll;
    }
 
 
@@ -170,58 +160,74 @@
        overflow: auto;
      }
    }
+
+   .infoPr{
+     margin-top: 80px;
+     width: 85%;
+     height: 25%;
+   }
+   .infoPr-text{
+     height: 100%;
+     width: 100%;
+     color: white;
+     font-size: 30px;
+     text-align: center;
+   }
+   .all{
+     width: 100%;
+     height: 50px;
+   }
    </style>
  </head>
 
  <body>
-       <p class="page">
-         <header>
-           <nav class="nav">
-             <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
-             <a href="CreaAcquisto/CreaAcquisto.php"  class="nav-item" active-color="purple">Reigstra Acquisto</a>
-             <a href="" class="nav-item is-active "  active-color="red">Prenotazioni</a>
-             <a href="ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri</a>
-             <a href="CronologiaAcquisti.php" class="nav-item" active-color="green">Storico Acquisti</a>
-             <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
-             <?php
-              $usr=$_SESSION["usernameBZ"];
-              $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 30%;\"> Username: $usr </p>";
-              echo $msgIdUtente;
-             ?>
-             <span class="nav-indicator"></span>
-           </nav>
-         </header>
-
-         <div class="limiter">
-        		<div class="container-table100">
-        			<div class="wrap-table100Operatore">
-        				<b class="c">Coda Stampa</b>
-        				<div class="table100 ver3 m-b-110">
-                   <?php
-                   //Creazione Coda Delle Stampe in modo dinamico
-                     include 'LogicaCodaStampa/codaStampa.php';
-                     $app = caricaCodaStampa($ip,$porta);
-                     echo $app;
-                   ?>
-        				</div>
-        			</div>
-        		</div>
-        	</div>
+   <header>
+     <nav class="nav">
+       <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
+       <a href="CreaAcquisto/CreaAcquisto.php"  class="nav-item" active-color="purple">Registra Acquisto</a>
+       <a href="" class="nav-item is-active "  active-color="red">Prenotazioni</a>
+       <a href="ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri</a>
+       <a href="CronologiaAcquisti.php" class="nav-item" active-color="green">Storico Acquisti</a>
+       <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
+       <?php
+        $usr=$_SESSION["usernameBZ"];
+        $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 30%;\"> Username: $usr </p>";
+        echo $msgIdUtente;
+       ?>
+       <span class="nav-indicator"></span>
+     </nav>
+   </header>
 
 
+	<div class="container-table1003" style="margin-left: 6%">
+    <div class="infoPr">
+      <div class="infoPr-text">
+        <b style="color: red">PRENOTAZIONI</b>
+        <p>Questa è la tabella contenente tutte le prenotazioni attive che ancora devono essere elaborate. Se devi consultare la lista completa, clicca il pulsante blu posto sotto la tabella</p>
+      </div>
+    </div>
+		<div class="wrap-table100Operatore" style="margin-top: 0">
+			<div class="table100 ver3 m-b-110">
+         <?php
+         //Creazione Coda Delle Stampe in modo dinamico
+           include 'LogicaCodaStampa/codaStampa.php';
+           $app = caricaCodaStampa($ip,$porta);
+           echo $app;
+         ?>
+			</div>
+		</div>
+	</div>
 
-            <a style="left:70%; position:fixed; top: 90%;"href="CronologiaPrenotazioni.php" class="btn btn-primary"> Visualizza storico prenotazioni </a>
-       </p>
 
-<!--===============================================================================================-->
+<div class="all">
+  <a href="CronologiaPrenotazioni.php" class="btn btn-primary" style="margin-left: 40%"> Visualizza storico completo </a>
+</div>
+
 <script src="../HomeUtente/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="../HomeUtente/js/navbar.js"></script>
-<!--===============================================================================================-->
 <script src="../HomeUtente/vendor/bootstrap/js/popper.js"></script>
 <script src="../HomeUtente/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
 <script src="../HomeUtente/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
 <script src="../HomeUtente/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script>
 		$('.js-pscroll').each(function(){
@@ -231,9 +237,7 @@
       })
     });
 </script>
-<!--===============================================================================================-->
 <script src="../HomeUtente/js/main.js"></script>
 
-
- </body>
- </html>
+</body>
+</html>
