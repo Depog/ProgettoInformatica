@@ -1,7 +1,7 @@
 /*------------------------------------------------------STYLE PER LA SEARCH BOX-----------------------------------------------------------------------------------------*/
 .search {
   display: inline-block;
-  position: fixed;
+  position: relative;
   height: 35px;
   width: 35px;
   box-sizing: border-box;
@@ -54,5 +54,5 @@
 .limiter{
   position: relative;
   top: 19%;
-  left: -44.6%;
+  left: -38.5%;
 }
