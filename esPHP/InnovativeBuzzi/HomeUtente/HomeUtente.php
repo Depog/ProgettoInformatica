@@ -69,6 +69,7 @@
             justify-content: center;
     padding: 0 0;
     background-color: #2f3640;
+    overflow: scroll;
   }
 
   .nav {

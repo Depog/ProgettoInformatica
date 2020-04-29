@@ -48,6 +48,7 @@ $(document).ready(function(){
    <style>
 
      b.c{
+       position: fixed;
        left : 25%;
        top: 15%;
        font-size: 40px;
@@ -105,10 +106,15 @@ $(document).ready(function(){
      }
 
      body {
-       background: url(img/wallpaper.jpg) no-repeat;
-       background-size: cover;
-       height: 100%;
-       width: auto;
+
+       display: -webkit-box;
+       display: flex;
+       height: 100vh;
+       width: 100%;
+       -webkit-box-pack: center;
+               justify-content: center;
+       padding: 0 0;
+       background-color: #2f3640;
      }
 
 
@@ -176,25 +182,15 @@ $(document).ready(function(){
          overflow: auto;
        }
      }
-     .infosa{
-       padding-right: 50px;
-       float: left;
-       width: 40%;
-       max-width: 40%;
-        text-align: right
-     }
-     .infosa-text{
-       color: white;
-     }
    </style>
  </head>
 
  <body>
-
+       <p class="page">
          <header>
            <nav class="nav">
              <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
-             <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Registra Acquisto</a>
+             <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Reigstra Acquisto</a>
              <a href="VisualizzaPrenotazioni.php" class="nav-item"  active-color="red">Prenotazioni</a>
              <a href="ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri</a>
              <a href="" class="nav-item  is-active" active-color="green">Storico Acquisti</a>
@@ -208,32 +204,30 @@ $(document).ready(function(){
            </nav>
          </header>
 
-         <div class="limiter" style="margin-left: 80%">
+         <div class="limiter">
            <label class="search" for="inpt_search">
              <input id="myInput" type="text" ></input>
            </label>
          </div>
         		<div class="container-table100">
-              <div class="infosa">
-                <div class="infosa-text">
-                  <b style="color: green; font-size: 40px;">STORICO ACQUISTI</b>
-                  <p>
-                    Questa è la lista completa di tutti gli acquisti fatti disposti in ordine cronologico, dall'ultimo fino al primo-
-                  </p>
-                </div>
-              </div>
-        			<div class="wrap-table100OperatoreR" style="float: right; width: 50%;">
+        			<div class="wrap-table100OperatoreR">
+        				<b class="c">Storico Acquisti effettuati</b>
         				<div class="table100 ver3 m-b-110">
                    <?php
-                     include 'LogicaCronologiaAcquisti/acquistiEffettuati.php';
-                       $app = caricaCodaRitiri($ip,$porta);
-                      echo $app;
+                   //Creazione Coda Delle Stampe in modo dinamico
+                   include 'LogicaCronologiaAcquisti/acquistiEffettuati.php';
+                     $app = caricaCodaRitiri($ip,$porta);
+                    echo $app;
+
                    ?>
         				</div>
         			</div>
         		</div>
         	<br>
 
+
+
+       </p>
 
 <!--===============================================================================================-->
 <script src="../HomeUtente/vendor/jquery/jquery-3.2.1.min.js"></script>
