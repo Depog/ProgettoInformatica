@@ -63,12 +63,14 @@
 
     display: -webkit-box;
     display: flex;
-    height: 100vh;
+    height: auto;
     width: 100%;
     -webkit-box-pack: center;
             justify-content: center;
     padding: 0 0;
     background-color: #2f3640;
+    background: url(img/wallpaper.jpg) no-repeat;
+    background-size: cover;
   }
 
   .nav {
@@ -165,32 +167,26 @@
         <p style="text-shadow: 2px 2px 5px black">Qui accanto troverai il modulo da compilare per registrare un acquisto! Clicca sull'immagine alla destra o il pulsante sottostante per andare alla pagina interessata</p><br />
         <a href="CreaAcquisto/CreaAcquisto.php" class="btn btn-primary">Registra acquisto</a>
       </div>
-      <img src="img/Cattura.png" alt="registraAcquisto" style=" width: 500px; max-width: 60%;  max-height: 310px; margin-left: 50%;"/>
+      <img src="img/reg.png" alt="registraAcquisto" style=" width: 500px; max-width: 60%;  max-height: 310px; margin-left: 50%;"/>
    </div>
 
    <div class="prenotazioni">
-     <div class="prenotazioni-text">
+
        <b style="color: red">PRENOTAZIONI</b><br>
        Alla sinistra troverai la tabella con la lista delle prenotazioni<br />
        <a href="VisualizzaPrenotazioni.php" class="btn btn-primary">Prenotazioni</a>
-     </div>
-   </div>
 
-   <div class="ritiri">
-     <div class="ritiri-text">
+
+
        <b style="color: brown">RITIRI</b><br>
        Alla destra troverai la tabella dei ritiri<br />
        <a href="ritiriFotocopie.php" class="btn btn-primary" style="width: 130px">Ritiri</a>
-     </div>
-   </div>
 
-   <div class="acquisti">
-     <div class="acquisti-text">
+
        <b style="color: green">STORICO ACQUISTI</b><br>
        Alla sinistra troverai la tabella dei ritiri<br />
        <a href="CronologiaAcquisti.php" class="btn btn-primary">Acquisti</a>
-     </div>
-   </div>
+
 
   </div>
 
