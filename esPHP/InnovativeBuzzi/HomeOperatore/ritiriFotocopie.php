@@ -184,18 +184,10 @@ $(document).ready(function(){
        height: 100%;
        color: white;
        float: right;
-       padding-top: 30px;
      }
      .infoRit-text{
        font-size: 15px;
 
-     }
-     .searchBox{
-       width: 50%;
-       max-width: 50%;
-       max-height: 40px;
-       height: 40px;
-       float: left;
      }
    </style>
  </head>
@@ -218,15 +210,13 @@ $(document).ready(function(){
      </nav>
    </header>
 
-
-
-
+   <div class="limiter">
+     <label class="search" for="inpt_search">
+       <input id="myInput" type="text" ></input>
+     </label>
+   </div>
   		<div class="container-table100" >
-        <div class="searchBox">
-          <label class="search" for="inpt_search">
-            <input id="myInput" type="text" ></input>
-          </label>
-  			<div class="wrap-table100OperatoreR" style="width: 100%; max-width: 100%; float: left">
+  			<div class="wrap-table100OperatoreR" style="width: 50%; max-width: 50%">
   				<div class="table100 ver3 m-b-110">
              <?php
              //Creazione Coda Delle Stampe in modo dinamico
@@ -237,12 +227,11 @@ $(document).ready(function(){
              ?>
   				</div>
   			</div>
-      </div>
 
         <div class="infoRit">
           <div class="infoRit-text">
             <b style="color: brown;  font-size: 35px; float: center">RITIRI</b>
-            <p style="text-align: justify">Questa alla sinistra è la tabella che racchiude la lista dello stato delle stampe, RITIRATO: "SI" se la stampa è già stata ritirata dal cliente, RITIRATO: "NO" se è acnora in attesa</p>
+            <p style="text-align: justify">Questa alla sinistra è la tabella che racchiude la l</p>
           </div>
         </div>
   		</div>

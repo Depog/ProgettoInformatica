@@ -265,22 +265,21 @@
  </head>
 
  <body>
-
-     <header>
-       <nav class="nav">
-         <a href="../HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
-         <a href="" class="nav-item is-active" active-color="purple">Registra Acquisto</a>
-         <a href="../VisualizzaPrenotazioni.php" class="nav-item"  active-color="red">Prenotazioni</a>
-         <a href="../ritiriFotocopie.php" class="nav-item " active-color="brown">Ritiri</a>
-         <a href="../CronologiaAcquisti.php" class="nav-item" active-color="green">Storico Acquisti</a>
-         <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
-         <?php
-          $usr=$_SESSION["usernameBZ"];
-          $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 30%;\"> Username: $usr </p>";
-          echo $msgIdUtente;
-         ?>
-         <span class="nav-indicator"></span>
-       </nav>
+   <header>
+     <nav class="nav">
+       <a href="../HomeOperatore.php" class="nav-item" active-color="orange" style="font-size: 20px">Home</a>
+       <a href="" class="nav-item is-active " active-color="purple">Registra Acquisto</a>
+       <a href="../VisualizzaPrenotazioni.php" class="nav-item"  active-color="red">Prenotazioni</a>
+       <a href="../ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri</a>
+       <a href="../CronologiaAcquisti.php" class="nav-item" active-color="green">Storico Acquisti</a>
+       <a href="../logout.php" class="nav-item" active-color="blue">Logout</a>
+       <?php
+        $usr=$_SESSION["usernameBZ"];
+        $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 30%;\"> Username: $usr </p>";
+        echo $msgIdUtente;
+       ?>
+       <span class="nav-indicator"></span>
+     </nav>
    </header>
 
    <section id="content" class="content" style="width: 100%; height: auto;">
@@ -435,7 +434,7 @@ function stampaFormato(){
           while($tupla=$records->fetch_assoc()){
             $tipo=$tupla["tipo"];
             $costoStampa=$tupla["costoStampa"];
-            $stampaFormato.="<br /><option value=\"$tipo\">$tipo $costoStampa euro</option>*";
+            $stampaFormato.="<br /><option value=\"$tipo\">$tipo $costoStampa €</option>*";
           }
           $stampaFormato.="</select>
           </div>";
