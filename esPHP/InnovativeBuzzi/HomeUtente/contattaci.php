@@ -233,10 +233,7 @@
         <b>SALA STAMPA</b>
         <br />
         <br />
-        <p>Sala stampa del Buzzi. Si trova al piano terra vicino all'ufficio tecnico</p>
-        <br>
-        <br>
-        <br>  <a style="left:70%;" >crediti progetto: Federico Giacumbo, Davide Hu, Claudiu-Cassian Ferencz </a>
+        <p>Siamo la sala stampa, in attivo dagli albori di questo fantastico istituto a voi conosciuto come ITIS Buzzi</p>
       </div>
 
       <div class="info-ora">
