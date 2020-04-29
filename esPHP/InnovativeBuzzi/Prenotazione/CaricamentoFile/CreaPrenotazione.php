@@ -76,7 +76,7 @@
     die("");
   }
   $costTot=$tot*$quantità;
-  echo "<br> Totale = $costTot €";
+  echo "<br> Totale = $costTot euro";
     //creo la prenotazione
     //////////////////////////prendo il codice fiscale////////////////////////////////////////
     $username=$_SESSION["usernameBZ"];    //ora uso questo, ma poi uso le session

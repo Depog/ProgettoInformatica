@@ -201,7 +201,7 @@
   <header>
    <nav class="nav">
      <a href="../../HomeUtente/HomeUtente.php" class="nav-item" active-color="orange">Home</a>
-     <a href="" class="nav-item is-active" active-color="red">Effettua Prenotazione</a>
+     <a href="" class="nav-item is-active" active-color="red">Effettua Preotazione</a>
      <a href="../../HomeUtente/contattaci.php" class="nav-item"  active-color="red">Contatti</a>
      <a href="EffettuaPrenotazione.php?logout=true" class="nav-item" active-color="#ee6c4d">Logout</a>
      <?php
@@ -321,7 +321,7 @@ function stampaFormato(){
           while($tupla=$records->fetch_assoc()){
             $tipo=$tupla["tipo"];
             $costoStampa=$tupla["costoStampa"];
-            $stampaFormato.="<br /><option value=\"$tipo?$costoStampa\">$tipo $costoStampa €</option>*";
+            $stampaFormato.="<br /><option value=\"$tipo?$costoStampa\">$tipo $costoStampa euro</option>*";
           }
           $stampaFormato.="</select>
           </div>";
@@ -344,7 +344,7 @@ function stampaFronteRetro(){
 }
 function stampaNCopie(){
   $stampaNCopie="";
-  $stampaNCopie="<text class=\"title\"><br>N copie (massimo 100)</text>
+  $stampaNCopie="<text class=\"title\"><br>N copie</text>
   <div style=\"width:250px;\">
     <input type=\"number\" name=\"quantità\" value=\"1\" placeholder=\"\" min=\"1\" max=\"100\">
   </div>
