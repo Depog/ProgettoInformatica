@@ -434,7 +434,7 @@ function stampaFormato(){
           while($tupla=$records->fetch_assoc()){
             $tipo=$tupla["tipo"];
             $costoStampa=$tupla["costoStampa"];
-            $stampaFormato.="<br /><option value=\"$tipo\">$tipo $costoStampa euro</option>*";
+            $stampaFormato.="<br /><option value=\"$tipo\">$tipo $costoStampa €</option>*";
           }
           $stampaFormato.="</select>
           </div>";
