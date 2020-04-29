@@ -181,18 +181,10 @@ $(document).ready(function(){
        float: left;
        width: 40%;
        max-width: 40%;
-        text-align: right;
-        padding-top: 30px;
+        text-align: right
      }
      .infosa-text{
        color: white;
-     }
-     .searchBox{
-       width: 50%;
-       max-width: 50%;
-       max-height: 40px;
-       height: 40px;
-       float: right;
      }
    </style>
  </head>
@@ -216,26 +208,21 @@ $(document).ready(function(){
            </nav>
          </header>
 
-
+         <div class="limiter" style="margin-left: 80%">
+           <label class="search" for="inpt_search">
+             <input id="myInput" type="text" ></input>
+           </label>
+         </div>
         		<div class="container-table100">
-
-
               <div class="infosa">
                 <div class="infosa-text">
                   <b style="color: green; font-size: 40px;">STORICO ACQUISTI</b>
                   <p>
-                    Questa è la lista completa di tutti gli acquisti fatti disposti in ordine cronologico, dal primo fino al più recente
+                    Questa è la lista completa di tutti gli acquisti fatti disposti in ordine cronologico, dall'ultimo fino al primo-
                   </p>
                 </div>
               </div>
-              <div class="searchBox">
-
-
-                <label class="search" for="inpt_search">
-                  <input id="myInput" type="text" style="max-width: 50px"></input>
-                </label>
-
-        			<div class="wrap-table100OperatoreR" style=" width: 100%;">
+        			<div class="wrap-table100OperatoreR" style="float: right; width: 50%;">
         				<div class="table100 ver3 m-b-110">
                    <?php
                      include 'LogicaCronologiaAcquisti/acquistiEffettuati.php';
@@ -244,7 +231,6 @@ $(document).ready(function(){
                    ?>
         				</div>
         			</div>
-              </div>
         		</div>
         	<br>
 
