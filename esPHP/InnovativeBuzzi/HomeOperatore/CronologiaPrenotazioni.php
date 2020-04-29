@@ -191,7 +191,7 @@ $(document).ready(function(){
          <header>
            <nav class="nav">
              <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
-             <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Registra Acquisto</a>
+             <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Reigstra Acquisto</a>
              <a href="VisualizzaPrenotazioni.php" class="nav-item  is-active" active-color="red">Prenotazioni</a><!--sotto pagina di Prenotazioni-->
              <a href="ritiriFotocopie.php" class="nav-item" active-color="blue">Ritiri</a>
              <a href="CronologiaAcquisti.php" class="nav-item " active-color="green">Storico Acquisti</a>
@@ -210,9 +210,9 @@ $(document).ready(function(){
              <input id="myInput" type="text" ></input>
            </label>
          </div>
-        		<div class="container-table100" style="width: 90%;">
-        			<div class="wrap-table100OperatorePE" style="width: 90%;">
-        				<b class="c">STORICO COMPLETO DELLE PRENOTAZIONI</b>
+        		<div class="container-table100">
+        			<div class="wrap-table100OperatorePE">
+        				<b class="c">Storico prenotazioni effettuati</b>
         				<div class="table100 ver3 m-b-110">
                    <?php
                    //Creazione Coda Delle Stampe in modo dinamico
