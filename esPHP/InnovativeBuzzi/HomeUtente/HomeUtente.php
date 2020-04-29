@@ -288,7 +288,7 @@
       <div class="pren-text">
         <b class="info-title" style="color: red">EFFETTUA PRENOTAZIONE</b>
         <p class="info-text">Questo alla sinistra è il modulo per la prenotazione. Clicca sulla foto o il bottone qua in basso</p>
-        <a href="../Prenotazione/CaricamentoFile/EffettuaPrenotazione.php" class="btn btn-primary">Vai alla pagina</a>
+        <a href="../Prenotazione/CaricamentoFile/EffettuaPrenotazione.php" class="btn btn-primary">Effettua prenotazione</a>
       </div>
     </div>
   </div>
