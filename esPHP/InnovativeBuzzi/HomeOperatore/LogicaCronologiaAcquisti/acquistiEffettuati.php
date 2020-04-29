@@ -78,7 +78,7 @@
               if($row['tipo'] == "Professore") {
                 $arrayRisultati .= "<td class=\"cell100 column6OR\">FREE</td>";
               } else {
-                $arrayRisultati .= "<td class=\"cell100 column6OR\">" . $row["costoStampa"] * $row["quantità"] . "</td>";
+                $arrayRisultati .= "<td class=\"cell100 column6OR\">" . $row["costoStampa"] * $row["quantità"] . "€</td>";
               }
 
               $arrayRisultati .= "<td class=\"cell100 column7OR\">" . $row['dataAcquisto'] . "</td>";

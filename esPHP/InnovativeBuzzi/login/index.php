@@ -40,12 +40,12 @@
 		$msg=null;
 
 		$msg.="
-		<div class=\"wrap-input100 validate-input\" data-validate = \"Enter username\">
+		<div class=\"wrap-input100 validate-input\" data-validate = \"Inserisci l'username\">
 			<input class=\"input100\" type=\"text\" name=\"username\" placeholder=\"Username\" value=\"$username\">
 			<span class=\"focus-input100\" data-placeholder=\"&#xf207;\"></span>
 		</div>
 
-		<div class=\"wrap-input100 validate-input\" data-validate=\"Enter password\">
+		<div class=\"wrap-input100 validate-input\" data-validate=\"Inserisci la password\">
 			<input class=\"input100\" type=\"password\" name=\"pass\" placeholder=\"Password\" value=\"$password\">
 			<span class=\"focus-input100\" data-placeholder=\"&#xf191;\"></span>
 		</div>
