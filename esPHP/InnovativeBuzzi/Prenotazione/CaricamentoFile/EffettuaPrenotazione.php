@@ -224,14 +224,19 @@
 
       <form action="CreaPrenotazione.php" method="POST" enctype="multipart/form-data" style="float: right;">
         <?php
-            stampaFormato();
-            stampaFronteRetro();
-            stampaNCopie();
-            stampaDataRitiro();
-            stampaOraRitiro();
-            stampaCaricaIlFile();
-            stampaDescrizione();
-            stampaNote();
+        stampaFormato();
+          stampaFronteRetro();
+          stampaNCopie();
+          stampaDataRitiro();
+          if($tipo=="Professore"){  //data di ritiro dalle 7:45
+            stampaOraRitiroProfessore();
+          }else{  //data di ritiro dalle 8:00
+            stampaOraRitiroStudente();
+          }
+
+          stampaCaricaIlFile();
+          stampaDescrizione();
+          stampaNote();
         ?>
         <button type="submit" name="save" onclick="myFunction()" style="border-radius: 6px; margin-left: 50px">Invia Prenotazione</button>
 
@@ -357,7 +362,7 @@ function stampaDataRitiro(){
    ";
    echo $stampaDataRitiro;
 }
-function stampaOraRitiro(){
+function stampaOraRitiroProfessore(){
   if(isset($_SESSION["OraMancante"])){
     $_SESSION["OraMancante"]=null;
     $stampaOraRitiro="<br><text class=\"title\">ora ritiro</text><br />
@@ -381,6 +386,43 @@ function stampaOraRitiro(){
         <select id=\"oraRitiro\" name=\"oraRitiro\" style=\"width: 250px; height: 35px;\">
            <option value=\"-\">-------</option>
            <option value=\"7:45\">7:45 </option>
+           <option value=\"9:00\">9:00 </option>
+           <option value=\"10:00\">10:00 </option>
+           <option value=\"11:00\">11:00 </option>
+           <option value=\"12:00\">12:00 </option>
+           <option value=\"13:00\">13:00</option>
+           <option value=\"13:30\">13:30</option>
+
+        </select>
+    </div>
+    <br />";
+  }
+  echo $stampaOraRitiro;
+}
+function stampaOraRitiroStudente(){
+  if(isset($_SESSION["OraMancante"])){
+    $_SESSION["OraMancante"]=null;
+    $stampaOraRitiro="<br><text class=\"title\">ora ritiro</text><br />
+    <div class=\"select\">
+        <select id=\"oraRitiro\" name=\"oraRitiro\" style=\"width: 250px; height: 35px;\">
+           <option value=\"-\">-------</option>
+           <option value=\"8:00\">8:00 </option>
+           <option value=\"9:00\">9:00 </option>
+           <option value=\"10:00\">10:00 </option>
+           <option value=\"11:00\">11:00 </option>
+           <option value=\"12:00\">12:00 </option>
+           <option value=\"13:00\">13:00</option>
+           <option value=\"13:30\">13:30</option>
+        </select>
+      <b style=\"color:red;\">  !ORA OBBLIGATORIA!</b>
+    </div>
+    <br/>";
+  }else{
+    $stampaOraRitiro="<br><text class=\"title\">ora ritiro</text><br />
+    <div class=\"select\">
+        <select id=\"oraRitiro\" name=\"oraRitiro\" style=\"width: 250px; height: 35px;\">
+           <option value=\"-\">-------</option>
+           <option value=\"8:00\">8:00 </option>
            <option value=\"9:00\">9:00 </option>
            <option value=\"10:00\">10:00 </option>
            <option value=\"11:00\">11:00 </option>
