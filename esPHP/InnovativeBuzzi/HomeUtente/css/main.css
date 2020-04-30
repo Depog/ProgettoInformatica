@@ -140,10 +140,9 @@ p {
 }
 .usr{
   padding-top: 20px;
-  width: 80px;
+  width: 150px;
   height: 100%;
   margin-left: 24%;
-  margin-top: ;
   text-align: center;
 }
 .usr-text{
@@ -480,9 +479,9 @@ th, td {
 
 
 .table100-body {
-
+  background-color: #262624;
   overflow: auto;
-  height: 100%;
+  height: auto;
   max-height: 370px;
 }
 

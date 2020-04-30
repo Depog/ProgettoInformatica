@@ -283,7 +283,7 @@
               echo "<br />";
               statoAcquisto();
           ?>
-          <button type="submit" name="save" style="border-radius: 6px; margin-left: 75px; text-align: center">Invia Prenotazione</button>
+          <button type="submit" name="save" style="border-radius: 6px; margin-left: 75px; text-align: center">Registra acquisto</button>
 <!--enctype="multipart/form-data"
  onclick="myFunction()"
 -->
