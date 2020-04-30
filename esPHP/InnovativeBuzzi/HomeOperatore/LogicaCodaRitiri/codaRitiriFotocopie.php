@@ -6,7 +6,7 @@
                 <table>
                   <thead>
                     <tr class=\"row100 head\">
-                      <th class=\"cell100 column1OR\">Identificatico</th>
+                      <th class=\"cell100 column1OR\">Identificativo</th>
                       <th class=\"cell100 column2OR\">Data Ritiro</th>
                       <th class=\"cell100 column3OR\">Orario Ritiro</th>
                       <th class=\"cell100 column4OR\">Username</th>

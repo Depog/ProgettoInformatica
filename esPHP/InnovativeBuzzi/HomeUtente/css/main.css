@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: Lato-Regular;
   src: url('../fonts/Lato/Lato-Regular.ttf');
@@ -7,7 +8,6 @@
   font-family: Lato-Bold;
   src: url('../fonts/Lato/Lato-Bold.ttf');
 }
-
 /* ------------------------------------ */
 a {
 	margin: 0px;
@@ -61,7 +61,7 @@ p {
 
 
 .registraAcquisto{
-  margin-top: 200px;
+  margin-top: 120px;
   width: 100%;
   height: 40%;
   padding: 10px;
@@ -121,8 +121,33 @@ p {
   max-width: 50%;
   max-height: 100%;
 }
+.bottomContainer{
+  margin-top: 120px;
+  width: 100%;
+  height: 40%;
+  max-height: 45%;
+  padding: 10px;
 
-
+}
+.bottomBox{
+  text-align: center;
+  width: 33%;
+  max-width: 34%;
+  height: 100%;
+  padding: 10px 10px;
+  color: white;
+  font-size: 20px;
+}
+.usr{
+  padding-top: 20px;
+  width: 150px;
+  height: 100%;
+  margin-left: 24%;
+  text-align: center;
+}
+.usr-text{
+  font-family: 'DM Sans', sans-serif;
+}
 .visualizzaCodaPrenotazioni-text{
   text-align: justify;
   text-justify: inter-word;
@@ -300,48 +325,55 @@ th, td {
   width: 20%;
 }
 
-.column1O { /*colonna NOME*/
-  tex-align:center;
-  width: 11%;
+
+
+
+/*////////////////////////////////////////////////////// COLONNE PRENOTAZIONI/////////////*/
+.column1O { /*DATA PRENOTAZIONE*/
+  width: 12%;
+  max-width: 12%;
   padding-left: 25px;
 }
 
-.column2O { /*colonna DATA*/
-  width: 11%;
-  tex-align:center;
+.column2O { /*ORA PRENOTAZIONE*/
+  width: 9%;
+  max-width: 9%;
 }
 
-.column3O { /*colonna ORA*/
-  width: 11%;
-  tex-align:center;
+.column3O { /*DESCRIZIONE*/
+  width: 13%;
+  max-width: 13%;
 }
 
-.column4O { /*colonna QUANTITA */
-  width: 9%;
-  tex-align:center;
+.column4O { /*FORMATO*/
+  width: 7%;
+  max-width: 7%;
 }
 
-.column5O { /*colonna QUANTITA */
-  width: 9%;
-  tex-align:center;
+.column5O { /*QUANTITA */
+  width: 7%;
+  max-width: 7%;
 }
-.column6O { /*colonna QUANTITA */
+.column6O { /*FRONTE RETRO*/
   width: 9%;
-  tex-align:center;
+  max-width: 9%;
 }
-.column7O { /*colonna QUANTITA */
+.column7O { /*SCARICA*/
   width: 12%;
-  tex-align:center;
+  max-width: 12%;
 }
-.column8O { /*colonna QUANTITA */
-  width: 10%;
-  tex-align:center;
+.column8O { /*STAMPATA*/
+  width: 9%;
+  max-width: 9%;
 }
 
-.column9O { /*colonna QUANTITA */
-  width: 16%;
-  tex-align:center;
+.column9O { /*not*e*/
+  width: 12%;
+  max-width: 12%;
 }
+
+
+
 /*-----------------------------------------------------------------------PER LA TABELLA RITIRI----------------------------------------------------*/
 .column1OR { /*colonna NOME*/
   tex-align:center;
@@ -396,43 +428,36 @@ th, td {
 
 .column4PE {
   width: 11%;
-  tex-align:center;
 }
 .column5PE {
   width: 10%;
-  tex-align:center;
 }
 
 .column6PE {
   width: 11%;
-  tex-align:center;
 }
 .column7PE {
   width: 11%;
-  tex-align:center;
 }
 .column8PE {
   width: 9%;
-  tex-align:center;
 }
 .column9PE {
   width: 11%;
-  tex-align:center;
 }
 
 
 /*------------------------------------------------------------------------FINE PER LA CRONOLOGIA DELLE PRENOTAZIONI------------------------------------------*/
 
 .table100-head th {
-  padding-top: 18px;
-  padding-bottom: 18px;
+  padding-top: 1%;
   text-align: center;
 }
 
 .table100-body td {
-  padding-top: 16px;
-  padding-bottom: 16px;
-    text-align: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  text-align: center;
 }
 
 /*==================================================================
@@ -454,9 +479,9 @@ th, td {
 
 
 .table100-body {
-
+  background-color: #262624;
   overflow: auto;
-  height: 100%;
+  height: auto;
   max-height: 370px;
 }
 

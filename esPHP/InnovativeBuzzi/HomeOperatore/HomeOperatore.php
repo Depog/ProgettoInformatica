@@ -14,29 +14,21 @@
     header("location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/login/index.php");
   }
     ?>
-<!DOCTYPE html>
-<html lang="en">
+
+<html>
 <head>
-	<title>Table V04</title>
+	<title></title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="../HomeUtente/images/icons/favicon.ico"/>
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../HomeUtente/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/animate/animate.css">
-<!--==============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/select2/select2.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../HomeUtente/css/util.css">
   <link href="../HomeUtente/css/main.css" rel="stylesheet" type="text/css"  >
-<!--===============================================================================================-->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <style>
   @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
@@ -53,22 +45,17 @@
     width: 100%;
     background: #FFFF;
   }
-  .inner-width{
-    background: black;
-    max-width: 100%;
-    padding: 0 10px;
-    margin: auto;
-  }
-  body {
 
+  body {
+    background: url(img/wallpaper.jpg) no-repeat;
+    background-size: cover;
     display: -webkit-box;
     display: flex;
-    height: 100vh;
+    height: auto;
     width: 100%;
     -webkit-box-pack: center;
             justify-content: center;
     padding: 0 0;
-    background-color: #2f3640;
   }
 
   .nav {
@@ -135,6 +122,17 @@
       overflow: auto;
     }
   }
+  .usr{
+    padding-top: 20px;
+    width: 80px;
+    height: 100%;
+    margin-left: 24%;
+    margin-top: ;
+    text-align: center;
+  }
+  .usr-text{
+    font-family: 'DM Sans', sans-serif;
+  }
 </style>
 </head>
 
@@ -151,7 +149,10 @@
      <span class="nav-indicator"></span>
      <?php
       $usr=$_SESSION["usernameBZ"];
-      echo "<p style=\"border-style:ridge; margin-top: 18px; margin-left: 24%; margin-right: auto;\"> Username: $usr </p>";
+      echo "<div class=\"usr\">
+        <div class=\"usr-text\"> Ciao: $usr! </p>
+      </div>";
+
 
      ?>
    </nav>
@@ -165,42 +166,36 @@
         <p style="text-shadow: 2px 2px 5px black">Qui accanto troverai il modulo da compilare per registrare un acquisto! Clicca sull'immagine alla destra o il pulsante sottostante per andare alla pagina interessata</p><br />
         <a href="CreaAcquisto/CreaAcquisto.php" class="btn btn-primary">Registra acquisto</a>
       </div>
-      <img src="img/Cattura.png" alt="registraAcquisto" style=" width: 500px; max-width: 60%;  max-height: 310px; margin-left: 50%;"/>
+      <a href="CreaAcquisto/CreaAcquisto.php"><img src="img/reg.png" alt="registraAcquisto" style=" width: 500px; max-width: 60%;  max-height: 310px; margin-left: 50%; border-radius: 28px; border: 3px solid #262624"/></a>
    </div>
 
-   <div class="prenotazioni">
-     <div class="prenotazioni-text">
-       <b style="color: red">PRENOTAZIONI</b><br>
-       Alla sinistra troverai la tabella con la lista delle prenotazioni<br />
-       <a href="VisualizzaPrenotazioni.php" class="btn btn-primary">Prenotazioni</a>
+   <div class="bottomContainer">
+     <div class="bottomBox" style="float: left; width: 34%">
+       <b style="color: red; font-size: 35px;">PRENOTAZIONI</b><br>
+      Clicca questo bottone se sei interessato alle prenotazioni attive o alla lista completa<br/>
+       <a href="VisualizzaPrenotazioni.php" class="btn btn-primary" style="width: 130px">Prenotazioni</a>
      </div>
-   </div>
 
-   <div class="ritiri">
-     <div class="ritiri-text">
-       <b style="color: brown">RITIRI</b><br>
-       Alla destra troverai la tabella dei ritiri<br />
+    <div class="bottomBox"  style="float: right">
+
+       <b style="color: green; font-size: 35px">STORICO ACQUISTI</b><br>
+         Clicca questo bottone se sei interessato allo stato dei ritiri delle stampe<br />
+       <a href="CronologiaAcquisti.php" class="btn btn-primary" style="width: 130px">Acquisti</a>
+     </div>
+
+     <div class="bottomBox"  style="float: right">
+
+       <b style="color: brown; font-size: 35px">RITIRI</b><br>
+         Clicca questo bottone se sei interessato allo storico degli acquisti effettuati<br />
        <a href="ritiriFotocopie.php" class="btn btn-primary" style="width: 130px">Ritiri</a>
      </div>
-   </div>
-
-   <div class="acquisti">
-     <div class="acquisti-text">
-       <b style="color: green">STORICO ACQUISTI</b><br>
-       Alla sinistra troverai la tabella dei ritiri<br />
-       <a href="CronologiaAcquisti.php" class="btn btn-primary">Acquisti</a>
-     </div>
-   </div>
-
   </div>
-
-
 
 <!--===============================================================================================-->
 	<script src="../HomeUtente/vendorjquery/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="../HomeUtente/js/navbar.js"></script>
 <!--===============================================================================================-->
-	<script src="../HomeUtente/endor/bootstrap/js/popper.js"></script>
+	<script src="../HomeUtente/vendor/bootstrap/js/popper.js"></script>
 	<script src="../HomeUtente/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script src="../HomeUtente/vendor/select2/select2.min.js"></script>

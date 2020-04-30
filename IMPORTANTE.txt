@@ -1,0 +1,24 @@
+
+
+  per provare il progetto:
+    1. Creare un database chiamato "InnovativeBuzzi"
+    2. Importare il file "innovativebuzziFileImport.sql"
+    3. Inserire dentro htdocs la cartella "esPHP"
+    4. Digitare nell'url il percorso (con localhost) per arrivare alla cartella "esPHP"
+    5. Cliccare sulla cartella InnovativeBuzzi
+
+*********************************************************************************************************************
+
+  Account creati:
+    1)
+        Tipologia: Professore
+        Username: Prof
+        Password: password (p minuscola)
+    2)
+        Tipologia: Studente
+        Username: Stud
+        Password: password (p minuscola)
+    3)
+        Tipologia: Operatore
+        Username: Ope
+        Password: password (p minuscola)
