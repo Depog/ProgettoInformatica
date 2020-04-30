@@ -40,6 +40,7 @@
 		$msg=null;
 
 		$msg.="
+
 		<div class=\"wrap-input100 validate-input\" data-validate = \"Inserisci l'username\">
 			<input class=\"input100\" type=\"text\" name=\"username\" placeholder=\"Username\" value=\"$username\">
 			<span class=\"focus-input100\" data-placeholder=\"&#xf207;\"></span>
