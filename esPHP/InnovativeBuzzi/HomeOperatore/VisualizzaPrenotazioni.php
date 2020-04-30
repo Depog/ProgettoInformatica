@@ -170,7 +170,7 @@
 	<div class="container-table1003" style="margin-left: 6%">
     <div class="infoPr">
       <div class="infoPr-text">
-        <b style="color: red">PRENOTAZIONI</b>
+        <b style="color: red; ">PRENOTAZIONI</b>
         <p>Questa è la tabella contenente tutte le prenotazioni attive che ancora devono essere elaborate. Se devi consultare la lista completa, clicca il pulsante blu posto sotto la tabella</p>
       </div>
     </div>

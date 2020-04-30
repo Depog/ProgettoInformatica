@@ -264,8 +264,8 @@
    <section id="content" class="content" style="width: 100%; height: auto;">
      <div class="container" style="width: 100%; margin-top: 150px;padding: 0;">
         <div class="info-titolo">
-          <p style="color: #249d8b;  text-shadow: 2px 2px 5px black; text-align: center;">Registra Acquisto</p>
-          <p style="color: white; font-size: 20px; text-transform: none;">
+          <p style="color: #249d8b;  text-shadow: 2px 2px 5px black; text-align: center; font-size: 40px;">Registra Acquisto</p>
+          <p style="color: white; font-size: 25px; text-transform: none; ">
           Questo alla destra è il documento che dovrai compilare per aggiungere un acquisto fatto fisicamente da un cliente. Una volta compilato, ti basterà cliccare sul pulsante "Registra Acquisto" in basso e automaticamente verrà registrato
           </p>
         </div>

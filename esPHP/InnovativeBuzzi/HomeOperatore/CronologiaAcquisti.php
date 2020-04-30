@@ -205,7 +205,7 @@ $(document).ready(function(){
            <div class="infosa">
              <div class="infosa-text">
                <b style="color: green; font-size: 40px;">STORICO ACQUISTI</b>
-               <p>
+               <p style="font-size: 30px; text-align: right;">
                  Questa è la lista completa di tutti gli acquisti fatti disposti in ordine cronologico, dal primo fino al più recente
                </p>
              </div>

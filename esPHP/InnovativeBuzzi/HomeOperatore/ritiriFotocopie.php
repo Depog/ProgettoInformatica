@@ -167,7 +167,7 @@ $(document).ready(function(){
        padding-top: 30px;
      }
      .infoRit-text{
-       font-size: 15px;
+       font-size: 30px;
 
      }
      .searchBox{

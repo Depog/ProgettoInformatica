@@ -179,14 +179,14 @@
     <div class="bottomBox"  style="float: right">
 
        <b style="color: green; font-size: 35px">STORICO ACQUISTI</b><br>
-         Clicca questo bottone se sei interessato allo stato dei ritiri delle stampe<br />
+        Clicca questo bottone se sei interessato allo storico degli acquisti effettuati<br />
        <a href="CronologiaAcquisti.php" class="btn btn-primary" style="width: 130px">Acquisti</a>
      </div>
 
      <div class="bottomBox"  style="float: right">
 
        <b style="color: brown; font-size: 35px">RITIRI</b><br>
-         Clicca questo bottone se sei interessato allo storico degli acquisti effettuati<br />
+          Clicca questo bottone se sei interessato allo stato dei ritiri delle stampe<br />
        <a href="ritiriFotocopie.php" class="btn btn-primary" style="width: 130px">Ritiri</a>
      </div>
   </div>
