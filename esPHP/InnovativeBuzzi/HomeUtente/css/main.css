@@ -377,35 +377,35 @@ th, td {
 /*-----------------------------------------------------------------------PER LA TABELLA RITIRI----------------------------------------------------*/
 .column1OR { /*colonna NOME*/
   tex-align:center;
-  width: 14%;
+  width: 15.25%;
   padding-left: 25px;
 }
 
 .column2OR { /*colonna DATA*/
-  width: 14%;
+  width: 15.25%;
   tex-align:center;
 }
 
 .column3OR { /*colonna ORA*/
-  width: 14%;
+  width: 12.25%;
   tex-align:center;
 }
 
 .column4OR { /*colonna QUANTITA */
-  width: 14%;
+  width: 12.25%;
   tex-align:center;
 }
 
 .column6OR { /*colonna QUANTITA */
-  width: 14%;
+  width: 12.25%;
   tex-align:center;
 }
 .column7OR { /*colonna QUANTITA */
-  width: 14%;
+  width: 16.25%;
   tex-align:center;
 }
 .column8OR { /*colonna QUANTITA */
-  width: 14%;
+  width: 11.25%;
   tex-align:center;
 }
 /*-----------------------------------------------------------------------FINE PER LA TABELLA RITIRI----------------------------------------------------*/
