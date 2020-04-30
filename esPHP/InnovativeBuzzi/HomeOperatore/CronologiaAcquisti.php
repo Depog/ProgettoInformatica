@@ -40,6 +40,7 @@ $(document).ready(function(){
     	<link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/perfect-scrollbar/perfect-scrollbar.css">
     <!--===============================================================================================-->
     	<link rel="stylesheet" type="text/css" href="../HomeUtente/css/util.css">
+      	<link rel="stylesheet" type="text/css" href="../HomeUtente/css/main.css">
       <link href="../HomeUtente/css/main.css" rel="stylesheet" type="text/css"  >
     <!--===============================================================================================-->
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -47,41 +48,6 @@ $(document).ready(function(){
    <link rel="stylesheet" type="text/css" href="StyleForSearchBar/searchBarCSS.css">
    <style>
 
-     b.c{
-       left : 25%;
-       top: 15%;
-       font-size: 40px;
-       color: #fff;
-     }
-
-     .page {
-       width:100%;
-       height: 100%;
-       margin: 0px 0px 0px 0px;
-       padding: 0px 0px 0px 0px;
-       border: 0px 0px 0px 0px;
-       background: url(../Login/images/wallpaper.jpg) no-repeat fixed;
-       background-size: cover;
-       position: fixed;
-       font-family: Poppins-Regular, sans-serif;
-     }
-
-     .container-table100 {
-       width: 100%;
-       min-height: 100vh;
-       display: -webkit-box;
-       display: -webkit-flex;
-       display: -moz-box;
-       display: -ms-flexbox;
-       display: flex;
-       margin-top: 0px;
-       flex-wrap: wrap;
-       padding: 0px 0px;
-       margin-right: 10%;
-       position: fixed;
-       top: 25%;
-       left: 5%;
-     }
 /*////////////////////////////////////////////////////////////////////////////// NAV BAR STYLE/////////////////////////////////////////////////////////////////*/
      @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
      *{
@@ -112,6 +78,22 @@ $(document).ready(function(){
      }
 
 
+          .container-table100 {
+            width: 100%;
+            min-height: 100vh;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            margin-top: 0px;
+            flex-wrap: wrap;
+            padding: 0px 0px;
+            margin-right: 10%;
+            position: fixed;
+            top: 25%;
+            left: 5%;
+          }
      .nav {
        display: -webkit-inline-box;
        display: inline-flex;
@@ -181,10 +163,18 @@ $(document).ready(function(){
        float: left;
        width: 40%;
        max-width: 40%;
-        text-align: right
+        text-align: right;
+        padding-top: 30px;
      }
      .infosa-text{
        color: white;
+     }
+     .searchBox{
+       width: 50%;
+       max-width: 50%;
+       max-height: 40px;
+       height: 40px;
+       float: right;
      }
    </style>
  </head>
@@ -201,38 +191,44 @@ $(document).ready(function(){
              <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
              <?php
               $usr=$_SESSION["usernameBZ"];
-              $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 30%;\"> Username: $usr </p>";
-              echo $msgIdUtente;
+              echo "<div class=\"usr\">
+                <div class=\"usr-text\"> Ciao: $usr! </p>
+              </div>";
              ?>
              <span class="nav-indicator"></span>
            </nav>
          </header>
 
-         <div class="limiter" style="margin-left: 80%">
-           <label class="search" for="inpt_search">
-             <input id="myInput" type="text" ></input>
-           </label>
+         <div class="container-table100">
+
+
+           <div class="infosa">
+             <div class="infosa-text">
+               <b style="color: green; font-size: 40px;">STORICO ACQUISTI</b>
+               <p>
+                 Questa è la lista completa di tutti gli acquisti fatti disposti in ordine cronologico, dal primo fino al più recente
+               </p>
+             </div>
+           </div>
+           <div class="searchBox">
+
+
+             <label class="search" for="inpt_search">
+               <input id="myInput" type="text" style="max-width: 50px"></input>
+             </label>
+
+           <div class="wrap-table100OperatoreR" style=" width: 100%;">
+             <div class="table100 ver3 m-b-110" style=" margin-top: 40px;">
+                <?php
+                  include 'LogicaCronologiaAcquisti/acquistiEffettuati.php';
+                    $app = caricaCodaRitiri($ip,$porta);
+                   echo $app;
+                ?>
+             </div>
+           </div>
+           </div>
          </div>
-        		<div class="container-table100">
-              <div class="infosa">
-                <div class="infosa-text">
-                  <b style="color: green; font-size: 40px;">STORICO ACQUISTI</b>
-                  <p>
-                    Questa è la lista completa di tutti gli acquisti fatti disposti in ordine cronologico, dall'ultimo fino al primo-
-                  </p>
-                </div>
-              </div>
-        			<div class="wrap-table100OperatoreR" style="float: right; width: 50%;">
-        				<div class="table100 ver3 m-b-110">
-                   <?php
-                     include 'LogicaCronologiaAcquisti/acquistiEffettuati.php';
-                       $app = caricaCodaRitiri($ip,$porta);
-                      echo $app;
-                   ?>
-        				</div>
-        			</div>
-        		</div>
-        	<br>
+       <br>
 
 
 <!--===============================================================================================-->

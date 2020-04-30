@@ -69,36 +69,38 @@
 
     adjustNav();
   });</script>
-	<link rel="icon" type="image/png" href="../../HomeUtente/images/icons/favicon.ico"/>
-	<link rel="stylesheet" type="text/css" href="../../HomeUtente/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../../HomeUtente/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="../../HomeUtente/vendor/animate/animate.css">
-	<link rel="stylesheet" type="text/css" href="../../HomeUtente/vendor/select2/select2.min.css">
-	<link rel="stylesheet" type="text/css" href="../../HomeUtente/vendor/perfect-scrollbar/perfect-scrollbar.css">
-	<link rel="stylesheet" type="text/css" href="../../HomeUtente/css/util.css">
-  <link href="../../HomeUtente/css/main.css" rel="stylesheet" type="text/css">
   <link href="creaAcquisto.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <style>
 
-     b.c{
-       position: relative;
-       left : 8%;
-       top: 15%;
-       font-size: 40px;
-       color: #fff;
+     @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
+     *{
+       margin: 0;
+       padding: 0;
+       text-decoration: none;
      }
 
-     .page {
-       width:100%;
-       height: 100%;
-       margin: 0px 0px 0px 0px;
-       padding: 0px 0px 0px 0px;
-       border: 0px 0px 0px 0px;
-       background: url(../../Login/images/wallpaper.jpg) no-repeat fixed;
-       background-size: cover;
+     header{
+       z-index: 9999;
        position: fixed;
-       font-family: Poppins-Regular, sans-serif;
+       height: auto;
+       width: 100%;
+       background: #FFFF;
+     }
+
+
+     body {
+       background: url(../img/wallpaper.jpg) no-repeat fixed;
+       background-size: cover;
+       position: relative;
+       display: -webkit-box;
+       display: flex;
+       height: 100vh;
+       width: 100%;
+       -webkit-box-pack: center;
+               justify-content: center;
+       padding: 0 0;
+       background-color: #2f3640;
      }
 
      .container-table100 {
@@ -117,43 +119,6 @@
        top: 25%;
        left: 5%;
      }
-/*////////////////////////////////////////////////////////////////////////////// NAV BAR STYLE/////////////////////////////////////////////////////////////////*/
-     @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
-     *{
-       margin: 0;
-       padding: 0;
-       text-decoration: none;
-     }
-
-     header{
-       z-index: 9999;
-       position: fixed;
-       height: auto;
-       width: 100%;
-       background: #FFFF;
-     }
-     .inner-width{
-       background: black;
-       max-width: 100%;
-       padding: 0 10px;
-       margin: auto;
-     }
-
-     body {
-       background: url(../img/wallpaper.jpg) no-repeat fixed;
-       background-size: cover;
-       position: relative;
-       display: -webkit-box;
-       display: flex;
-       height: 100vh;
-       width: 100%;
-       -webkit-box-pack: center;
-               justify-content: center;
-       padding: 0 0;
-       background-color: #2f3640;
-     }
-
-
      .nav {
        display: -webkit-inline-box;
        display: inline-flex;
@@ -164,8 +129,9 @@
        margin-left: 500px;
        box-shadow: 0 10px 40px rgba(159, 162, 177, 0.8);
        float: right;
-       font-size: 17px;
+
      }
+
 
      .nav-item {
        color: #83818c;
@@ -178,6 +144,7 @@
        font-family: 'DM Sans', sans-serif;
        font-weight: 500;
        position: relative;
+       font-size: 16px;
      }
      .nav-item:before {
        content: "";
@@ -186,7 +153,7 @@
        right: 0;
        width: 100%;
        height: 5px;
-       background-color: purple;
+       background-color: orange;
        border-radius: 8px 8px 0 0;
        opacity: 0;
        -webkit-transition: .3s;
@@ -260,23 +227,35 @@
         text-shadow: 2px 2px 5px black;
         text-align: justify;
      }
-
+     .usr{
+       padding-top: 20px;
+       width: 80px;
+       height: 100%;
+       margin-left: 24%;
+       margin-top: ;
+       text-align: center;
+     }
+     .usr-text{
+       font-family: 'DM Sans', sans-serif;
+       font-size: 16px;
+     }
    </style>
  </head>
 
  <body>
    <header>
      <nav class="nav">
-       <a href="../HomeOperatore.php" class="nav-item" active-color="orange" style="font-size: 20px">Home</a>
-       <a href="" class="nav-item is-active " active-color="purple">Registra Acquisto</a>
+       <a href="../HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
+       <a href="" class="nav-item is-active" active-color="purple">Registra Acquisto</a>
        <a href="../VisualizzaPrenotazioni.php" class="nav-item"  active-color="red">Prenotazioni</a>
-       <a href="../ritiriFotocopie.php" class="nav-item" active-color="#ee6c4d">Ritiri</a>
+       <a href="../ritiriFotocopie.php" class="nav-item " active-color="brown">Ritiri</a>
        <a href="../CronologiaAcquisti.php" class="nav-item" active-color="green">Storico Acquisti</a>
        <a href="../logout.php" class="nav-item" active-color="blue">Logout</a>
        <?php
         $usr=$_SESSION["usernameBZ"];
-        $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 30%;\"> Username: $usr </p>";
-        echo $msgIdUtente;
+        echo "<div class=\"usr\">
+          <div class=\"usr-text\"> Ciao: $usr! </p>
+        </div>";
        ?>
        <span class="nav-indicator"></span>
      </nav>

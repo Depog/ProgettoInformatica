@@ -9,7 +9,7 @@
   function caricaCodaStampa($ip, $porta) {
     //Inizio tag table + intestazione
     $out = "<div class=\"table100-head\">
-              <table >
+              <table style=\"margin-right: 0px;\">
                 <thead>
                   <tr class=\"row100 head\">
                   <th class=\"cell100 column1O\">Data Prenotazione</th>
