@@ -16,34 +16,19 @@
   	<meta charset="UTF-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!--===============================================================================================-->
-  	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-  <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
   	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-  <!--===============================================================================================-->
   	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-  <!--===============================================================================================-->
   	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-  <!--==============================================================================================-->
   	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-  <!--===============================================================================================-->
   	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-  <!--===============================================================================================-->
   	<link rel="stylesheet" type="text/css" href="css/util.css">
     <link href="css/main.css" rel="stylesheet" type="text/css"  >
-  <!--===============================================================================================-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <style>
 
-  @font-face {
-    font-family: Lato-Regular;
-    src: url('../fonts/Lato/Lato-Regular.ttf');
-  }
 
-  @font-face {
-    font-family: Lato-Bold;
-    src: url('../fonts/Lato/Lato-Bold.ttf');
-  }
+
     @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
     *{
       margin: 0;
@@ -57,11 +42,6 @@
       width: 100%;
       background: #FFFF;
     }
-    .inner-width{
-      background: black;
-      max-width: 100%;
-      margin: 0;
-    }
     body {
       background: url(images/wallpaper.jpg) no-repeat;
       background-size: cover;
@@ -70,18 +50,7 @@
       height: auto;
       width: 100%;
     }
-    .container-table100 {
-      width: 100%;
-      min-height: 100vh;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: flex;
-      margin-top: 200px;
-      flex-wrap: wrap;
-      margin-right: 10%;
-    }
+
     .nav {
       display: -webkit-inline-box;
       display: inline-flex;
@@ -221,6 +190,12 @@
     <a href="" class="nav-item is-active" active-color="green">Contatti</a>
     <a href="HomeUtente.php?logout=true" class="nav-item" active-color="blue">Logout</a>
     <span class="nav-indicator"></span>
+    <?php
+     $usr=$_SESSION["usernameBZ"];
+     echo "<div class=\"usr\">
+       <div class=\"usr-text\"> Ciao: $usr! </p>
+     </div>";
+    ?>
   </nav>
 
 </header>
@@ -252,7 +227,23 @@
     </div>
 
 
-
+    <script src="vendorjquery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/navbar.js"></script>
+  <!--===============================================================================================-->
+  	<script src="vendor/bootstrap/js/popper.js"></script>
+  	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  	<script src="vendor/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+  <script>
+      $('.js-pscroll').each(function(){
+        var ps = new PerfectScrollbar(this);
+        $(window).on('resize', function(){
+          ps.update();
+        })
+      });
+  </script>
 <script src="js/navbar.js"></script>
 </body>
 

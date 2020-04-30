@@ -8,81 +8,38 @@
   }else{
     header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/index.php");  //reinderizzo alla home
   }
-  //  echo "operatore";
- ?>
- <!DOCTYPE html>
- <html>
- <head>
+?>
+
+<html>
+<head>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    <script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
     });
-  });
-});
-</script>
+    </script>
    	<title>HOME OPERATORE</title>
    	<meta charset="UTF-8">
-    <!--===============================================================================================-->
     	<link rel="icon" type="image/png" href="../HomeUtente/images/icons/favicon.ico"/>
-    <!--===============================================================================================-->
     	<link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/bootstrap/css/bootstrap.min.css">
-    <!--===============================================================================================-->
     	<link rel="stylesheet" type="text/css" href="../HomeUtente/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
     	<link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/animate/animate.css">
-    <!--==============================================================================================-->
     	<link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
     	<link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/perfect-scrollbar/perfect-scrollbar.css">
-    <!--===============================================================================================-->
     	<link rel="stylesheet" type="text/css" href="../HomeUtente/css/util.css">
       <link href="../HomeUtente/css/main.css" rel="stylesheet" type="text/css"  >
-    <!--===============================================================================================-->
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
    <!--Style per la search bar-->
    <link rel="stylesheet" type="text/css" href="StyleForSearchBar/searchBarCSS.css">
    <style>
 
-     b.c{
-       position: fixed;
-       left : 25%;
-       top: 15%;
-       font-size: 40px;
-       color: #fff;
-     }
 
-     .page {
-       width:100%;
-       height: 100%;
-       margin: 0px 0px 0px 0px;
-       padding: 0px 0px 0px 0px;
-       border: 0px 0px 0px 0px;
-       background: url(../Login/images/wallpaper.jpg) no-repeat fixed;
-       background-size: cover;
-       position: fixed;
-       font-family: Poppins-Regular, sans-serif;
-     }
 
-     .container-table100 {
-       width: 100%;
-       min-height: 100vh;
-       display: -webkit-box;
-       display: -webkit-flex;
-       display: -moz-box;
-       display: -ms-flexbox;
-       display: flex;
-       margin-top: 0px;
-       flex-wrap: wrap;
-       padding: 0px 0px;
-       margin-right: 10%;
-       position: fixed;
-       top: 25%;
-       left: 5%;
-     }
 /*////////////////////////////////////////////////////////////////////////////// NAV BAR STYLE/////////////////////////////////////////////////////////////////*/
      @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
      *{
@@ -106,18 +63,30 @@ $(document).ready(function(){
      }
 
      body {
-
-       display: -webkit-box;
-       display: flex;
-       height: 100vh;
-       width: 100%;
-       -webkit-box-pack: center;
-               justify-content: center;
-       padding: 0 0;
-       background-color: #2f3640;
+       background: url(img/wallpaper.jpg) no-repeat fixed;
+       background-size: cover;
+       height: 100%;
+       width: auto;
+       overflow: hidden;
      }
 
-
+     .container-table100 {
+       width: 100%;
+       min-height: 100vh;
+       display: -webkit-box;
+       display: -webkit-flex;
+       display: -moz-box;
+       display: -ms-flexbox;
+       display: flex;
+       margin-top: 0px;
+       flex-wrap: wrap;
+       padding-left: 4%;
+       padding-right: 4%;
+       padding-top: 40px;
+       text-align: center;
+       top: 25%;
+       left: 5%;
+     }
      .nav {
        display: -webkit-inline-box;
        display: inline-flex;
@@ -182,53 +151,57 @@ $(document).ready(function(){
          overflow: auto;
        }
      }
-
+     .searchBox{
+       width: auto;
+       height: auto;
+       padding-left: 4%;
+     }
+     .titolo{
+       width: 100%;
+       height: auto;
+       text-align: center;
+       color: red;
+       font-size: 40px;
+       padding-top: 100px;
+     }
    </style>
  </head>
 
- <body>
-       <p class="page">
-         <header>
-           <nav class="nav">
-             <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
-             <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Registra Acquisto</a>
-             <a href="VisualizzaPrenotazioni.php" class="nav-item  is-active" active-color="red">Prenotazioni</a><!--sotto pagina di Prenotazioni-->
-             <a href="ritiriFotocopie.php" class="nav-item" active-color="blue">Ritiri</a>
-             <a href="CronologiaAcquisti.php" class="nav-item " active-color="green">Storico Acquisti</a>
-             <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
-             <?php
-              $usr=$_SESSION["usernameBZ"];
-              $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 30%;\"> Username: $usr </p>";
-              echo $msgIdUtente;
-             ?>
-             <span class="nav-indicator"></span>
-           </nav>
-         </header>
+ <body<header>
+   <nav class="nav">
+     <a href="HomeOperatore.php" class="nav-item" active-color="orange">Home</a>
+     <a href="CreaAcquisto/CreaAcquisto.php" class="nav-item" active-color="purple">Registra Acquisto</a>
+     <a href="VisualizzaPrenotazioni.php" class="nav-item  is-active" active-color="red">Prenotazioni</a><!--sotto pagina di Prenotazioni-->
+     <a href="ritiriFotocopie.php" class="nav-item" active-color="blue">Ritiri</a>
+     <a href="CronologiaAcquisti.php" class="nav-item " active-color="green">Storico Acquisti</a>
+     <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
+     <?php
+      $usr=$_SESSION["usernameBZ"];
+      $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 30%;\"> Username: $usr </p>";
+      echo $msgIdUtente;
+     ?>
+     <span class="nav-indicator"></span>
+   </nav>
+ </header>
 
-         <div class="limiter">
-           <label class="search" for="inpt_search">
-             <input id="myInput" type="text" ></input>
-           </label>
-         </div>
-        		<div class="container-table100" style="width: 90%;">
-        			<div class="wrap-table100OperatorePE" style="width: 90%;">
-        				<b class="c">STORICO COMPLETO DELLE PRENOTAZIONI</b>
-        				<div class="table100 ver3 m-b-110">
-                   <?php
-                   //Creazione Coda Delle Stampe in modo dinamico
-                   include 'LogicaCronologiaPrenotazioni/prenotazioniEffettuate.php';
-                     $app = caricaPrenotazioniEffettuate($ip,$porta);
-                    echo $app;
+ <div class="titolo"><b>STORICO COMPLETO DELLE PRENOTAZIONI</b></div>
 
-                   ?>
-        				</div>
-        			</div>
-        		</div>
-        	<br>
-
-
-
-       </p>
+ <div class="searchBox">
+  <label class="search" for="inpt_search">
+    <input id="myInput" type="text" ></input>
+  </label>
+ </div>
+  <div class="container-table100" style="width: 90%;">
+    <div class="wrap-table100OperatorePE" style="width: 100%;">
+      <div class="table100 ver3 m-b-110">
+         <?php
+           include 'LogicaCronologiaPrenotazioni/prenotazioniEffettuate.php';
+           $app = caricaPrenotazioniEffettuate($ip,$porta);
+           echo $app;
+         ?>
+      </div>
+    </div>
+  </div>
 
 <!--===============================================================================================-->
 <script src="../HomeUtente/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -251,7 +224,7 @@ $(document).ready(function(){
     });
     $('.search-button').click(function(){
   $(this).parent().toggleClass('open');
-});
+  });
 </script>
 <script>
 function myFunction() {
@@ -274,8 +247,7 @@ function myFunction() {
 }
 </script>
 <!--===============================================================================================-->
-<script src="../HomeUtente/js/main.js"></script>
-
+<script src="../HomeUtente/js/navbar.js"></script>
 
  </body>
  </html>

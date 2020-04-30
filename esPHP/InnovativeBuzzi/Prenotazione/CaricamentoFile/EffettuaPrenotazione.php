@@ -39,7 +39,7 @@
 	<link rel="stylesheet" type="text/css" href="../../HomeUtente/css/util.css">
   <link href="../../HomeUtente/css/main.css" rel="stylesheet" type="text/css"  >
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js">
     jQuery(function($) {
       $(window).on('scroll', function() {
@@ -75,6 +75,13 @@
     adjustNav();
   });</script>
 <style>
+
+  @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
+  *{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+  }
   body{
     background: url(img/wallpaper.jpg) no-repeat fixed;
     background-size: cover;
@@ -104,13 +111,6 @@
     color: #FFFFFF;
      text-shadow: 2px 2px 5px black;
      text-align: justify;
-  }
-
-  @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
-  *{
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
   }
 
   header{
@@ -205,9 +205,11 @@
      <a href="../../HomeUtente/contattaci.php" class="nav-item"  active-color="red">Contatti</a>
      <a href="EffettuaPrenotazione.php?logout=true" class="nav-item" active-color="#ee6c4d">Logout</a>
      <?php
-        $usr=$_SESSION["usernameBZ"];
-        echo "<p style=\"border-style:ridge; font-size:1rem; margin-top: 18px; margin-left: 26%; margin-right: auto;\"> Username: $usr </p>";
-      ?>
+      $usr=$_SESSION["usernameBZ"];
+      echo "<div class=\"usr\">
+        <div class=\"usr-text\"> Ciao: $usr! </p>
+      </div>";
+     ?>
      <span class="nav-indicator"></span>
    </nav>
   </header>
@@ -264,7 +266,6 @@
         })
       });
   </script>
-	<script src="js/navbar.js"></script>
 
 </body>
 

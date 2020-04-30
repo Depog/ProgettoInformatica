@@ -13,30 +13,21 @@
   if(!isset($_SESSION["usernameBZ"])){
     header("location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/login/index.php");
   }
-    ?>
-<!DOCTYPE html>
-<html lang="en">
+?>
+<html>
 <head>
-	<title>Table V04</title>
+	<title>HOME</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--==============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
   <link href="css/main.css" rel="stylesheet" type="text/css"  >
-<!--===============================================================================================-->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <style>
   @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
@@ -52,12 +43,6 @@
     height: auto;
     width: 100%;
     background: #FFFF;
-  }
-  .inner-width{
-    background: black;
-    max-width: 100%;
-    padding: 0 10px;
-    margin: auto;
   }
   body {
 
@@ -137,7 +122,7 @@
 
   .pren{
     width: 100%;
-    margin-top: 400px;
+    margin-top: 180px;
   }
   .pren-img{
     float: left;
@@ -162,11 +147,13 @@
     <nav class="nav">
       <a href="" class="nav-item is-active" active-color="orange">Home</a>
       <a href="../Prenotazione/CaricamentoFile/EffettuaPrenotazione.php" class="nav-item" active-color="red">Effettua Prenotazione</a>
-      <a href="contattaci.php" class="nav-item" active-color="green">Contattaci</a>
+      <a href="contattaci.php" class="nav-item" active-color="green">Contatti</a>
       <a href="HomeUtente.php?logout=true" class="nav-item" active-color="blue">Logout</a>
       <?php
        $usr=$_SESSION["usernameBZ"];
-       echo "<p style=\"border-style:ridge; margin-top: 18px; margin-left: 24%; margin-right: auto;\"> Username: $usr </p>";
+       echo "<div class=\"usr\">
+         <div class=\"usr-text\"> Ciao: $usr! </p>
+       </div>";
       ?>
       <span class="nav-indicator"></span>
     </nav>

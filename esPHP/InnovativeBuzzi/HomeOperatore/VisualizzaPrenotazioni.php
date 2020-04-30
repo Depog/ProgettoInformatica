@@ -8,66 +8,26 @@
   }else{
     header("Location: http://" .$ip .":" .$porta ."/esPHP/InnovativeBuzzi/index.php");  //reinderizzo alla home
   }
-  //  echo "operatore";
- ?>
- <!DOCTYPE html>
- <html>
- <head>
-   	<title>HOME OPERATORE</title>
-   	<meta charset="UTF-8">
-    <!--===============================================================================================-->
-    	<link rel="icon" type="image/png" href="../HomeUtente/images/icons/favicon.ico"/>
-    <!--===============================================================================================-->
-    	<link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/bootstrap/css/bootstrap.min.css">
-    <!--===============================================================================================-->
-    	<link rel="stylesheet" type="text/css" href="../HomeUtente/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    	<link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/animate/animate.css">
-    <!--==============================================================================================-->
-    	<link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
-    	<link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/perfect-scrollbar/perfect-scrollbar.css">
-    <!--===============================================================================================-->
-    	<link rel="stylesheet" type="text/css" href="../HomeUtente/css/util.css">
-      <link href="../HomeUtente/css/main.css" rel="stylesheet" type="text/css"  >
-    <!--===============================================================================================-->
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+?>
 
-   <style>
+<html>
+<head>
+  <title>HOME OPERATORE</title>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="../HomeUtente/images/icons/favicon.ico"/>
+  <link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../HomeUtente/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/animate/animate.css">
+  <link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/select2/select2.min.css">
+  <link rel="stylesheet" type="text/css" href="../HomeUtente/vendor/perfect-scrollbar/perfect-scrollbar.css">
+  <link rel="stylesheet" type="text/css" href="../HomeUtente/css/util.css">
+  <link href="../HomeUtente/css/main.css" rel="stylesheet" type="text/css" >
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-   b.c{
-     position: fixed;
-     left : 35%;
-     top: 15%;
-     font-size: 40px;
-     color: #fff;
-   }
+<style>
 
-   .page {
-     width:100%;
-     height: 100%;
-     margin: 0px 0px 0px 0px;
-     padding: 0px 0px 0px 0px;
-     border: 0px 0px 0px 0px;
-     background: url(../Login/images/wallpaper.jpg) no-repeat fixed;
-     background-size: cover;
-     position: fixed;
-     font-family: Poppins-Regular, sans-serif;
-   }
 
-   .container-table1003 {
-     margin-top: 10%;
-     width: 100%;
-     min-height: 100vh;
-     display: -webkit-box;
-     display: -webkit-flex;
-     display: -moz-box;
-     display: -ms-flexbox;
-     display: flex;
-     flex-wrap: wrap;
-   }
-/*////////////////////////////////////////////////////////////////////////////// NAV BAR STYLE/////////////////////////////////////////////////////////////////*/
-   @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
+  @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
    *{
      margin: 0;
      padding: 0;
@@ -80,13 +40,6 @@
      width: 100%;
      background: #FFFF;
    }
-   .inner-width{
-     background: black;
-     max-width: 100%;
-     padding: 0 10px;
-     margin: auto;
-   }
-
    body {
      background: url(img/wallpaper.jpg) no-repeat;
      background-size: cover;
@@ -94,8 +47,6 @@
      width: auto;
      overflow: scroll;
    }
-
-
    .nav {
      display: -webkit-inline-box;
      display: inline-flex;
@@ -107,7 +58,6 @@
      box-shadow: 0 10px 40px rgba(159, 162, 177, 0.8);
      float: right;
    }
-
    .nav-item {
      color: #83818c;
      padding: 20px;
@@ -133,16 +83,13 @@
      -webkit-transition: .3s;
      transition: .3s;
    }
-
    .nav-item:not(.is-active):hover:before {
      opacity: 1;
      bottom: 0;
    }
-
    .nav-item:not(.is-active):hover {
      color: red;
    }
-
    .nav-indicator {
      position: absolute;
      right: 0;
@@ -154,13 +101,22 @@
      z-index: 1;
      border-radius: 8px 8px 0 0;
    }
-
    @media (max-width: 580px) {
      .nav {
        overflow: auto;
      }
    }
-
+   .container-table1003 {
+     margin-top: 10%;
+     width: 100%;
+     min-height: 100vh;
+     display: -webkit-box;
+     display: -webkit-flex;
+     display: -moz-box;
+     display: -ms-flexbox;
+     display: flex;
+     flex-wrap: wrap;
+   }
    .infoPr{
      margin-top: 80px;
      width: 85%;
@@ -177,6 +133,17 @@
      width: 100%;
      height: 50px;
    }
+   .usr{
+     padding-top: 20px;
+     width: 80px;
+     height: 100%;
+     margin-left: 24%;
+     margin-top: ;
+     text-align: center;
+   }
+   .usr-text{
+     font-family: 'DM Sans', sans-serif;
+   }
    </style>
  </head>
 
@@ -191,8 +158,9 @@
        <a href="logout.php" class="nav-item" active-color="blue">Logout</a>
        <?php
         $usr=$_SESSION["usernameBZ"];
-        $msgIdUtente="<p style=\"border-style:ridge; margin-top: 18px; margin-left: 30%;\"> Username: $usr </p>";
-        echo $msgIdUtente;
+        echo "<div class=\"usr\">
+          <div class=\"usr-text\"> Ciao: $usr! </p>
+        </div>";
        ?>
        <span class="nav-indicator"></span>
      </nav>
